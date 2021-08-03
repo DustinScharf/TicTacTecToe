@@ -19,7 +19,9 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Game.fxml"));
         Parent root = fxmlLoader.load();
 
-        // Controller controller = fxmlLoader.getController();
+        Controller controller = fxmlLoader.getController();
+
+        controller.testController();
 
         Scene scene = new Scene(root);
         // scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
