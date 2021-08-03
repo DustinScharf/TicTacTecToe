@@ -16,7 +16,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/App.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Game.fxml"));
         Parent root = fxmlLoader.load();
 
         // Controller controller = fxmlLoader.getController();
