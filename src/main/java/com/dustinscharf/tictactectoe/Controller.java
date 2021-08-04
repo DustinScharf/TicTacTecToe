@@ -7,8 +7,15 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import org.apache.commons.collections4.ListUtils;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class Controller {
     @FXML
@@ -24,12 +31,24 @@ public class Controller {
 
     public void receiveGame(Game game) {
         this.controlledGame = game;
+
+        List<Node> boardFieldButtons = this.gridPaneBoardFieldButtons.getChildren();
+
+        List<Node> player1PlacersRows = this.vBoxPlayer1PlacerButtons.getChildren();
+        List<Node> player1Placers = new ArrayList<>(20);
+        player1Placers.addAll(((HBox) player1PlacersRows.get(1)).getChildren());
+        player1Placers.addAll(((HBox) player1PlacersRows.get(0)).getChildren());
+
+        List<Node> player2PlacersRows = this.vBoxPlayer2PlacerButtons.getChildren();
+        List<Node> player2Placers = new ArrayList<>(20);
+        player2Placers.addAll(((HBox) player2PlacersRows.get(0)).getChildren());
+        player2Placers.addAll(((HBox) player2PlacersRows.get(1)).getChildren());
+
+        game.initGame(boardFieldButtons, player1Placers, player2Placers);
     }
 
-    public void boardClicked(MouseEvent mouseEvent) {
-        System.out.println("Clicked!");
+    public void boardClicked(MouseEvent mouseEvent) { // todo
         Node clickedNode = mouseEvent.getPickResult().getIntersectedNode();
-        System.out.println(clickedNode);
 
         GraphicsContext graphicsContext = ((Canvas) clickedNode).getGraphicsContext2D();
         graphicsContext.setFill(Color.GREEN);
@@ -38,8 +57,9 @@ public class Controller {
         graphicsContext.strokeLine(40, 10, 10, 40);
     }
 
-    public void testController() {
-        ObservableList<Node> boardFieldButtons = this.gridPaneBoardFieldButtons.getChildren();
-        boardFieldButtons.forEach(System.out::println);
+    public void testController() { // todo
+//        ObservableList<Node> boardFieldButtons = this.gridPaneBoardFieldButtons.getChildren();
+//        boardFieldButtons.forEach(System.out::println);
+//        System.out.println(this.vBoxPlayer1PlacerButtons.getChildren());
     }
 }
