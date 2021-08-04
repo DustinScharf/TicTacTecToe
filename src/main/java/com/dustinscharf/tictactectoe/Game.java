@@ -16,9 +16,22 @@ public class Game {
 
     private boolean isRunning;
 
+    public Board getBoard() {
+        return board;
+    }
+
     public void initGame(List<Node> boardButtons,
                          List<Node> player1Placers,
                          List<Node> player2Placers) {
         // todo
+    }
+
+    public boolean isRunning() {
+        return true; // todo
+    }
+
+    public void switchCurrentPlayer() {
+        if (this.currentPlayer == this.gamePlayer1) this.currentPlayer = this.gamePlayer2;
+        else this.currentPlayer = this.gamePlayer1;
     }
 }

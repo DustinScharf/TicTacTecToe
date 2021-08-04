@@ -1,7 +1,12 @@
 package com.dustinscharf.tictactectoe;
 
 public class GamePlayer {
-    private Game game;
+    protected Game game;
     private Player player;
-    private Placers placers;
+    protected Placers placers;
+
+    public boolean place(Field field) {
+        field.setPlacer(this.placers.getSelectedPlacer());
+        return true; // todo
+    }
 }
