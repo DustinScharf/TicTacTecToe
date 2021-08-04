@@ -2,6 +2,7 @@ package com.dustinscharf.tictactectoe;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 
 public class Field {
     private Canvas button;

@@ -2,19 +2,20 @@ package com.dustinscharf.tictactectoe;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 
 public class Placer {
-    private Canvas button;
+    private TextArea button;
     private boolean isThere;
     private int value;
 
-    public Placer(Canvas button, int value) {
+    public Placer(TextArea button, int value) {
         this.button = button;
         this.isThere = true;
         this.value = value;
     }
 
-    public Canvas getButton() {
+    public TextArea getButton() {
         return button;
     }
 
