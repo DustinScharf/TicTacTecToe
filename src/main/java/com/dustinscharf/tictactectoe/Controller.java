@@ -51,13 +51,13 @@ public class Controller {
     public void boardClicked(MouseEvent mouseEvent) { // todo
         Node clickedNode = mouseEvent.getPickResult().getIntersectedNode();
 
-        System.out.println(clickedNode);
-
-        GraphicsContext graphicsContext = ((Canvas) clickedNode).getGraphicsContext2D();
-        graphicsContext.setFill(Color.GREEN);
-        graphicsContext.setStroke(Color.BLUE);
-        graphicsContext.setLineWidth(5);
-        graphicsContext.strokeLine(40, 10, 10, 40);
+//        System.out.println(clickedNode);
+//
+//        GraphicsContext graphicsContext = ((Canvas) clickedNode).getGraphicsContext2D();
+//        graphicsContext.setFill(Color.GREEN);
+//        graphicsContext.setStroke(Color.BLUE);
+//        graphicsContext.setLineWidth(5);
+//        graphicsContext.strokeLine(40, 10, 10, 40);
     }
 
     public void testController() { // todo
