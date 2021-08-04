@@ -1,8 +1,15 @@
 package com.dustinscharf.tictactectoe;
 
+import javafx.scene.Node;
+
+import java.util.List;
 import java.util.Random;
 
 public class Bot extends GamePlayer {
+    public Bot(Game game, List<Node> placerButtonList) {
+        super(game, placerButtonList, new Player("Bot"));
+    }
+
     public boolean placeRandom() {
         Random random = new Random();
         int rand0 = random.nextInt(20);

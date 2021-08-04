@@ -25,8 +25,7 @@ public class App extends Application {
 
         controller.testController();
 
-        Game game = new Game();
-        controller.receiveGame(game);
+        Game game = new Game(controller, new Player("P1"), new Player("P2"));
 
         Scene scene = new Scene(root);
         // scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());

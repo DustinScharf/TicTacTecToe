@@ -8,6 +8,12 @@ public class Placer {
     private boolean isThere;
     private int value;
 
+    public Placer(Canvas button, int value) {
+        this.button = button;
+        this.isThere = true;
+        this.value = value;
+    }
+
     public Canvas getButton() {
         return button;
     }

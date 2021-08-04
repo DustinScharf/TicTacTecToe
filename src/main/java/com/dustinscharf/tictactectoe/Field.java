@@ -7,6 +7,11 @@ public class Field {
     private Canvas button;
     private Placer placer;
 
+    public Field(Canvas button) {
+        this.button = button;
+        this.placer = null;
+    }
+
     public Canvas getButton() {
         return button;
     }

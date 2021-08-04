@@ -16,14 +16,24 @@ public class Game {
 
     private boolean isRunning;
 
+    public Game(Controller controller, Player player1, Player player2) {
+        controller.receiveGame(this, player1, player2);
+    }
+
     public Board getBoard() {
         return board;
     }
 
-    public void initGame(List<Node> boardButtons,
+    public void initGame(Player player1,
+                         Player player2,
+                         List<Node> boardButtons,
                          List<Node> player1Placers,
                          List<Node> player2Placers) {
-        // todo
+
+        this.gamePlayer1 = new GamePlayer(this, player1Placers, player1);
+        this.gamePlayer2 = new GamePlayer(this, player2Placers, player2);
+
+        this.board = new Board(boardButtons);
     }
 
     public boolean isRunning() {

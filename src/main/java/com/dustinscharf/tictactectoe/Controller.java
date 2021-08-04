@@ -29,10 +29,11 @@ public class Controller {
 
     private Game controlledGame;
 
-    public void receiveGame(Game game) {
+    public void receiveGame(Game game, Player player1, Player player2) {
         this.controlledGame = game;
 
         List<Node> boardFieldButtons = this.gridPaneBoardFieldButtons.getChildren();
+        System.out.println(boardFieldButtons);
 
         List<Node> player1PlacersRows = this.vBoxPlayer1PlacerButtons.getChildren();
         List<Node> player1Placers = new ArrayList<>(20);
@@ -44,11 +45,13 @@ public class Controller {
         player2Placers.addAll(((HBox) player2PlacersRows.get(0)).getChildren());
         player2Placers.addAll(((HBox) player2PlacersRows.get(1)).getChildren());
 
-        game.initGame(boardFieldButtons, player1Placers, player2Placers);
+        game.initGame(player1, player2, boardFieldButtons, player1Placers, player2Placers);
     }
 
     public void boardClicked(MouseEvent mouseEvent) { // todo
         Node clickedNode = mouseEvent.getPickResult().getIntersectedNode();
+
+        System.out.println(clickedNode);
 
         GraphicsContext graphicsContext = ((Canvas) clickedNode).getGraphicsContext2D();
         graphicsContext.setFill(Color.GREEN);
