@@ -1,8 +1,6 @@
 package com.dustinscharf.tictactectoe;
 
 import javafx.scene.Node;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
 
 import java.util.List;
 
@@ -47,10 +45,6 @@ public class Game {
         this.isRunning = true;
     }
 
-    public boolean isRunning() {
-        return true; // todo
-    }
-
     public void switchCurrentPlayer() {
         if (this.currentPlayer == this.gamePlayer1) this.currentPlayer = this.gamePlayer2;
         else this.currentPlayer = this.gamePlayer1;
@@ -63,17 +57,53 @@ public class Game {
 
         boolean success = this.currentPlayer.placers.getSelectedPlacer().place(clickedField);
         if (success) {
-            if (this.checkForWin()) {
-                // todo winner
+            if (this.checkForWinAfterPlace(clickedField)) {
+                System.out.println("WIN!");
             } else {
                 this.switchCurrentPlayer();
             }
         }
     }
 
-    private boolean checkForWin() {
-        // todo win check
-        this.isRunning = true;
+    private boolean checkForWinAfterPlace(Field placedField) {
+        int rowCombinationCounter = 0;
+        int colCombinationCounter = 0;
+        int diagonalCombinationCounter = 0;
+        int antiDiagonalCombinationCounter = 0;
+
+        int placedFieldRowPos = placedField.getBoardRowPosition();
+        int placedFieldColPos = placedField.getBoardColPosition();
+
+        GamePlayer winCheckingPlayer = placedField.getPlacer().getOwner();
+
+        for (int i = 0; i < 3; ++i) {
+            if (this.board.getFields()[placedFieldRowPos][i].isSet() &&
+                    this.board.getFields()[placedFieldRowPos][i].getPlacer().getOwner() == winCheckingPlayer) {
+                ++rowCombinationCounter;
+            }
+
+            if (this.board.getFields()[i][placedFieldColPos].isSet() &&
+                    this.board.getFields()[i][placedFieldColPos].getPlacer().getOwner() == winCheckingPlayer) {
+                ++colCombinationCounter;
+            }
+
+            if (this.board.getFields()[i][i].isSet() &&
+                    this.board.getFields()[i][i].getPlacer().getOwner() == winCheckingPlayer) {
+                ++diagonalCombinationCounter;
+            }
+
+            if (this.board.getFields()[i][2-i].isSet() &&
+                    this.board.getFields()[i][2-i].getPlacer().getOwner() == winCheckingPlayer) {
+                ++antiDiagonalCombinationCounter;
+            }
+        }
+
+        if (rowCombinationCounter == 3 || colCombinationCounter == 3 ||
+                diagonalCombinationCounter == 3 || antiDiagonalCombinationCounter == 3) {
+            this.isRunning = false;
+            return true;
+        }
+
         return false;
     }
 

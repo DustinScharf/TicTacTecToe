@@ -14,10 +14,14 @@ public class Board {
         int fieldButtonListInsertionIndex = 0;
 
         this.fields = new Field[3][];
-        for (int i = 0; i < 3; ++i) {
-            this.fields[i] = new Field[3];
-            for (int j = 0; j < 3; ++j) {
-                this.fields[i][j] = new Field((Canvas) fieldButtonList.get(fieldButtonListInsertionIndex++));
+        for (int row = 0; row < 3; ++row) {
+            this.fields[row] = new Field[3];
+            for (int col = 0; col < 3; ++col) {
+                this.fields[row][col] = new Field(
+                        (Canvas) fieldButtonList.get(fieldButtonListInsertionIndex++),
+                        row,
+                        col
+                );
             }
         }
     }

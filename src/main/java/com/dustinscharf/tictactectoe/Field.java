@@ -15,13 +15,22 @@ public class Field {
     private Canvas button;
     private Placer placer;
 
-    public Field(Canvas button) {
+    private int boardRowPosition;
+    private int boardColPosition;
+
+    public Field(Canvas button, int boardRowPosition, int boardColPosition) {
         this.button = button;
         this.placer = null;
+        this.boardRowPosition = boardRowPosition;
+        this.boardColPosition = boardColPosition;
     }
 
     public Canvas getButton() {
         return button;
+    }
+
+    public Placer getPlacer() {
+        return placer;
     }
 
     public boolean setPlacer(Placer placer) {
@@ -49,6 +58,14 @@ public class Field {
         );
 
         return true;
+    }
+
+    public int getBoardRowPosition() {
+        return boardRowPosition;
+    }
+
+    public int getBoardColPosition() {
+        return boardColPosition;
     }
 
     public boolean isSet() {

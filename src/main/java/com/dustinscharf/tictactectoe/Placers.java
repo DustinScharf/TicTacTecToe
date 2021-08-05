@@ -19,8 +19,11 @@ public class Placers {
         this.placers = new Placer[20];
         this.owner = owner;
         for (int i = 0; i < 20; ++i) {
-            this.placers[i] = new Placer((Text) placerButtonList.get(placerButtonListInsertionIndex++), i + 1,
-                    this.owner);
+            this.placers[i] = new Placer(
+                    (Text) placerButtonList.get(placerButtonListInsertionIndex++),
+                    i + 1,
+                    this.owner
+            );
         }
     }
 
