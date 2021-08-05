@@ -1,6 +1,10 @@
 package com.dustinscharf.tictactectoe;
 
+import javafx.animation.RotateTransition;
 import javafx.scene.Node;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import java.util.List;
 
@@ -32,22 +36,29 @@ public class Game {
 
     public void initGame(Player player1,
                          Player player2,
-                         List<Node> boardButtons,
+                         Text textPlayer1,
+                         Text textPlayer2,
                          List<Node> player1Placers,
-                         List<Node> player2Placers) {
+                         List<Node> player2Placers,
+                         List<Node> boardButtons) {
 
-        this.gamePlayer1 = new GamePlayer(this, player1Placers, player1);
-        this.gamePlayer2 = new GamePlayer(this, player2Placers, player2);
+        this.gamePlayer1 = new GamePlayer(textPlayer1, this, player1, player1Placers, Color.SEAGREEN);
+        this.gamePlayer2 = new GamePlayer(textPlayer2, this, player2, player2Placers, Color.SLATEBLUE);
 
         this.board = new Board(boardButtons);
 
         this.currentPlayer = this.gamePlayer1;
+        this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
         this.isRunning = true;
     }
 
     public void switchCurrentPlayer() {
+        this.currentPlayer.getTextPlayerName().setFill(Color.BLACK);
+
         if (this.currentPlayer == this.gamePlayer1) this.currentPlayer = this.gamePlayer2;
         else this.currentPlayer = this.gamePlayer1;
+
+        this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
     }
 
     public void receiveBoardClick(Field clickedField) {
@@ -58,11 +69,37 @@ public class Game {
         boolean success = this.currentPlayer.placers.getSelectedPlacer().place(clickedField);
         if (success) {
             if (this.checkForWinAfterPlace(clickedField)) {
-                System.out.println("WIN!"); // todo
+                this.gameWon();
             } else {
                 this.switchCurrentPlayer();
             }
         }
+    }
+
+    private void gameWon() {
+        if (this.currentPlayer == this.gamePlayer1) this.gamePlayer2.getTextPlayerName().setFill(Color.LIGHTGRAY);
+        else this.gamePlayer1.getTextPlayerName().setFill(Color.LIGHTGRAY);
+
+        // Creating rotate transition
+        RotateTransition rotateTransition = new RotateTransition();
+
+        // Setting the duration for the transition
+        rotateTransition.setDuration(Duration.millis(1000));
+
+        // Setting the node for the transition
+        rotateTransition.setNode(this.currentPlayer.getTextPlayerName());
+
+        // Setting the angle of the rotation
+        rotateTransition.setByAngle(360);
+
+        // Setting the cycle count for the transition
+        rotateTransition.setCycleCount(50);
+
+        // Setting auto reverse value to false
+        rotateTransition.setAutoReverse(true);
+
+        // Playing the animation
+        rotateTransition.play();
     }
 
     private boolean checkForWinAfterPlace(Field placedField) {
@@ -92,8 +129,8 @@ public class Game {
                 ++diagonalCombinationCounter;
             }
 
-            if (this.board.getFields()[i][2-i].isSet() &&
-                    this.board.getFields()[i][2-i].getPlacer().getOwner() == winCheckingPlayer) {
+            if (this.board.getFields()[i][2 - i].isSet() &&
+                    this.board.getFields()[i][2 - i].getPlacer().getOwner() == winCheckingPlayer) {
                 ++antiDiagonalCombinationCounter;
             }
         }

@@ -21,6 +21,12 @@ import java.util.stream.Stream;
 
 public class Controller {
     @FXML
+    private Text textPlayer1;
+
+    @FXML
+    private Text textPlayer2;
+
+    @FXML
     private GridPane gridPaneBoardFieldButtons;
 
     @FXML
@@ -35,7 +41,6 @@ public class Controller {
         this.controlledGame = game;
 
         List<Node> boardFieldButtons = this.gridPaneBoardFieldButtons.getChildren();
-        System.out.println(boardFieldButtons);
 
         List<Node> player1PlacersRows = this.vBoxPlayer1PlacerButtons.getChildren();
         List<Node> player1Placers = new ArrayList<>(20);
@@ -47,10 +52,15 @@ public class Controller {
         player2Placers.addAll(((HBox) player2PlacersRows.get(0)).getChildren());
         player2Placers.addAll(((HBox) player2PlacersRows.get(1)).getChildren());
 
-        game.initGame(player1, player2, boardFieldButtons, player1Placers, player2Placers);
+        game.initGame(
+                player1, player2,
+                this.textPlayer1, this.textPlayer2,
+                player1Placers, player2Placers,
+                boardFieldButtons
+        );
     }
 
-    public void boardClicked(MouseEvent mouseEvent) { // todo
+    public void boardClicked(MouseEvent mouseEvent) {
         Node clickedNode = mouseEvent.getPickResult().getIntersectedNode();
         if (!(clickedNode instanceof Canvas)) {
             return;
@@ -58,17 +68,9 @@ public class Controller {
         Canvas clickedCanvas = (Canvas) clickedNode;
         Field clickedField = this.controlledGame.getBoard().findFieldByButton(clickedCanvas);
         this.controlledGame.receiveBoardClick(clickedField);
-
-//        System.out.println(clickedNode);
-//
-//        GraphicsContext graphicsContext = ((Canvas) clickedNode).getGraphicsContext2D();
-//        graphicsContext.setFill(Color.GREEN);
-//        graphicsContext.setStroke(Color.BLUE);
-//        graphicsContext.setLineWidth(5);
-//        graphicsContext.strokeLine(40, 10, 10, 40);
     }
 
-    public void placerClicked(MouseEvent mouseEvent) { // todo
+    public void placerClicked(MouseEvent mouseEvent) {
         Node clickedNode = mouseEvent.getPickResult().getIntersectedNode();
         if (!(clickedNode instanceof Text)) {
             return;
@@ -79,11 +81,5 @@ public class Controller {
             clickedPlacer = this.controlledGame.getGamePlayer2().placers.findPlacerByButton(clickedText);
         }
         this.controlledGame.receivePlacerClick(clickedPlacer);
-    }
-
-    public void testController() { // todo
-//        ObservableList<Node> boardFieldButtons = this.gridPaneBoardFieldButtons.getChildren();
-//        boardFieldButtons.forEach(System.out::println);
-//        System.out.println(this.vBoxPlayer1PlacerButtons.getChildren());
     }
 }

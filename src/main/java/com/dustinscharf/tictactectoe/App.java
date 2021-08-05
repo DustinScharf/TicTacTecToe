@@ -23,9 +23,7 @@ public class App extends Application {
 
         Controller controller = fxmlLoader.getController();
 
-        controller.testController();
-
-        Game game = new Game(controller, new Player("P1"), new Player("P2"));
+        Game game = new Game(controller, new Player("Player 1"), new Player("Player 2"));
 
         Scene scene = new Scene(root);
         // scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());

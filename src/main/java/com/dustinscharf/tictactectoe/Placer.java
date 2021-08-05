@@ -23,6 +23,10 @@ public class Placer {
         return button;
     }
 
+    public boolean isThere() {
+        return isThere;
+    }
+
     public int getValue() {
         return value;
     }

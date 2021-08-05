@@ -43,13 +43,17 @@ public class Placers {
         return Objects.nonNull(this.selectedPlacer);
     }
 
-    public void select(Placer placer) {
+    public boolean select(Placer placer) {
+        if (!placer.isThere()) return false;
+
         if (this.hasPlacerSelected()) {
             this.selectedPlacer.getButton().setUnderline(false);
         }
 
         this.selectedPlacer = placer;
         this.selectedPlacer.getButton().setUnderline(true);
+
+        return true;
     }
 
     public Placer findPlacerByButton(Text button) {
