@@ -58,7 +58,7 @@ public class Game {
         boolean success = this.currentPlayer.placers.getSelectedPlacer().place(clickedField);
         if (success) {
             if (this.checkForWinAfterPlace(clickedField)) {
-                System.out.println("WIN!");
+                System.out.println("WIN!"); // todo
             } else {
                 this.switchCurrentPlayer();
             }
