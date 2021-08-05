@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dustinscharf.tictactectoe.Controller">
@@ -17,34 +17,114 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" />
             <VBox alignment="CENTER" prefHeight="300.0" prefWidth="300.0">
                <children>
-                  <VBox fx:id="vBoxPlayer2PlacerButtons" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <VBox fx:id="vBoxPlayer2PlacerButtons" alignment="CENTER" onMouseClicked="#placerClicked" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <TextArea text="1" />
-                              <TextArea layoutX="60.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" text="2" />
-                              <TextArea layoutX="160.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" text="3" />
-                              <TextArea layoutX="210.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" text="4" />
-                              <TextArea layoutX="235.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" text="5" />
-                              <TextArea layoutX="250.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" text="6" />
-                              <TextArea layoutX="260.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" text="7" />
-                              <TextArea layoutX="268.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" text="8" />
-                              <TextArea layoutX="297.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" text="9" />
-                              <TextArea layoutX="338.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" text="10" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="207.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="215.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="223.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="231.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="239.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="6" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="247.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="7" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="255.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="263.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="9" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="327.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="11" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="12" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="13" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="14" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="15" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="16" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="17" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="18" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="19" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="20" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="11" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="12" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="13" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="14" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="15" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="16" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="17" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="18" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="19" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </HBox>
                      </children>
@@ -72,34 +152,114 @@
                         <Canvas height="60.0" layoutX="110.0" layoutY="138.0" width="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
-                  <VBox fx:id="vBoxPlayer1PlacerButtons" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <VBox fx:id="vBoxPlayer1PlacerButtons" alignment="CENTER" onMouseClicked="#placerClicked" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="11" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="12" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="13" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="14" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="15" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="16" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="17" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="18" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="19" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="20" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="11" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="12" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="13" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="14" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="15" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="16" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="17" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="18" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="19" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <TextArea text="1" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="2" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="3" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="4" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="5" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="6" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="7" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="8" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="9" />
-                              <TextArea prefHeight="200.0" prefWidth="200.0" text="10" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="4" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="5" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="6" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="7" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="9" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="32.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </HBox>
                      </children>

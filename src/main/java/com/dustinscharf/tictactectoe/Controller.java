@@ -10,11 +10,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.apache.commons.collections4.ListUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public class Controller {
@@ -50,6 +52,12 @@ public class Controller {
 
     public void boardClicked(MouseEvent mouseEvent) { // todo
         Node clickedNode = mouseEvent.getPickResult().getIntersectedNode();
+        if (!(clickedNode instanceof Canvas)) {
+            return;
+        }
+        Canvas clickedCanvas = (Canvas) clickedNode;
+        Field clickedField = this.controlledGame.getBoard().findFieldByButton(clickedCanvas);
+        this.controlledGame.receiveBoardClick(clickedField);
 
 //        System.out.println(clickedNode);
 //
@@ -58,6 +66,19 @@ public class Controller {
 //        graphicsContext.setStroke(Color.BLUE);
 //        graphicsContext.setLineWidth(5);
 //        graphicsContext.strokeLine(40, 10, 10, 40);
+    }
+
+    public void placerClicked(MouseEvent mouseEvent) { // todo
+        Node clickedNode = mouseEvent.getPickResult().getIntersectedNode();
+        if (!(clickedNode instanceof Text)) {
+            return;
+        }
+        Text clickedText = (Text) clickedNode;
+        Placer clickedPlacer = this.controlledGame.getGamePlayer1().placers.findPlacerByButton(clickedText);
+        if (Objects.isNull(clickedPlacer)) {
+            clickedPlacer = this.controlledGame.getGamePlayer2().placers.findPlacerByButton(clickedText);
+        }
+        this.controlledGame.receivePlacerClick(clickedPlacer);
     }
 
     public void testController() { // todo

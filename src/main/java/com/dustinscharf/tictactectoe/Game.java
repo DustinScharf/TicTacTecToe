@@ -24,6 +24,14 @@ public class Game {
         return board;
     }
 
+    public GamePlayer getGamePlayer1() {
+        return gamePlayer1;
+    }
+
+    public GamePlayer getGamePlayer2() {
+        return gamePlayer2;
+    }
+
     public void initGame(Player player1,
                          Player player2,
                          List<Node> boardButtons,
@@ -34,6 +42,9 @@ public class Game {
         this.gamePlayer2 = new GamePlayer(this, player2Placers, player2);
 
         this.board = new Board(boardButtons);
+
+        this.currentPlayer = this.gamePlayer1;
+        this.isRunning = true;
     }
 
     public boolean isRunning() {
@@ -43,5 +54,30 @@ public class Game {
     public void switchCurrentPlayer() {
         if (this.currentPlayer == this.gamePlayer1) this.currentPlayer = this.gamePlayer2;
         else this.currentPlayer = this.gamePlayer1;
+    }
+
+    public void receiveBoardClick(Field clickedField) {
+        if (!this.currentPlayer.placers.hasPlacerSelected() || !this.isRunning) {
+            return;
+        }
+
+        boolean success = this.currentPlayer.placers.getSelectedPlacer().place(clickedField);
+        if (success) {
+            if (this.checkForWin()) {
+                // todo winner
+            } else {
+                this.switchCurrentPlayer();
+            }
+        }
+    }
+
+    private boolean checkForWin() {
+        // todo win check
+        this.isRunning = true;
+        return false;
+    }
+
+    public void receivePlacerClick(Placer clickedPlacer) {
+        clickedPlacer.getOwner().placers.select(clickedPlacer);
     }
 }

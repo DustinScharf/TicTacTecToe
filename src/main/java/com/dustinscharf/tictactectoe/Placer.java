@@ -3,25 +3,46 @@ package com.dustinscharf.tictactectoe;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
 
 public class Placer {
-    private TextArea button;
+    private Text button;
     private boolean isThere;
     private int value;
 
-    public Placer(TextArea button, int value) {
+    private GamePlayer owner;
+
+    public Placer(Text button, int value, GamePlayer owner) {
         this.button = button;
         this.isThere = true;
         this.value = value;
+        this.owner = owner;
     }
 
-    public TextArea getButton() {
+    public Text getButton() {
         return button;
     }
 
+    public int getValue() {
+        return value;
+    }
+
+    public GamePlayer getOwner() {
+        return owner;
+    }
+
     public boolean place(Field field) {
-        field.setPlacer(this);
-//        this.isThere = false;
-        return true; // todo
+        if (!this.isThere) {
+            return false;
+        }
+
+        boolean success = field.setPlacer(this);
+        if (!success) {
+            return false;
+        }
+
+        this.owner.placers.setSelectedPlacer(null);
+        this.isThere = false;
+        return true;
     }
 }
