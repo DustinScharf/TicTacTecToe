@@ -3,6 +3,7 @@ package com.dustinscharf.tictactectoe;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.TextArea;
+import javafx.scene.media.AudioClip;
 import javafx.scene.text.Text;
 
 import java.util.List;
@@ -52,6 +53,10 @@ public class Placers {
 
         this.selectedPlacer = placer;
         this.selectedPlacer.getButton().setUnderline(true);
+
+        // todo better safe location for sound
+        AudioClip sound = new AudioClip(getClass().getResource("/placerSelected.wav").toExternalForm());
+        sound.play();
 
         return true;
     }

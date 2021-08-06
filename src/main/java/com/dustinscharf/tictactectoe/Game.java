@@ -2,6 +2,7 @@ package com.dustinscharf.tictactectoe;
 
 import javafx.animation.RotateTransition;
 import javafx.scene.Node;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -77,6 +78,10 @@ public class Game {
     }
 
     private void gameWon() {
+        // todo better safe location for sound
+        AudioClip sound = new AudioClip(getClass().getResource("/gameWon.wav").toExternalForm());
+        sound.play();
+
         if (this.currentPlayer == this.gamePlayer1) this.gamePlayer2.getTextPlayerName().setFill(Color.LIGHTGRAY);
         else this.gamePlayer1.getTextPlayerName().setFill(Color.LIGHTGRAY);
 
