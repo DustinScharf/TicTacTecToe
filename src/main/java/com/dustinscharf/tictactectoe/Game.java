@@ -19,6 +19,8 @@ public class Game {
 
     private boolean isRunning;
 
+    private AudioClip winSound;
+
     public Game(Controller controller, Player player1, Player player2) {
         controller.receiveGame(this, player1, player2);
     }
@@ -51,6 +53,8 @@ public class Game {
         this.currentPlayer = this.gamePlayer1;
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
         this.isRunning = true;
+
+        this.winSound = new AudioClip(getClass().getResource("/gameWon.wav").toExternalForm());
     }
 
     public void switchCurrentPlayer() {
@@ -78,9 +82,7 @@ public class Game {
     }
 
     private void gameWon() {
-        // todo better safe location for sound
-        AudioClip sound = new AudioClip(getClass().getResource("/gameWon.wav").toExternalForm());
-        sound.play();
+        this.winSound.play();
 
         if (this.currentPlayer == this.gamePlayer1) this.gamePlayer2.getTextPlayerName().setFill(Color.LIGHTGRAY);
         else this.gamePlayer1.getTextPlayerName().setFill(Color.LIGHTGRAY);

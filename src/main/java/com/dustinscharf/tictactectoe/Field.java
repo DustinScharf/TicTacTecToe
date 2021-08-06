@@ -3,10 +3,7 @@ package com.dustinscharf.tictactectoe;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.media.AudioClip;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
@@ -19,11 +16,15 @@ public class Field {
     private int boardRowPosition;
     private int boardColPosition;
 
+    private AudioClip fieldChangedSound;
+
     public Field(Canvas button, int boardRowPosition, int boardColPosition) {
         this.button = button;
         this.placer = null;
         this.boardRowPosition = boardRowPosition;
         this.boardColPosition = boardColPosition;
+
+        this.fieldChangedSound = new AudioClip(getClass().getResource("/fieldChanged.wav").toExternalForm());
     }
 
     public Canvas getButton() {
@@ -58,9 +59,7 @@ public class Field {
                 Math.round(this.button.getHeight() / 2)
         );
 
-        // todo better safe location for sound
-        AudioClip sound = new AudioClip(getClass().getResource("/fieldChanged.wav").toExternalForm());
-        sound.play();
+        this.fieldChangedSound.play();
 
         return true;
     }
