@@ -18,6 +18,7 @@ public class Placers {
     public Placers(List<Node> placerButtonList, GamePlayer owner) {
         int placerButtonListInsertionIndex = 0;
         this.placers = new Placer[20];
+        this.selectedPlacer = null;
         this.owner = owner;
         for (int i = 0; i < 20; ++i) {
             this.placers[i] = new Placer(
@@ -67,5 +68,18 @@ public class Placers {
             }
         }
         return null;
+    }
+
+    public void setUpperPlacersVisible(boolean visible) {
+        for (int i = 10; i < 20; ++i) {
+            this.placers[i].getButton().setVisible(visible);
+        }
+    }
+
+    public void reset() {
+        for (Placer placer : this.placers) {
+            placer.reset();
+        }
+        this.selectedPlacer = null;
     }
 }

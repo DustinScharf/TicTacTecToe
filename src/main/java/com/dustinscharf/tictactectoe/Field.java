@@ -75,4 +75,11 @@ public class Field {
     public boolean isSet() {
         return Objects.nonNull(this.placer);
     }
+
+    public void reset() {
+        GraphicsContext graphicsContext = this.button.getGraphicsContext2D();
+        graphicsContext.clearRect(0, 0, 999, 999);
+
+        this.placer = null;
+    }
 }

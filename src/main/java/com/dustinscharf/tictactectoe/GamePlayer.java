@@ -31,6 +31,10 @@ public class GamePlayer {
         return textPlayerName;
     }
 
+    public Placers getPlacers() {
+        return placers;
+    }
+
     public Color getColor() {
         return color;
     }
@@ -46,5 +50,9 @@ public class GamePlayer {
                 random.nextInt(127) + 63,
                 random.nextInt(127) + 63
         );
+    }
+
+    public void reset() {
+        this.placers.reset();
     }
 }

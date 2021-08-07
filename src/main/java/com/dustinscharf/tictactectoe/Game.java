@@ -1,6 +1,9 @@
 package com.dustinscharf.tictactectoe;
 
 import javafx.animation.RotateTransition;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
@@ -18,6 +21,10 @@ public class Game {
     private GamePlayer currentPlayer;
 
     private boolean isRunning;
+
+    private int turn;
+
+    private Field[] winFields;
 
     private AudioClip winSound;
 
@@ -44,7 +51,6 @@ public class Game {
                          List<Node> player1Placers,
                          List<Node> player2Placers,
                          List<Node> boardButtons) {
-
         this.gamePlayer1 = new GamePlayer(textPlayer1, this, player1, player1Placers, Color.SEAGREEN);
         this.gamePlayer2 = new GamePlayer(textPlayer2, this, player2, player2Placers, Color.SLATEBLUE);
 
@@ -54,16 +60,32 @@ public class Game {
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
         this.isRunning = true;
 
+        this.turn = 0;
+
         this.winSound = new AudioClip(getClass().getResource("/gameWon.wav").toExternalForm());
+
+        this.gamePlayer1.getPlacers().setUpperPlacersVisible(false);
+        this.gamePlayer2.getPlacers().setUpperPlacersVisible(false);
+
+        this.winFields = new Field[3];
     }
 
     public void switchCurrentPlayer() {
         this.currentPlayer.getTextPlayerName().setFill(Color.BLACK);
 
-        if (this.currentPlayer == this.gamePlayer1) this.currentPlayer = this.gamePlayer2;
-        else this.currentPlayer = this.gamePlayer1;
+        if (this.currentPlayer == this.gamePlayer1) {
+            this.currentPlayer = this.gamePlayer2;
+        } else {
+            this.currentPlayer = this.gamePlayer1;
+            ++this.turn;
+        }
 
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
+
+        if (this.turn == 3) {
+            this.gamePlayer1.getPlacers().setUpperPlacersVisible(true);
+            this.gamePlayer2.getPlacers().setUpperPlacersVisible(true);
+        }
     }
 
     public void receiveBoardClick(Field clickedField) {
@@ -87,6 +109,28 @@ public class Game {
         if (this.currentPlayer == this.gamePlayer1) this.gamePlayer2.getTextPlayerName().setFill(Color.LIGHTGRAY);
         else this.gamePlayer1.getTextPlayerName().setFill(Color.LIGHTGRAY);
 
+        this.rotateAnimation(this.currentPlayer.getTextPlayerName());
+
+        for (Field field : this.winFields) {
+            this.rotateAnimation(field.getButton());
+        }
+
+        Task<Void> sleeper = new Task<>() {
+            @Override
+            protected Void call() {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        };
+        sleeper.setOnSucceeded(event -> reset());
+        new Thread(sleeper).start();
+    }
+
+    private void rotateAnimation(Node node) {
         // Creating rotate transition
         RotateTransition rotateTransition = new RotateTransition();
 
@@ -94,13 +138,13 @@ public class Game {
         rotateTransition.setDuration(Duration.millis(1000));
 
         // Setting the node for the transition
-        rotateTransition.setNode(this.currentPlayer.getTextPlayerName());
+        rotateTransition.setNode(node); // this.currentPlayer.getTextPlayerName()
 
         // Setting the angle of the rotation
         rotateTransition.setByAngle(360);
 
         // Setting the cycle count for the transition
-        rotateTransition.setCycleCount(50);
+        rotateTransition.setCycleCount(3);
 
         // Setting auto reverse value to false
         rotateTransition.setAutoReverse(true);
@@ -142,8 +186,40 @@ public class Game {
             }
         }
 
-        if (rowCombinationCounter == 3 || colCombinationCounter == 3 ||
-                diagonalCombinationCounter == 3 || antiDiagonalCombinationCounter == 3) {
+//        if (rowCombinationCounter == 3 || colCombinationCounter == 3 ||
+//                diagonalCombinationCounter == 3 || antiDiagonalCombinationCounter == 3) {
+//            this.isRunning = false;
+//            return true;
+//        }
+
+        if (rowCombinationCounter == 3) {
+            for (int i = 0; i < 3; ++i) {
+                this.winFields[i] = this.board.getFields()[placedFieldRowPos][i];
+            }
+            this.isRunning = false;
+            return true;
+        }
+
+        if (colCombinationCounter == 3) {
+            for (int i = 0; i < 3; ++i) {
+                this.winFields[i] = this.board.getFields()[i][placedFieldColPos];
+            }
+            this.isRunning = false;
+            return true;
+        }
+
+        if (diagonalCombinationCounter == 3) {
+            for (int i = 0; i < 3; ++i) {
+                this.winFields[i] = this.board.getFields()[i][i];
+            }
+            this.isRunning = false;
+            return true;
+        }
+
+        if (antiDiagonalCombinationCounter == 3) {
+            for (int i = 0; i < 3; ++i) {
+                this.winFields[i] = this.board.getFields()[i][2 - i];
+            }
             this.isRunning = false;
             return true;
         }
@@ -153,5 +229,21 @@ public class Game {
 
     public void receivePlacerClick(Placer clickedPlacer) {
         clickedPlacer.getOwner().placers.select(clickedPlacer);
+    }
+
+    public void reset() {
+        this.gamePlayer1.reset();
+        this.gamePlayer2.reset();
+
+        this.board.reset();
+
+        this.currentPlayer = this.gamePlayer1;
+        this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
+        this.isRunning = true;
+
+        this.turn = 0;
+
+        this.gamePlayer1.getPlacers().setUpperPlacersVisible(false);
+        this.gamePlayer2.getPlacers().setUpperPlacersVisible(false);
     }
 }

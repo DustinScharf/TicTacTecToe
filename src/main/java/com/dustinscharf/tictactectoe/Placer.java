@@ -47,6 +47,12 @@ public class Placer {
 
         this.owner.placers.setSelectedPlacer(null);
         this.isThere = false;
+        this.button.setUnderline(false);
         return true;
+    }
+
+    public void reset() {
+        this.button.setVisible(true);
+        this.isThere = true;
     }
 }
