@@ -83,4 +83,8 @@ public class Controller {
         }
         this.controlledGame.receivePlacerClick(clickedPlacer);
     }
+
+    public void resetClicker() {
+        this.controlledGame.reset();
+    }
 }

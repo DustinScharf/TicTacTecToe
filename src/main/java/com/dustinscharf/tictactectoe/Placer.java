@@ -52,6 +52,7 @@ public class Placer {
     }
 
     public void reset() {
+        this.button.setUnderline(false);
         this.button.setVisible(true);
         this.isThere = true;
     }

@@ -1,5 +1,6 @@
 package com.dustinscharf.tictactectoe;
 
+import animatefx.animation.*;
 import javafx.animation.RotateTransition;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -112,7 +113,7 @@ public class Game {
         this.rotateAnimation(this.currentPlayer.getTextPlayerName());
 
         for (Field field : this.winFields) {
-            this.rotateAnimation(field.getButton());
+            new Tada(field.getButton()).setCycleCount(3).play();
         }
 
         Task<Void> sleeper = new Task<>() {
@@ -186,12 +187,6 @@ public class Game {
             }
         }
 
-//        if (rowCombinationCounter == 3 || colCombinationCounter == 3 ||
-//                diagonalCombinationCounter == 3 || antiDiagonalCombinationCounter == 3) {
-//            this.isRunning = false;
-//            return true;
-//        }
-
         if (rowCombinationCounter == 3) {
             for (int i = 0; i < 3; ++i) {
                 this.winFields[i] = this.board.getFields()[placedFieldRowPos][i];
@@ -245,5 +240,7 @@ public class Game {
 
         this.gamePlayer1.getPlacers().setUpperPlacersVisible(false);
         this.gamePlayer2.getPlacers().setUpperPlacersVisible(false);
+
+        this.gamePlayer2.getTextPlayerName().setFill(Color.BLACK);
     }
 }
