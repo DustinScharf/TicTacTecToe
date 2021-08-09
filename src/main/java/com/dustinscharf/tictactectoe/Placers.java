@@ -70,6 +70,7 @@ public class Placers {
         return null;
     }
 
+    // todo, better logic
     public void setUpperPlacersVisible(boolean visible) {
         for (int i = 10; i < 20; ++i) {
             this.placers[i].getButton().setVisible(visible);
