@@ -6,6 +6,7 @@ import javafx.scene.text.Text;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 public class Placers {
     private Placer[] placers;
@@ -70,10 +71,23 @@ public class Placers {
         return null;
     }
 
-    // todo, better logic
+    // todo, better logic, rename (visibility) or delete completely?
     public void setUpperPlacersVisible(boolean visible) {
         for (int i = 10; i < 20; ++i) {
             this.placers[i].getButton().setVisible(visible);
+        }
+    }
+
+    public void revealRandomPlacer() {
+        Random random = new Random();
+
+        boolean foundUnrevealedPlacerButton = false;
+        while (!foundUnrevealedPlacerButton) {
+            int testIndex = random.nextInt(20) + 1;
+            if (!this.placers[testIndex].getButton().isVisible()) {
+                foundUnrevealedPlacerButton = true;
+                this.placers[testIndex].getButton().setVisible(true);
+            }
         }
     }
 
