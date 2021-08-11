@@ -65,10 +65,10 @@ public class Game {
 
         this.winSound = new AudioClip(getClass().getResource("/gameWon.wav").toExternalForm());
 
-        this.gamePlayer1.getPlacers().setVisible(false);
-        this.gamePlayer2.getPlacers().setVisible(false);
-
-        this.currentPlayer.getPlacers().revealRandomPlacer();
+//        this.gamePlayer1.getPlacers().setVisible(false);
+//        this.gamePlayer2.getPlacers().setVisible(false);
+//
+//        this.currentPlayer.getPlacers().revealRandomPlacer();
 
         this.winFields = new Field[3];
     }
@@ -85,7 +85,7 @@ public class Game {
 
         ++this.playerTurns;
 
-        this.currentPlayer.getPlacers().revealRandomPlacer();
+//        this.currentPlayer.getPlacers().revealRandomPlacer();
 
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
     }
@@ -239,10 +239,10 @@ public class Game {
 
         this.round = 0;
 
-        this.gamePlayer1.getPlacers().setVisible(false);
-        this.gamePlayer2.getPlacers().setVisible(false);
-
-        this.currentPlayer.getPlacers().revealRandomPlacer();
+//        this.gamePlayer1.getPlacers().setVisible(false);
+//        this.gamePlayer2.getPlacers().setVisible(false);
+//
+//        this.currentPlayer.getPlacers().revealRandomPlacer();
 
         this.gamePlayer2.getTextPlayerName().setFill(Color.BLACK);
     }
