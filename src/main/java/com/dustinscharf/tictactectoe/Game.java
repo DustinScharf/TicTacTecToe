@@ -14,6 +14,8 @@ import java.util.List;
 public class Game {
     private Board board;
 
+    private PlacerChallengeArea placerChallengeArea;
+
     private GamePlayer gamePlayer1;
     private GamePlayer gamePlayer2;
 
@@ -52,11 +54,15 @@ public class Game {
                          Text textPlayer2,
                          List<Node> player1Placers,
                          List<Node> player2Placers,
-                         List<Node> boardButtons) {
+                         List<Node> boardButtons,
+                         Text textPlayer1ChallengeArea,
+                         Text textPlayer2ChallengeArea) {
         this.gamePlayer1 = new GamePlayer(textPlayer1, this, player1, player1Placers, Color.SEAGREEN);
         this.gamePlayer2 = new GamePlayer(textPlayer2, this, player2, player2Placers, Color.SLATEBLUE);
 
         this.board = new Board(boardButtons);
+
+        this.placerChallengeArea = new PlacerChallengeArea(textPlayer1ChallengeArea, textPlayer2ChallengeArea);
 
         this.currentPlayer = this.gamePlayer1;
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());

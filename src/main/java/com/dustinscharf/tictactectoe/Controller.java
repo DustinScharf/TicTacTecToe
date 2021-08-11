@@ -63,7 +63,8 @@ public class Controller {
                 player1, player2,
                 this.textPlayer1, this.textPlayer2,
                 player1Placers, player2Placers,
-                boardFieldButtons
+                boardFieldButtons,
+                this.challengedPlacerPlayer1, this.challengedPlacerPlayer2
         );
     }
 
