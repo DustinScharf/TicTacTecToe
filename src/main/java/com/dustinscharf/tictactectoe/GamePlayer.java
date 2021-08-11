@@ -15,14 +15,23 @@ public class GamePlayer {
     private Player player;
     protected Placers placers;
 
+    private PlacerChallengingArea placerChallengingArea;
+
     private Color color;
 
-    public GamePlayer(Text textPlayerName, Game game, Player player, List<Node> placerButtonList, Color color) {
+    public GamePlayer(Text textPlayerName,
+                      Game game,
+                      Player player,
+                      List<Node> placerButtonList,
+                      Text placerChallengingAreaText,
+                      Color color) {
         this.textPlayerName = textPlayerName;
         this.game = game;
         this.player = player;
         this.placers = new Placers(placerButtonList, this);
         this.color = color;
+
+        this.placerChallengingArea = new PlacerChallengingArea(placerChallengingAreaText);
 
         this.textPlayerName.setText(this.player.getName());
     }

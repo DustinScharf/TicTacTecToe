@@ -1,5 +1,20 @@
 package com.dustinscharf.tictactectoe;
 
-public class PlacerChallengingArea {
+import javafx.scene.text.Text;
 
+public class PlacerChallengingArea {
+    private Text challengedPlacerText;
+    private Placer challengedPlacer;
+
+    public PlacerChallengingArea(Text challengedPlacerText) {
+        this.challengedPlacerText = challengedPlacerText;
+    }
+
+    public void setChallengedPlacer(Placer challengedPlacer) {
+        this.challengedPlacer = challengedPlacer;
+    }
+
+    public Placer getChallengedPlacer() {
+        return challengedPlacer;
+    }
 }

@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Bot extends GamePlayer {
-    public Bot(Text textPlayerName, Game game, Player player, List<Node> placerButtonList, Color color) {
-        super(textPlayerName, game, player, placerButtonList, color);
+    public Bot(Text textPlayerName, Game game, Player player, List<Node> placerButtonList, Text placerChallengingAreaText, Color color) {
+        super(textPlayerName, game, player, placerButtonList, placerChallengingAreaText, color);
     }
 
     public boolean placeRandom() {

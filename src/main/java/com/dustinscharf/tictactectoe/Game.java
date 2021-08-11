@@ -57,12 +57,25 @@ public class Game {
                          List<Node> boardButtons,
                          Text textPlayer1ChallengeArea,
                          Text textPlayer2ChallengeArea) {
-        this.gamePlayer1 = new GamePlayer(textPlayer1, this, player1, player1Placers, Color.SEAGREEN);
-        this.gamePlayer2 = new GamePlayer(textPlayer2, this, player2, player2Placers, Color.SLATEBLUE);
+
+        this.gamePlayer1 = new GamePlayer(
+                textPlayer1,
+                this,
+                player1,
+                player1Placers,
+                textPlayer1ChallengeArea,
+                Color.SEAGREEN
+        );
+        this.gamePlayer2 = new GamePlayer(
+                textPlayer2,
+                this,
+                player2,
+                player2Placers,
+                textPlayer2ChallengeArea,
+                Color.SLATEBLUE
+        );
 
         this.board = new Board(boardButtons);
-
-        this.placerChallengeAreas = new PlacerChallengeAreas(textPlayer1ChallengeArea, textPlayer2ChallengeArea);
 
         this.currentPlayer = this.gamePlayer1;
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());

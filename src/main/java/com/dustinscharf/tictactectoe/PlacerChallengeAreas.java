@@ -3,33 +3,31 @@ package com.dustinscharf.tictactectoe;
 import javafx.scene.text.Text;
 
 public class PlacerChallengeAreas {
-    private Text player1ChallengedPlacerText;
-    private Text player2ChallengedPlacerText;
+    private PlacerChallengingArea player1PlacerChallengingArea;
+    private PlacerChallengingArea player2PlacerChallengingArea;
 
-    private Placer player1ChallengedPlacer;
-    private Placer player2ChallengedPlacer;
-
-    public PlacerChallengeAreas(Text player1ChallengedPlacerText, Text player2ChallengedPlacerText) {
-        this.player1ChallengedPlacerText = player1ChallengedPlacerText;
-        this.player2ChallengedPlacerText = player2ChallengedPlacerText;
-    }
-
-    public void setPlayer1ChallengedPlacer(Placer player1ChallengedPlacer) {
-        this.player1ChallengedPlacer = player1ChallengedPlacer;
-    }
-
-    public void setPlayer2ChallengedPlacer(Placer player2ChallengedPlacer) {
-        this.player2ChallengedPlacer = player2ChallengedPlacer;
+    public PlacerChallengeAreas(PlacerChallengingArea player1PlacerChallengingArea,
+                                PlacerChallengingArea player2PlacerChallengingArea) {
+        this.player1PlacerChallengingArea = player1PlacerChallengingArea;
+        this.player2PlacerChallengingArea = player2PlacerChallengingArea;
     }
 
     public GamePlayer higherPlayer() {
         GamePlayer higherPlayer;
 
-        if (this.player1ChallengedPlacer.getValue() > this.player2ChallengedPlacer.getValue()) {
-            higherPlayer = this.player1ChallengedPlacer.getOwner();
-        } else if (this.player1ChallengedPlacer.getValue() < this.player2ChallengedPlacer.getValue()) {
-            higherPlayer = this.player2ChallengedPlacer.getOwner();
-        } else {
+        if (
+                this.player1PlacerChallengingArea.getChallengedPlacer().getValue() >
+                        this.player2PlacerChallengingArea.getChallengedPlacer().getValue()
+        ) {
+            higherPlayer = this.player1PlacerChallengingArea.getChallengedPlacer().getOwner();
+
+        } else if (
+                this.player1PlacerChallengingArea.getChallengedPlacer().getValue() <
+                        this.player2PlacerChallengingArea.getChallengedPlacer().getValue()
+        ) {
+            higherPlayer = this.player2PlacerChallengingArea.getChallengedPlacer().getOwner();
+
+        } else { // equal case
             return null;
         }
 
