@@ -10,6 +10,8 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 
 public class Game {
     private Board board;
@@ -77,11 +79,16 @@ public class Game {
 
         this.board = new Board(boardButtons);
 
+        this.placerChallengeAreas = new PlacerChallengeAreas(
+                this.gamePlayer1.getPlacerChallengingArea(),
+                this.gamePlayer2.getPlacerChallengingArea()
+        );
+
         this.currentPlayer = this.gamePlayer1;
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
         this.isRunning = true;
 
-        this.inSelectionPhase = false;
+        this.initSelectionPhase();
 
         this.round = 0;
         this.playerTurns = 0;
@@ -103,10 +110,9 @@ public class Game {
             this.currentPlayer = this.gamePlayer2;
         } else {
             this.currentPlayer = this.gamePlayer1;
-            ++this.round;
         }
 
-        ++this.playerTurns;
+        ++this.round;
 
 //        this.currentPlayer.getPlacers().revealRandomPlacer();
 
@@ -120,10 +126,15 @@ public class Game {
 
         boolean success = this.currentPlayer.placers.getSelectedPlacer().place(clickedField);
         if (success) {
+            ++this.playerTurns;
             if (this.checkForWinAfterPlace(clickedField)) {
                 this.gameWon();
             } else {
-                this.switchCurrentPlayer();
+                if (this.playerTurns % 2 == 0) {
+                    this.initSelectionPhase();
+                } else {
+                    this.switchCurrentPlayer();
+                }
             }
         }
     }
@@ -248,10 +259,37 @@ public class Game {
 
     public void receivePlacerClick(Placer clickedPlacer) {
         if (this.inSelectionPhase) {
-
+            clickedPlacer.getOwner().getPlacerChallengingArea().setChallengedPlacer(clickedPlacer);
+            if (this.placerChallengeAreas.isReady()) {
+                this.currentPlayer = this.placerChallengeAreas.getHigherPlayer();
+                if (!Objects.nonNull(this.currentPlayer)) {
+                    Random random = new Random();
+                    int randomIntForPlayerSelection = random.nextInt(2);
+                    switch (randomIntForPlayerSelection) {
+                        case 0:
+                            this.currentPlayer = this.gamePlayer1;
+                            break;
+                        case 1:
+                            this.currentPlayer = this.gamePlayer2;
+                            break;
+                        default:
+                            System.err.println("Random number created wrong / out of bounds");
+                            System.exit(1);
+                            break;
+                    }
+                }
+                this.inSelectionPhase = false;
+                this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
+            }
         } else {
             clickedPlacer.getOwner().placers.select(clickedPlacer);
         }
+    }
+
+    public void initSelectionPhase() {
+        this.inSelectionPhase = true;
+        this.gamePlayer1.getTextPlayerName().setFill(Color.BLACK);
+        this.gamePlayer2.getTextPlayerName().setFill(Color.BLACK);
     }
 
     public void reset() {
@@ -264,7 +302,7 @@ public class Game {
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
         this.isRunning = true;
 
-        this.inSelectionPhase = false;
+        this.initSelectionPhase();
 
         this.round = 0;
 

@@ -27,6 +27,10 @@ public class Placer {
         return isThere;
     }
 
+    public void setThere(boolean there) {
+        isThere = there;
+    }
+
     public int getValue() {
         return value;
     }

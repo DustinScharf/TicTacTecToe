@@ -44,6 +44,10 @@ public class GamePlayer {
         return placers;
     }
 
+    public PlacerChallengingArea getPlacerChallengingArea() {
+        return placerChallengingArea;
+    }
+
     public Color getColor() {
         return color;
     }
