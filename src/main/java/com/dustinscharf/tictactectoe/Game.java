@@ -3,8 +3,6 @@ package com.dustinscharf.tictactectoe;
 import animatefx.animation.*;
 import javafx.animation.RotateTransition;
 import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
@@ -23,7 +21,8 @@ public class Game {
 
     private boolean isRunning;
 
-    private int turn;
+    private int round;
+    private int playerTurns;
 
     private Field[] winFields;
 
@@ -61,7 +60,8 @@ public class Game {
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
         this.isRunning = true;
 
-        this.turn = 0;
+        this.round = 0;
+        this.playerTurns = 0;
 
         this.winSound = new AudioClip(getClass().getResource("/gameWon.wav").toExternalForm());
 
@@ -80,8 +80,10 @@ public class Game {
             this.currentPlayer = this.gamePlayer2;
         } else {
             this.currentPlayer = this.gamePlayer1;
-            ++this.turn;
+            ++this.round;
         }
+
+        ++this.playerTurns;
 
         this.currentPlayer.getPlacers().revealRandomPlacer();
 
@@ -235,7 +237,7 @@ public class Game {
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
         this.isRunning = true;
 
-        this.turn = 0;
+        this.round = 0;
 
         this.gamePlayer1.getPlacers().setVisible(false);
         this.gamePlayer2.getPlacers().setVisible(false);
