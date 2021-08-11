@@ -36,6 +36,12 @@ public class Controller {
     @FXML
     private VBox vBoxPlayer2PlacerButtons;
 
+    @FXML
+    private Text challengedPlacerPlayer1;
+
+    @FXML
+    private Text challengedPlacerPlayer2;
+
     private Game controlledGame;
 
     public void receiveGame(Game game, Player player1, Player player2) {

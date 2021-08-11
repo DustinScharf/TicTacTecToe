@@ -71,9 +71,8 @@ public class Placers {
         return null;
     }
 
-    // todo, better logic, rename (visibility) or delete completely?
-    public void setUpperPlacersVisible(boolean visible) {
-        for (int i = 10; i < 20; ++i) {
+    public void setVisible(boolean visible) {
+        for (int i = 0; i < 20; ++i) {
             this.placers[i].getButton().setVisible(visible);
         }
     }
@@ -83,8 +82,8 @@ public class Placers {
 
         boolean foundUnrevealedPlacerButton = false;
         while (!foundUnrevealedPlacerButton) {
-            int testIndex = random.nextInt(20) + 1;
-            if (!this.placers[testIndex].getButton().isVisible()) {
+            int testIndex = random.nextInt(20);
+            if (!this.placers[testIndex].getButton().isVisible() && this.placers[testIndex].isThere()) {
                 foundUnrevealedPlacerButton = true;
                 this.placers[testIndex].getButton().setVisible(true);
             }

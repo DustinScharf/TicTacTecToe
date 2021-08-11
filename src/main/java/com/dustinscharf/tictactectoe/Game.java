@@ -65,9 +65,10 @@ public class Game {
 
         this.winSound = new AudioClip(getClass().getResource("/gameWon.wav").toExternalForm());
 
-        // todo, better logic
-//        this.gamePlayer1.getPlacers().setUpperPlacersVisible(false);
-//        this.gamePlayer2.getPlacers().setUpperPlacersVisible(false);
+        this.gamePlayer1.getPlacers().setVisible(false);
+        this.gamePlayer2.getPlacers().setVisible(false);
+
+        this.currentPlayer.getPlacers().revealRandomPlacer();
 
         this.winFields = new Field[3];
     }
@@ -82,13 +83,9 @@ public class Game {
             ++this.turn;
         }
 
-        this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
+        this.currentPlayer.getPlacers().revealRandomPlacer();
 
-        // todo, better logic
-//        if (this.turn == 3) {
-//            this.gamePlayer1.getPlacers().setUpperPlacersVisible(true);
-//            this.gamePlayer2.getPlacers().setUpperPlacersVisible(true);
-//        }
+        this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
     }
 
     public void receiveBoardClick(Field clickedField) {
@@ -240,9 +237,10 @@ public class Game {
 
         this.turn = 0;
 
-        // todo, better logic
-//        this.gamePlayer1.getPlacers().setUpperPlacersVisible(false);
-//        this.gamePlayer2.getPlacers().setUpperPlacersVisible(false);
+        this.gamePlayer1.getPlacers().setVisible(false);
+        this.gamePlayer2.getPlacers().setVisible(false);
+
+        this.currentPlayer.getPlacers().revealRandomPlacer();
 
         this.gamePlayer2.getTextPlayerName().setFill(Color.BLACK);
     }
