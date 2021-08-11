@@ -16,10 +16,20 @@
       <Button layoutX="555.0" layoutY="374.0" mnemonicParsing="false" onAction="#resetClicker" text="Reset" />
       <HBox alignment="CENTER" layoutX="19.0" layoutY="17.0" prefHeight="366.0" prefWidth="562.0" spacing="20.0">
          <children>
-            <Text fx:id="textPlayer1" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font></Text>
+            <VBox alignment="CENTER" spacing="50.0">
+               <children>
+                  <Text fx:id="textPlayer1" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="textPlayer2" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
             <VBox alignment="CENTER" prefHeight="300.0" prefWidth="300.0">
                <children>
                   <VBox fx:id="vBoxPlayer2PlacerButtons" alignment="CENTER" onMouseClicked="#placerClicked" prefHeight="200.0" prefWidth="100.0">
@@ -271,10 +281,20 @@
                   </VBox>
                </children>
             </VBox>
-            <Text fx:id="textPlayer2" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font></Text>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="50.0">
+               <children>
+                  <Text fx:id="challengedPlacerPlayer1" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="&gt;&lt;">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="challengedPlacerPlayer2" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="&gt;&lt;">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
          </children>
       </HBox>
    </children>
