@@ -21,6 +21,8 @@ public class Game {
 
     private boolean isRunning;
 
+    private boolean inSelectionPhase;
+
     private int round;
     private int playerTurns;
 
@@ -59,6 +61,8 @@ public class Game {
         this.currentPlayer = this.gamePlayer1;
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
         this.isRunning = true;
+
+        this.inSelectionPhase = true;
 
         this.round = 0;
         this.playerTurns = 0;
@@ -236,6 +240,8 @@ public class Game {
         this.currentPlayer = this.gamePlayer1;
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
         this.isRunning = true;
+
+        this.inSelectionPhase = true;
 
         this.round = 0;
 
