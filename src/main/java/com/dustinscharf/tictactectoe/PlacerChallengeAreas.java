@@ -2,14 +2,14 @@ package com.dustinscharf.tictactectoe;
 
 import javafx.scene.text.Text;
 
-public class PlacerChallengeArea {
+public class PlacerChallengeAreas {
     private Text player1ChallengedPlacerText;
     private Text player2ChallengedPlacerText;
 
     private Placer player1ChallengedPlacer;
     private Placer player2ChallengedPlacer;
 
-    public PlacerChallengeArea(Text player1ChallengedPlacerText, Text player2ChallengedPlacerText) {
+    public PlacerChallengeAreas(Text player1ChallengedPlacerText, Text player2ChallengedPlacerText) {
         this.player1ChallengedPlacerText = player1ChallengedPlacerText;
         this.player2ChallengedPlacerText = player2ChallengedPlacerText;
     }

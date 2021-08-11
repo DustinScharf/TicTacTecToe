@@ -14,7 +14,7 @@ import java.util.List;
 public class Game {
     private Board board;
 
-    private PlacerChallengeArea placerChallengeArea;
+    private PlacerChallengeAreas placerChallengeAreas;
 
     private GamePlayer gamePlayer1;
     private GamePlayer gamePlayer2;
@@ -62,13 +62,13 @@ public class Game {
 
         this.board = new Board(boardButtons);
 
-        this.placerChallengeArea = new PlacerChallengeArea(textPlayer1ChallengeArea, textPlayer2ChallengeArea);
+        this.placerChallengeAreas = new PlacerChallengeAreas(textPlayer1ChallengeArea, textPlayer2ChallengeArea);
 
         this.currentPlayer = this.gamePlayer1;
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
         this.isRunning = true;
 
-        this.inSelectionPhase = true;
+        this.inSelectionPhase = false;
 
         this.round = 0;
         this.playerTurns = 0;
@@ -234,7 +234,11 @@ public class Game {
     }
 
     public void receivePlacerClick(Placer clickedPlacer) {
-        clickedPlacer.getOwner().placers.select(clickedPlacer);
+        if (this.inSelectionPhase) {
+
+        } else {
+            clickedPlacer.getOwner().placers.select(clickedPlacer);
+        }
     }
 
     public void reset() {
@@ -247,7 +251,7 @@ public class Game {
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
         this.isRunning = true;
 
-        this.inSelectionPhase = true;
+        this.inSelectionPhase = false;
 
         this.round = 0;
 
