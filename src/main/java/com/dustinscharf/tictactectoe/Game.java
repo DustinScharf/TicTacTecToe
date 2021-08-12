@@ -34,6 +34,8 @@ public class Game {
 
     private AudioClip winSound;
 
+    private Text messageBoxText;
+
     public Game(Controller controller, Player player1, Player player2) {
         controller.receiveGame(this, player1, player2);
     }
@@ -58,7 +60,11 @@ public class Game {
                          List<Node> player2Placers,
                          List<Node> boardButtons,
                          Text textPlayer1ChallengeArea,
-                         Text textPlayer2ChallengeArea) {
+                         Text textPlayer2ChallengeArea,
+                         Text messageBoxText) {
+
+        this.messageBoxText = messageBoxText;
+        this.messageBoxText.setVisible(false);
 
         this.gamePlayer1 = new GamePlayer(
                 textPlayer1,
@@ -286,8 +292,29 @@ public class Game {
         }
     }
 
+    public void sendMessageToScreen(String message, int seconds) {
+        this.messageBoxText.setText(message);
+        new FadeIn(this.messageBoxText).play();
+        this.messageBoxText.setVisible(true);
+
+        Task<Void> sleeper = new Task<>() {
+            @Override
+            protected Void call() {
+                try {
+                    Thread.sleep(seconds * 1000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        };
+        sleeper.setOnSucceeded(event -> new FadeOut(this.messageBoxText).play());
+        new Thread(sleeper).start();
+    }
+
     public void initSelectionPhase() {
         this.inSelectionPhase = true;
+        this.sendMessageToScreen("Selection Phase", 3);
         this.gamePlayer1.getTextPlayerName().setFill(Color.BLACK);
         this.gamePlayer2.getTextPlayerName().setFill(Color.BLACK);
     }
@@ -312,5 +339,7 @@ public class Game {
 //        this.currentPlayer.getPlacers().revealRandomPlacer();
 
         this.gamePlayer2.getTextPlayerName().setFill(Color.BLACK);
+
+        this.messageBoxText.setVisible(false);
     }
 }

@@ -1,24 +1,17 @@
 package com.dustinscharf.tictactectoe;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import org.apache.commons.collections4.ListUtils;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 public class Controller {
     @FXML
@@ -42,6 +35,9 @@ public class Controller {
     @FXML
     private Text challengedPlacerPlayer2;
 
+    @FXML
+    private Text messageBoxText;
+
     private Game controlledGame;
 
     public void receiveGame(Game game, Player player1, Player player2) {
@@ -64,7 +60,8 @@ public class Controller {
                 this.textPlayer1, this.textPlayer2,
                 player1Placers, player2Placers,
                 boardFieldButtons,
-                this.challengedPlacerPlayer1, this.challengedPlacerPlayer2
+                this.challengedPlacerPlayer1, this.challengedPlacerPlayer2,
+                this.messageBoxText
         );
     }
 
