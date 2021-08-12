@@ -23,6 +23,12 @@ public class PlacerChallengeAreas {
     public GamePlayer getHigherPlayer() {
         GamePlayer higherPlayer = null;
 
+        this.player1PlacerChallengingArea.setCensored(false);
+        this.player2PlacerChallengingArea.setCensored(false);
+
+        this.player1PlacerChallengingArea.getChallengedPlacer().getOwner().getPlacers().setVisible(true);
+        this.player2PlacerChallengingArea.getChallengedPlacer().getOwner().getPlacers().setVisible(true);
+
         if (
                 this.player1PlacerChallengingArea.getChallengedPlacer().getValue() >
                         this.player2PlacerChallengingArea.getChallengedPlacer().getValue()
@@ -41,7 +47,7 @@ public class PlacerChallengeAreas {
             @Override
             protected Void call() {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(2500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

@@ -1,8 +1,5 @@
 package com.dustinscharf.tictactectoe;
 
-import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 
 public class Placer {
@@ -12,11 +9,15 @@ public class Placer {
 
     private GamePlayer owner;
 
+    private String oldButtonText;
+    public static final String CENSORED_TEXT = "?";
+
     public Placer(Text button, int value, GamePlayer owner) {
         this.button = button;
         this.isThere = true;
         this.value = value;
         this.owner = owner;
+        this.oldButtonText = this.button.getText();
     }
 
     public Text getButton() {
@@ -53,6 +54,14 @@ public class Placer {
         this.isThere = false;
         this.button.setUnderline(false);
         return true;
+    }
+
+    public void setCensored(boolean censored) {
+        if (censored) {
+            this.button.setText(CENSORED_TEXT);
+        } else {
+            this.button.setText(this.oldButtonText);
+        }
     }
 
     public void reset() {

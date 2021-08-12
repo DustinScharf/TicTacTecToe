@@ -25,6 +25,10 @@ public class PlacerChallengingArea {
         this.challengedPlacer = challengedPlacer;
         this.challengedPlacerText.setText(this.challengedPlacer.getValue() + "");
 
+        this.setCensored(true);
+        
+        this.challengedPlacer.getOwner().getPlacers().setVisible(false);
+
         this.challengedPlacer.setThere(false);
         this.challengedPlacer.getButton().setVisible(false);
 
@@ -41,6 +45,11 @@ public class PlacerChallengingArea {
 
     public void setSet(boolean set) {
         isSet = set;
+    }
+
+    public void setCensored(boolean censored) {
+        this.challengedPlacer.setCensored(censored);
+        this.challengedPlacerText.setText(this.challengedPlacer.getButton().getText());
     }
 
     public void reset() {

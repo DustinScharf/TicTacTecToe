@@ -73,7 +73,9 @@ public class Placers {
 
     public void setVisible(boolean visible) {
         for (int i = 0; i < 20; ++i) {
-            this.placers[i].getButton().setVisible(visible);
+            if (this.placers[i].isThere()) {
+                this.placers[i].getButton().setVisible(visible);
+            }
         }
     }
 
