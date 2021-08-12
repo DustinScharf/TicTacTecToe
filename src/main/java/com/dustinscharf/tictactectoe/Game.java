@@ -332,6 +332,7 @@ public class Game {
         this.initSelectionPhase();
 
         this.round = 0;
+        this.playerTurns = 0;
 
 //        this.gamePlayer1.getPlacers().setVisible(false);
 //        this.gamePlayer2.getPlacers().setVisible(false);
