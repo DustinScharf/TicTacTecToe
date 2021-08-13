@@ -45,8 +45,12 @@ public class Controller {
 
     private Game controlledGame;
 
+    private boolean guideIsOpen;
+
     public void receiveGame(Game game, Player player1, Player player2) {
         this.controlledGame = game;
+
+        this.guideIsOpen = false;
 
         List<Node> boardFieldButtons = this.gridPaneBoardFieldButtons.getChildren();
 
@@ -98,6 +102,12 @@ public class Controller {
     }
 
     public void guideClicker() throws IOException {
+        if (this.guideIsOpen) {
+            return;
+        }
+
+        this.guideIsOpen = true;
+
         Stage secondaryStage = new Stage();
         secondaryStage.setResizable(false);
 
