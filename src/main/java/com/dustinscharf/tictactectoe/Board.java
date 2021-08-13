@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Board {
     private Field[][] fields;
@@ -39,6 +40,24 @@ public class Board {
             }
         }
         return null;
+    }
+
+    public Placer getHighestPlacer() {
+        Placer currentMaxPlacer = null;
+
+        for (Field[] fieldRow : this.fields) {
+            for (Field field : fieldRow) {
+                if (field.isSet()) {
+                    if (Objects.isNull(currentMaxPlacer)) {
+                        currentMaxPlacer = field.getPlacer();
+                    } else if (field.getPlacer().getValue() > currentMaxPlacer.getValue()) {
+                        currentMaxPlacer = field.getPlacer();
+                    }
+                }
+            }
+        }
+
+        return currentMaxPlacer;
     }
 
     public void reset() {
