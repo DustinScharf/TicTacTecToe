@@ -42,22 +42,22 @@ public class Board {
         return null;
     }
 
-    public Placer getHighestPlacer() {
-        Placer currentMaxPlacer = null;
+    public Placer getLowestPlacer() {
+        Placer currentLowestPlacer = null;
 
         for (Field[] fieldRow : this.fields) {
             for (Field field : fieldRow) {
                 if (field.isSet()) {
-                    if (Objects.isNull(currentMaxPlacer)) {
-                        currentMaxPlacer = field.getPlacer();
-                    } else if (field.getPlacer().getValue() > currentMaxPlacer.getValue()) {
-                        currentMaxPlacer = field.getPlacer();
+                    if (Objects.isNull(currentLowestPlacer)) {
+                        currentLowestPlacer = field.getPlacer();
+                    } else if (field.getPlacer().getValue() < currentLowestPlacer.getValue()) {
+                        currentLowestPlacer = field.getPlacer();
                     }
                 }
             }
         }
 
-        return currentMaxPlacer;
+        return currentLowestPlacer;
     }
 
     public void reset() {
