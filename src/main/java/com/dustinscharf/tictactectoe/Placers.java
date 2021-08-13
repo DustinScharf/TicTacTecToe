@@ -92,6 +92,22 @@ public class Placers {
         }
     }
 
+    public Placer getHighestPlacer() {
+        Placer currentMaxPlacer = null;
+
+        for (Placer placer : this.placers) {
+            if (placer.isThere()) {
+                if (Objects.isNull(currentMaxPlacer)) {
+                    currentMaxPlacer = placer;
+                } else if (placer.getValue() > currentMaxPlacer.getValue()) {
+                    currentMaxPlacer = placer;
+                }
+            }
+        }
+
+        return currentMaxPlacer;
+    }
+
     public void reset() {
         for (Placer placer : this.placers) {
             placer.reset();
