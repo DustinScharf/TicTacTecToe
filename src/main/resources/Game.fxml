@@ -37,6 +37,7 @@
             </RadialGradient>
          </fill>
       </Text>
+      <Button layoutX="564.0" layoutY="384.0" mnemonicParsing="false" onAction="#guideClicker" text="Guide" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" />
       <Button layoutX="554.0" layoutY="374.0" mnemonicParsing="false" onAction="#resetClicker" text="Reset" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="1.0" />
       <HBox alignment="CENTER" layoutX="19.0" layoutY="17.0" prefHeight="366.0" prefWidth="562.0" spacing="20.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="17.0">
          <children>
