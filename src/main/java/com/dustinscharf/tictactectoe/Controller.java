@@ -125,9 +125,7 @@ public class Controller {
         secondaryStage.setTitle("TicTacTecToe | Guide");
         secondaryStage.setScene(scene);
 
-        secondaryStage.setOnCloseRequest(windowEvent -> {
-            this.guideIsOpen = false;
-        });
+        secondaryStage.setOnCloseRequest(windowEvent -> this.guideIsOpen = false);
 
         secondaryStage.show();
     }
