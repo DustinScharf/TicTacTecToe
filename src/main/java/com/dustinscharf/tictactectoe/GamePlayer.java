@@ -1,11 +1,11 @@
 package com.dustinscharf.tictactectoe;
 
 import javafx.scene.Node;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class GamePlayer {
@@ -63,6 +63,15 @@ public class GamePlayer {
                 random.nextInt(127) + 63,
                 random.nextInt(127) + 63
         );
+    }
+
+    public boolean isUnableToPlace() {
+        if (Objects.isNull(this.placers.getHighestPlacer()) ||
+                Objects.isNull(this.game.getBoard().getLowestPlacer())) {
+            return false;
+        }
+
+        return this.placers.getHighestPlacer().getValue() <= this.game.getBoard().getLowestPlacer().getValue();
     }
 
     public void reset() {
