@@ -1,5 +1,7 @@
 package com.dustinscharf.tictactectoe;
 
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -121,6 +124,11 @@ public class Controller {
 
         secondaryStage.setTitle("TicTacTecToe | Guide");
         secondaryStage.setScene(scene);
+
+        secondaryStage.setOnCloseRequest(windowEvent -> {
+            this.guideIsOpen = false;
+        });
+
         secondaryStage.show();
     }
 }
