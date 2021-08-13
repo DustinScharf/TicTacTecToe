@@ -1,14 +1,19 @@
 package com.dustinscharf.tictactectoe;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -92,7 +97,20 @@ public class Controller {
         this.controlledGame.reset();
     }
 
-    public void guideClicker() {
-        // TODO
+    public void guideClicker() throws IOException {
+        Stage secondaryStage = new Stage();
+        secondaryStage.setResizable(false);
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Game.fxml"));
+        Parent root = fxmlLoader.load();
+
+//        Controller controller = fxmlLoader.getController();
+
+        Scene scene = new Scene(root);
+        // scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
+
+        secondaryStage.setTitle("TicTacTecToe | Guide");
+        secondaryStage.setScene(scene);
+        secondaryStage.show();
     }
 }
