@@ -123,6 +123,14 @@ public class Game {
 //        this.currentPlayer.getPlacers().revealRandomPlacer();
 
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
+
+        if (this.currentPlayer.isUnableToPlace()) {
+            if (this.currentPlayer == this.gamePlayer1) {
+                this.gameWon(this.gamePlayer2);
+            } else {
+                this.gameWon(this.gamePlayer1);
+            }
+        }
     }
 
     public void receiveBoardClick(Field clickedField) {
@@ -134,7 +142,7 @@ public class Game {
         if (success) {
             ++this.playerTurns;
             if (this.checkForWinAfterPlace(clickedField)) {
-                this.gameWon();
+                this.gameWon(this.currentPlayer);
             } else {
                 if (this.playerTurns % 2 == 0) {
                     this.initSelectionPhase();
@@ -145,16 +153,22 @@ public class Game {
         }
     }
 
-    private void gameWon() {
+    private void gameWon(GamePlayer winningPlayer) {
+        this.isRunning = false;
+
         this.winSound.play();
 
-        if (this.currentPlayer == this.gamePlayer1) this.gamePlayer2.getTextPlayerName().setFill(Color.LIGHTGRAY);
-        else this.gamePlayer1.getTextPlayerName().setFill(Color.LIGHTGRAY);
+        this.gamePlayer1.getTextPlayerName().setFill(Color.LIGHTGRAY);
+        this.gamePlayer2.getTextPlayerName().setFill(Color.LIGHTGRAY);
 
-        this.rotateAnimation(this.currentPlayer.getTextPlayerName());
+        winningPlayer.getTextPlayerName().setFill(winningPlayer.getColor());
 
-        for (Field field : this.winFields) {
-            new Tada(field.getButton()).setCycleCount(3).play();
+        this.rotateAnimation(winningPlayer.getTextPlayerName());
+
+        if (Objects.nonNull(this.winFields[2])) {
+            for (Field field : this.winFields) {
+                new Tada(field.getButton()).setCycleCount(3).play();
+            }
         }
 
         Task<Void> sleeper = new Task<>() {
@@ -232,7 +246,6 @@ public class Game {
             for (int i = 0; i < 3; ++i) {
                 this.winFields[i] = this.board.getFields()[placedFieldRowPos][i];
             }
-            this.isRunning = false;
             return true;
         }
 
@@ -240,7 +253,6 @@ public class Game {
             for (int i = 0; i < 3; ++i) {
                 this.winFields[i] = this.board.getFields()[i][placedFieldColPos];
             }
-            this.isRunning = false;
             return true;
         }
 
@@ -248,7 +260,6 @@ public class Game {
             for (int i = 0; i < 3; ++i) {
                 this.winFields[i] = this.board.getFields()[i][i];
             }
-            this.isRunning = false;
             return true;
         }
 
@@ -256,7 +267,6 @@ public class Game {
             for (int i = 0; i < 3; ++i) {
                 this.winFields[i] = this.board.getFields()[i][2 - i];
             }
-            this.isRunning = false;
             return true;
         }
 
@@ -286,6 +296,14 @@ public class Game {
                 }
                 this.inSelectionPhase = false;
                 this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
+
+                if (this.currentPlayer.isUnableToPlace()) {
+                    if (this.currentPlayer == this.gamePlayer1) {
+                        this.gameWon(this.gamePlayer2);
+                    } else {
+                        this.gameWon(this.gamePlayer1);
+                    }
+                }
             }
         } else {
             clickedPlacer.getOwner().placers.select(clickedPlacer);

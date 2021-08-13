@@ -42,7 +42,7 @@ public class Board {
         return null;
     }
 
-    public Placer getLowestPlacer() {
+    public Placer getLowestPossiblePlacer() {
         Placer currentLowestPlacer = null;
 
         for (Field[] fieldRow : this.fields) {
@@ -53,6 +53,8 @@ public class Board {
                     } else if (field.getPlacer().getValue() < currentLowestPlacer.getValue()) {
                         currentLowestPlacer = field.getPlacer();
                     }
+                } else {
+                    return null;
                 }
             }
         }

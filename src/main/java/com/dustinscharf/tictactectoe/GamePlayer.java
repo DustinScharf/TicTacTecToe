@@ -67,11 +67,11 @@ public class GamePlayer {
 
     public boolean isUnableToPlace() {
         if (Objects.isNull(this.placers.getHighestPlacer()) ||
-                Objects.isNull(this.game.getBoard().getLowestPlacer())) {
+                Objects.isNull(this.game.getBoard().getLowestPossiblePlacer())) {
             return false;
         }
 
-        return this.placers.getHighestPlacer().getValue() <= this.game.getBoard().getLowestPlacer().getValue();
+        return this.placers.getHighestPlacer().getValue() <= this.game.getBoard().getLowestPossiblePlacer().getValue();
     }
 
     public void reset() {
