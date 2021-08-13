@@ -101,7 +101,7 @@ public class Controller {
         Stage secondaryStage = new Stage();
         secondaryStage.setResizable(false);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Game.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Guide.fxml"));
         Parent root = fxmlLoader.load();
 
 //        Controller controller = fxmlLoader.getController();
