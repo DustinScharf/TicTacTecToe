@@ -91,4 +91,8 @@ public class Controller {
     public void resetClicker() {
         this.controlledGame.reset();
     }
+
+    public void guideClicker() {
+
+    }
 }
