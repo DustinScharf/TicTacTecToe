@@ -24,6 +24,11 @@
                   <Font size="18.0" />
                </font>
             </Text>
+            <Text layoutX="10.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PLACERs are the numbers above / below the 3x3 board">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
             <Text layoutX="10.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font size="18.0" />

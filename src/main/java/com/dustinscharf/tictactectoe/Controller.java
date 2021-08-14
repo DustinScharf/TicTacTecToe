@@ -112,7 +112,9 @@ public class Controller {
         this.guideIsOpen = true;
 
         Stage secondaryStage = new Stage();
-        secondaryStage.setResizable(false);
+
+        secondaryStage.setMinWidth(600);
+        secondaryStage.setMinHeight(400);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Guide.fxml"));
         Parent root = fxmlLoader.load();

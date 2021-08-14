@@ -16,7 +16,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setResizable(false);
+        primaryStage.setMinWidth(600);
+        primaryStage.setMinHeight(400);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Game.fxml"));
         Parent root = fxmlLoader.load();
