@@ -1,5 +1,6 @@
 package com.dustinscharf.tictactectoe;
 
+import javafx.scene.media.AudioClip;
 import javafx.scene.text.Text;
 
 public class PlacerChallengingArea {
@@ -8,9 +9,15 @@ public class PlacerChallengingArea {
 
     private boolean isSet;
 
+    private AudioClip placerSetSound;
+
     public PlacerChallengingArea(Text challengedPlacerText) {
         this.challengedPlacerText = challengedPlacerText;
         this.isSet = false;
+
+        this.placerSetSound = new AudioClip(
+                getClass().getResource("/selectionPhasePlacerSelected.wav").toExternalForm()
+        );
     }
 
     public Text getChallengedPlacerText() {
@@ -26,13 +33,15 @@ public class PlacerChallengingArea {
         this.challengedPlacerText.setText(this.challengedPlacer.getValue() + "");
 
         this.setCensored(true);
-        
+
         this.challengedPlacer.getOwner().getPlacers().setVisible(false);
 
         this.challengedPlacer.setThere(false);
         this.challengedPlacer.getButton().setVisible(false);
 
-    this.isSet = true;
+        this.placerSetSound.play();
+
+        this.isSet = true;
     }
 
     public Placer getChallengedPlacer() {

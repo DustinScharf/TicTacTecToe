@@ -33,6 +33,9 @@ public class Game {
     private Field[] winFields;
 
     private AudioClip winSound;
+    private AudioClip resetSound;
+
+    private AudioClip placementPhaseSound;
 
     private Text messageBoxText;
 
@@ -94,12 +97,15 @@ public class Game {
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
         this.isRunning = true;
 
-        this.initSelectionPhase();
-
         this.round = 0;
         this.playerTurns = 0;
 
         this.winSound = new AudioClip(getClass().getResource("/gameWon.wav").toExternalForm());
+        this.resetSound = new AudioClip(getClass().getResource("/gameReset.wav").toExternalForm());
+
+        this.placementPhaseSound = new AudioClip(getClass().getResource("/placementPhase.wav").toExternalForm());
+
+        this.initSelectionPhase();
 
 //        this.gamePlayer1.getPlacers().setVisible(false);
 //        this.gamePlayer2.getPlacers().setVisible(false);
@@ -333,11 +339,14 @@ public class Game {
     public void initSelectionPhase() {
         this.inSelectionPhase = true;
         this.sendMessageToScreen("Selection Phase", 3);
+//        this.placementPhaseSound.play();
         this.gamePlayer1.getTextPlayerName().setFill(Color.BLACK);
         this.gamePlayer2.getTextPlayerName().setFill(Color.BLACK);
     }
 
     public void reset() {
+        this.resetSound.play();
+
         this.gamePlayer1.reset();
         this.gamePlayer2.reset();
 
