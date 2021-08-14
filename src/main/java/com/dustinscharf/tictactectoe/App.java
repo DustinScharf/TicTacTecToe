@@ -27,7 +27,7 @@ public class App extends Application {
         Game game = new Game(controller, new Player("Player 1"), new Player("Player 2"));
 
         Scene scene = new Scene(root);
-        // scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
 
         primaryStage.setTitle("TicTacTecToe");
         primaryStage.setScene(scene);
