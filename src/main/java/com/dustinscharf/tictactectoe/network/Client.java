@@ -1,5 +1,6 @@
 package com.dustinscharf.tictactectoe.network;
 
+import javax.swing.*;
 import java.io.*;
 import java.net.Socket;
 
@@ -13,16 +14,15 @@ public class Client {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
         String clientText = "";
-//        String serverText;
+        String serverText;
 
         while (!clientText.equals("STOP")) {
-            System.out.print("OUT: ");
-            clientText = bufferedReader.readLine();
+            clientText = JOptionPane.showInputDialog("Out: ");
             dataOutputStream.writeUTF(clientText);
             dataOutputStream.flush();
 
-//            serverText = dataInputStream.readUTF();
-//            System.out.println("IN: " + serverText);
+            serverText = dataInputStream.readUTF();
+            JOptionPane.showMessageDialog(null, serverText);
         }
         bufferedReader.close();
 
