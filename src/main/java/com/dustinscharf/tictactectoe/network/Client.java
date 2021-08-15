@@ -1,32 +1,42 @@
 package com.dustinscharf.tictactectoe.network;
 
 import javax.swing.*;
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
 
 public class Client {
-    public static void main(String[] args) throws IOException {
-        Socket socket = new Socket("localhost", 3241);
+    private Socket socket;
 
-        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+    private DataInputStream dataInputStream;
+    private DataOutputStream dataOutputStream;
 
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    private String clientText;
+    private String serverText;
 
-        String clientText = "";
-        String serverText;
+    public Client() throws IOException {
+        this.socket = new Socket("localhost", Server.STANDARD_PORT);
 
-        while (!clientText.equals("STOP")) {
-            clientText = JOptionPane.showInputDialog("Out: ");
-            dataOutputStream.writeUTF(clientText);
-            dataOutputStream.flush();
+        this.dataInputStream = new DataInputStream(this.socket.getInputStream());
+        this.dataOutputStream = new DataOutputStream(this.socket.getOutputStream());
 
-            serverText = dataInputStream.readUTF();
-            JOptionPane.showMessageDialog(null, serverText);
-        }
-        bufferedReader.close();
+        this.startClientLoop();
+    }
 
-        dataOutputStream.close();
-        socket.close();
+    private void startClientLoop() throws IOException {
+        this.sendMessage();
+        this.receiveMessage();
+    }
+
+    private void sendMessage() throws IOException {
+        this.clientText = JOptionPane.showInputDialog("Message");
+        this.dataOutputStream.writeUTF(this.clientText);
+        this.dataOutputStream.flush();
+    }
+
+    private void receiveMessage() throws IOException {
+        this.serverText = this.dataInputStream.readUTF();
+        JOptionPane.showMessageDialog(null, this.serverText);
     }
 }
