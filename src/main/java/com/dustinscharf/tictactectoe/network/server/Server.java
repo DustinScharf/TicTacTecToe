@@ -1,4 +1,4 @@
-package com.dustinscharf.tictactectoe.network;
+package com.dustinscharf.tictactectoe.network.server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

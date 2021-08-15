@@ -1,4 +1,6 @@
-package com.dustinscharf.tictactectoe.network;
+package com.dustinscharf.tictactectoe.network.client;
+
+import com.dustinscharf.tictactectoe.network.server.Server;
 
 import javax.swing.*;
 import java.io.DataInputStream;
