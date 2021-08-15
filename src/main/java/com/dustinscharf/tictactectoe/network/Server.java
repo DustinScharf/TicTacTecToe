@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.util.Objects;
 
 public class Server {
-    private static final int STANDARD_PORT = 1338;
+    public static final int STANDARD_PORT = 1338;
 
     // SERVER
     private ServerSocket serverSocket;
@@ -19,7 +19,7 @@ public class Server {
     private DataInputStream dataInputStreamPlayer1;
     private DataOutputStream dataOutputStreamPlayer1;
 
-    private String textPlayer1 = "";
+    private String textPlayer1;
 
     // PLAYER 2
     private Socket socketPlayer2;
@@ -27,7 +27,7 @@ public class Server {
     private DataInputStream dataInputStreamPlayer2;
     private DataOutputStream dataOutputStreamPlayer2;
 
-    private String textPlayer2 = "";
+    private String textPlayer2;
 
     public Server() throws IOException {
         System.out.println("Starting server...");
@@ -55,6 +55,8 @@ public class Server {
     private void startServerLoop() throws IOException {
         this.receiveFromPlayer1();
         this.forwardToPlayer2();
+
+        // TODO
     }
 
     private void receiveFromPlayer1() throws IOException {
