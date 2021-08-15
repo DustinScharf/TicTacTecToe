@@ -22,6 +22,7 @@ public class Server {
             string1 = dataInputStream.readUTF();
             System.out.println("CLIENT: " + string1);
 
+            System.out.print("SERVER: ");
             string2 = bufferedReader.readLine();
             dataOutputStream.writeUTF(string2);
             dataOutputStream.flush();
