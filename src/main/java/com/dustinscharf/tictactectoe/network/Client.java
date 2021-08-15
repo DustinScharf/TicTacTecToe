@@ -40,6 +40,7 @@ public class Client {
             try {
                 this.dataOutputStream.writeUTF(this.clientText);
                 this.dataOutputStream.flush();
+                System.out.println("OUT: " + this.clientText);
             } catch (IOException e) {
                 System.err.println("Message could not send error");
             }
@@ -50,10 +51,10 @@ public class Client {
         while (true) {
             try {
                 this.serverText = this.dataInputStream.readUTF();
+                System.out.println("IN: " + this.serverText);
             } catch (IOException e) {
                 System.err.println("Message not received error");
             }
-            JOptionPane.showMessageDialog(null, this.serverText);
         }
     }
 }
