@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Objects;
+import java.util.concurrent.TransferQueue;
 
 public class Server {
     public static final int STANDARD_PORT = 1338;
@@ -68,60 +69,68 @@ public class Server {
     }
 
     private void startServerLoop() {
-        this.receiveFromPlayer1();
-        this.forwardToPlayer2();
+        new Thread(this::receiveFromPlayer1).start();
+        new Thread(this::forwardToPlayer2).start();
 
-        this.receiveFromPlayer2();
-        this.forwardToPlayer1();
+        new Thread(this::receiveFromPlayer2).start();
+        new Thread(this::forwardToPlayer1).start();
     }
 
     private void receiveFromPlayer1() {
-        try {
-            this.textPlayer1 = this.dataInputStreamPlayer1.readUTF();
-        } catch (IOException e) {
-            System.err.println("Message receive error from player 1");
+        while (true) {
+            try {
+                this.textPlayer1 = this.dataInputStreamPlayer1.readUTF();
+            } catch (IOException e) {
+                System.err.println("Message receive error from player 1");
+            }
+            System.out.println("IN: " + this.textPlayer1);
         }
-        System.out.println("IN: " + this.textPlayer1);
     }
 
     private void forwardToPlayer2() {
-        if (Objects.isNull(this.textPlayer1)) {
-            return;
-        }
+        while (true) {
+            if (Objects.isNull(this.textPlayer1)) {
+                continue;
+            }
 
-        System.out.println("OUT: " + this.textPlayer1);
-        try {
-            this.dataOutputStreamPlayer2.writeUTF(this.textPlayer1);
-            this.dataOutputStreamPlayer2.flush();
-        } catch (IOException e) {
-            System.err.println("Message send error to player 2");
-        }
+            System.out.println("OUT: " + this.textPlayer1);
+            try {
+                this.dataOutputStreamPlayer2.writeUTF(this.textPlayer1);
+                this.dataOutputStreamPlayer2.flush();
+            } catch (IOException e) {
+                System.err.println("Message send error to player 2");
+            }
 
-        this.textPlayer1 = null;
+            this.textPlayer1 = null;
+        }
     }
 
     private void receiveFromPlayer2() {
-        try {
-            this.textPlayer2 = this.dataInputStreamPlayer2.readUTF();
-        } catch (IOException e) {
-            System.err.println("Message receive error from player 2");
+        while (true) {
+            try {
+                this.textPlayer2 = this.dataInputStreamPlayer2.readUTF();
+            } catch (IOException e) {
+                System.err.println("Message receive error from player 2");
+            }
+            System.out.println("IN: " + this.textPlayer2);
         }
-        System.out.println("IN: " + this.textPlayer2);
     }
 
     private void forwardToPlayer1() {
-        if (Objects.isNull(this.textPlayer2)) {
-            return;
-        }
+        while (true) {
+            if (Objects.isNull(this.textPlayer2)) {
+                continue;
+            }
 
-        System.out.println("OUT: " + this.textPlayer2);
-        try {
-            this.dataOutputStreamPlayer1.writeUTF(this.textPlayer2);
-            this.dataOutputStreamPlayer1.flush();
-        } catch (IOException e) {
-            System.err.println("Message send error to player 1");
-        }
+            System.out.println("OUT: " + this.textPlayer2);
+            try {
+                this.dataOutputStreamPlayer1.writeUTF(this.textPlayer2);
+                this.dataOutputStreamPlayer1.flush();
+            } catch (IOException e) {
+                System.err.println("Message send error to player 1");
+            }
 
-        this.textPlayer2 = null;
+            this.textPlayer2 = null;
+        }
     }
 }
