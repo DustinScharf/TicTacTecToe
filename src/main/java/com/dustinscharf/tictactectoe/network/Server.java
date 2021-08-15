@@ -10,26 +10,22 @@ public class Server {
 
         Socket socket = serverSocket.accept();
 
-        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+        DataInputStream dataInputStreamPlayer1 = new DataInputStream(socket.getInputStream());
+        DataOutputStream dataOutputStreamPlayer1 = new DataOutputStream(socket.getOutputStream());
 
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String textPlayer1 = "";
+        // String string2 = "";
 
-        String string1 = "";
-        String string2;
+        while (!textPlayer1.equals("STOP")) {
+            textPlayer1 = dataInputStreamPlayer1.readUTF();
+            System.out.println("IN: " + textPlayer1);
 
-        while (!string1.equals("STOP")) {
-            string1 = dataInputStream.readUTF();
-            System.out.println("CLIENT: " + string1);
-
-            System.out.print("SERVER: ");
-            string2 = bufferedReader.readLine();
-            dataOutputStream.writeUTF(string2);
-            dataOutputStream.flush();
+//            System.out.print("SERVER: ");
+//            dataOutputStreamPlayer1.writeUTF(string2);
+//            dataOutputStreamPlayer1.flush();
         }
-        bufferedReader.close();
 
-        dataInputStream.close();
+        dataInputStreamPlayer1.close();
         socket.close();
         serverSocket.close();
     }

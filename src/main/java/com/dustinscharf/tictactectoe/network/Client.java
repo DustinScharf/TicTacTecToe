@@ -12,17 +12,17 @@ public class Client {
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-        String string1 = "";
-        String string2;
+        String clientText = "";
+//        String serverText;
 
-        while (!string1.equals("STOP")) {
-            System.out.print("CLIENT: ");
-            string1 = bufferedReader.readLine();
-            dataOutputStream.writeUTF(string1);
+        while (!clientText.equals("STOP")) {
+            System.out.print("OUT: ");
+            clientText = bufferedReader.readLine();
+            dataOutputStream.writeUTF(clientText);
             dataOutputStream.flush();
 
-            string2 = dataInputStream.readUTF();
-            System.out.println("SERVER: " + string2);
+//            serverText = dataInputStream.readUTF();
+//            System.out.println("IN: " + serverText);
         }
         bufferedReader.close();
 
