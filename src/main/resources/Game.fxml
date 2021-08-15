@@ -16,27 +16,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dustinscharf.tictactectoe.Controller">
    <children>
-      <Text fx:id="messageBoxText" disable="true" layoutY="213.53125" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="600.0" AnchorPane.bottomAnchor="178.4375" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="179.0">
-         <font>
-            <Font size="32.0" />
-         </font>
-         <fill>
-            <RadialGradient centerX="0.5944444444444444" centerY="0.580952380952381" radius="0.5">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.8421052694320679" green="0.046783626079559326" blue="0.6962962746620178" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </RadialGradient>
-         </fill>
-      </Text>
       <Button layoutX="564.0" layoutY="384.0" mnemonicParsing="false" onAction="#guideClicker" text="Guide" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" />
       <Button layoutX="554.0" layoutY="374.0" mnemonicParsing="false" onAction="#resetClicker" text="Reset" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="1.0" />
       <HBox alignment="CENTER" layoutX="19.0" layoutY="17.0" prefHeight="366.0" prefWidth="562.0" spacing="20.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="17.0">
@@ -322,5 +301,30 @@
             </VBox>
          </children>
       </HBox>
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text fx:id="messageBoxText" disable="true" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER">
+               <font>
+                  <Font size="32.0" />
+               </font>
+               <fill>
+                  <RadialGradient centerX="0.5944444444444444" centerY="0.580952380952381" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.8421052694320679" green="0.046783626079559326" blue="0.6962962746620178" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Text>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
