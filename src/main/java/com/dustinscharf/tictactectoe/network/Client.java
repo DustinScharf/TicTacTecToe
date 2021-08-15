@@ -15,28 +15,41 @@ public class Client {
     private String clientText;
     private String serverText;
 
-    public Client() throws IOException {
-        this.socket = new Socket("localhost", Server.STANDARD_PORT);
+    public Client() {
+        try {
+            this.socket = new Socket("localhost", Server.STANDARD_PORT);
 
-        this.dataInputStream = new DataInputStream(this.socket.getInputStream());
-        this.dataOutputStream = new DataOutputStream(this.socket.getOutputStream());
+            this.dataInputStream = new DataInputStream(this.socket.getInputStream());
+            this.dataOutputStream = new DataOutputStream(this.socket.getOutputStream());
+        } catch (IOException e) {
+            System.err.println("Could not init client");
+            System.exit(1);
+        }
 
         this.startClientLoop();
     }
 
-    private void startClientLoop() throws IOException {
+    private void startClientLoop() {
         this.sendMessage();
         this.receiveMessage();
     }
 
-    private void sendMessage() throws IOException {
+    private void sendMessage() {
         this.clientText = JOptionPane.showInputDialog("Message");
-        this.dataOutputStream.writeUTF(this.clientText);
-        this.dataOutputStream.flush();
+        try {
+            this.dataOutputStream.writeUTF(this.clientText);
+            this.dataOutputStream.flush();
+        } catch (IOException e) {
+            System.err.println("Message could not send error");
+        }
     }
 
-    private void receiveMessage() throws IOException {
-        this.serverText = this.dataInputStream.readUTF();
+    private void receiveMessage() {
+        try {
+            this.serverText = this.dataInputStream.readUTF();
+        } catch (IOException e) {
+            System.err.println("Message not received error");
+        }
         JOptionPane.showMessageDialog(null, this.serverText);
     }
 }
