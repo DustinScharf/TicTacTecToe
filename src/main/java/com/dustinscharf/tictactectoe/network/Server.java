@@ -90,6 +90,11 @@ public class Server {
     private void forwardToPlayer2() {
         while (true) {
             if (Objects.isNull(this.textPlayer1)) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    System.err.println("Thread could not sleep");
+                }
                 continue;
             }
 
@@ -119,6 +124,11 @@ public class Server {
     private void forwardToPlayer1() {
         while (true) {
             if (Objects.isNull(this.textPlayer2)) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    System.err.println("Thread could not sleep");
+                }
                 continue;
             }
 
