@@ -1,5 +1,8 @@
-package com.dustinscharf.tictactectoe;
+package com.dustinscharf.tictactectoe.launcher;
 
+import com.dustinscharf.tictactectoe.controller.Controller;
+import com.dustinscharf.tictactectoe.game.Game;
+import com.dustinscharf.tictactectoe.game.Player;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

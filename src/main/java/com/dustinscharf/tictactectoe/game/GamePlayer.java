@@ -1,4 +1,4 @@
-package com.dustinscharf.tictactectoe;
+package com.dustinscharf.tictactectoe.game;
 
 import javafx.scene.Node;
 import javafx.scene.paint.Color;

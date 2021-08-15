@@ -1,9 +1,7 @@
-package com.dustinscharf.tictactectoe;
+package com.dustinscharf.tictactectoe.game;
 
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 
 import java.util.List;
 import java.util.Objects;

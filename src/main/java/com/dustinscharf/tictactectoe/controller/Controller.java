@@ -1,7 +1,9 @@
-package com.dustinscharf.tictactectoe;
+package com.dustinscharf.tictactectoe.controller;
 
-import javafx.application.Platform;
-import javafx.event.EventHandler;
+import com.dustinscharf.tictactectoe.game.Field;
+import com.dustinscharf.tictactectoe.game.Game;
+import com.dustinscharf.tictactectoe.game.Placer;
+import com.dustinscharf.tictactectoe.game.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,7 +16,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -93,9 +94,9 @@ public class Controller {
             return;
         }
         Text clickedText = (Text) clickedNode;
-        Placer clickedPlacer = this.controlledGame.getGamePlayer1().placers.findPlacerByButton(clickedText);
+        Placer clickedPlacer = this.controlledGame.getGamePlayer1().getPlacers().findPlacerByButton(clickedText);
         if (Objects.isNull(clickedPlacer)) {
-            clickedPlacer = this.controlledGame.getGamePlayer2().placers.findPlacerByButton(clickedText);
+            clickedPlacer = this.controlledGame.getGamePlayer2().getPlacers().findPlacerByButton(clickedText);
         }
         this.controlledGame.receivePlacerClick(clickedPlacer);
     }

@@ -1,4 +1,4 @@
-package com.dustinscharf.tictactectoe;
+package com.dustinscharf.tictactectoe.game;
 
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;

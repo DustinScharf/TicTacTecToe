@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dustinscharf.tictactectoe.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dustinscharf.tictactectoe.controller.Controller">
    <children>
       <Button layoutX="564.0" layoutY="384.0" mnemonicParsing="false" onAction="#guideClicker" text="Guide" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" />
       <Button layoutX="554.0" layoutY="374.0" mnemonicParsing="false" onAction="#resetClicker" text="Reset" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="1.0" />

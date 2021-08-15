@@ -1,4 +1,4 @@
-package com.dustinscharf.tictactectoe;
+package com.dustinscharf.tictactectoe.game;
 
 public class Player {
     private String name;

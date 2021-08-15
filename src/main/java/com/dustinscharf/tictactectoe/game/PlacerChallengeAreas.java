@@ -1,9 +1,6 @@
-package com.dustinscharf.tictactectoe;
+package com.dustinscharf.tictactectoe.game;
 
 import javafx.concurrent.Task;
-import javafx.scene.media.AudioClip;
-import javafx.scene.text.Text;
-import org.apache.commons.collections4.functors.OnePredicate;
 
 import java.util.Objects;
 

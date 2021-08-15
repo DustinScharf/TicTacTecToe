@@ -1,6 +1,7 @@
-package com.dustinscharf.tictactectoe;
+package com.dustinscharf.tictactectoe.game;
 
 import animatefx.animation.*;
+import com.dustinscharf.tictactectoe.controller.Controller;
 import javafx.animation.RotateTransition;
 import javafx.concurrent.Task;
 import javafx.scene.Node;
