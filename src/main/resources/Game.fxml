@@ -301,9 +301,9 @@
             </VBox>
          </children>
       </HBox>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" mouseTransparent="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text fx:id="messageBoxText" disable="true" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER">
+            <Text fx:id="messageBoxText" disable="true" mouseTransparent="true" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER">
                <font>
                   <Font size="32.0" />
                </font>
