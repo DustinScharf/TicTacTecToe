@@ -1,113 +1,93 @@
 package com.dustinscharf.tictactectoe.network;
 
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Objects;
 
 public class Server {
-    // SERVER INIT
-    private static ServerSocket serverSocket;
+    private static final int STANDARD_PORT = 1338;
 
-    static {
-        try {
-            serverSocket = new ServerSocket(3241);
-        } catch (IOException e) {
-            System.err.println("Server error (not creatable)");
-            System.exit(1);
-        }
-    }
+    // SERVER
+    private ServerSocket serverSocket;
 
-    // PLAYER 1 INIT
-    private static Socket socketPlayer1;
+    // PLAYER 1
+    private Socket socketPlayer1;
 
-    private static DataInputStream dataInputStreamPlayer1;
-    private static DataOutputStream dataOutputStreamPlayer1;
+    private DataInputStream dataInputStreamPlayer1;
+    private DataOutputStream dataOutputStreamPlayer1;
 
-    private static String textPlayer1 = "";
+    private String textPlayer1 = "";
 
-    // PLAYER 2 INIT
-    private static Socket socketPlayer2;
+    // PLAYER 2
+    private Socket socketPlayer2;
 
-    private static DataInputStream dataInputStreamPlayer2;
-    private static DataOutputStream dataOutputStreamPlayer2;
+    private DataInputStream dataInputStreamPlayer2;
+    private DataOutputStream dataOutputStreamPlayer2;
 
-    private static String textPlayer2 = "";
+    private String textPlayer2 = "";
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        System.out.println("Starting Server...");
+    public Server() throws IOException {
+        System.out.println("Starting server...");
 
-        // PLAYER 1 CONNECTION BUILD
-        socketPlayer1 = serverSocket.accept();
-        dataInputStreamPlayer1 = new DataInputStream(socketPlayer1.getInputStream());
-        dataOutputStreamPlayer1 = new DataOutputStream(socketPlayer1.getOutputStream());
+        this.serverSocket = new ServerSocket(STANDARD_PORT);
 
-        // PLAYER 2 CONNECTION BUILD
-        socketPlayer2 = serverSocket.accept();
-        dataInputStreamPlayer2 = new DataInputStream(socketPlayer2.getInputStream());
-        dataOutputStreamPlayer2 = new DataOutputStream(socketPlayer2.getOutputStream());
+        System.out.println("Server started");
+
+        System.out.println("Establishing clients...");
+
+        this.socketPlayer1 = this.serverSocket.accept();
+        this.dataInputStreamPlayer1 = new DataInputStream(this.socketPlayer1.getInputStream());
+        this.dataOutputStreamPlayer1 = new DataOutputStream(this.socketPlayer1.getOutputStream());
+
+        this.socketPlayer2 = this.serverSocket.accept();
+        this.dataInputStreamPlayer2 = new DataInputStream(this.socketPlayer2.getInputStream());
+        this.dataOutputStreamPlayer2 = new DataOutputStream(this.socketPlayer2.getOutputStream());
 
         System.out.println("Clients established");
 
-        // PLAYER 1 RECEIVING
-        Runnable runnable1 = () -> {
-            try {
-                while (!textPlayer1.equals("STOP")) {
-                    receiveAndForwardPlayer1();
-                }
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } finally {
-                try {
-                    dataInputStreamPlayer1.close();
-                    socketPlayer1.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        Thread thread1 = new Thread(runnable1);
-        thread1.start();
+        System.out.println("Server loop...");
+        this.startServerLoop();
+    }
 
-        // PLAYER 2 RECEIVING
-        Runnable runnable2 = () -> {
-            try {
-                while (!textPlayer2.equals("STOP")) {
-                    receiveAndForwardPlayer2();
-                }
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            } finally {
-                try {
-                    dataInputStreamPlayer2.close();
-                    socketPlayer2.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        Thread thread2 = new Thread(runnable2);
-        thread2.start();
+    private void startServerLoop() throws IOException {
+        this.receiveFromPlayer1();
+        this.forwardToPlayer2();
+    }
 
-        // SERVER CLOSE WAIT
-        while (thread1.isAlive() && thread2.isAlive()) {
-            Thread.sleep(1000);
+    private void receiveFromPlayer1() throws IOException {
+        this.textPlayer1 = this.dataInputStreamPlayer1.readUTF();
+        System.out.println("IN: " + this.textPlayer1);
+    }
+
+    private void forwardToPlayer2() throws IOException {
+        if (Objects.isNull(this.textPlayer1)) {
+            return;
         }
 
-        // SERVER CLOSE
-        serverSocket.close();
+        System.out.println("OUT: " + this.textPlayer1);
+        this.dataOutputStreamPlayer2.writeUTF(this.textPlayer1);
+        this.dataOutputStreamPlayer2.flush();
+
+        this.textPlayer1 = null;
     }
 
-    public static void receiveAndForwardPlayer1() throws IOException {
-        textPlayer1 = dataInputStreamPlayer1.readUTF();
-        System.out.println("INOUT: " + textPlayer1);
-        dataOutputStreamPlayer2.writeUTF(textPlayer1);
-        dataOutputStreamPlayer2.flush();
+    private void receiveFromPlayer2() throws IOException {
+        this.textPlayer2 = this.dataInputStreamPlayer2.readUTF();
+        System.out.println("IN: " + this.textPlayer2);
     }
 
-    public static void receiveAndForwardPlayer2() throws IOException {
-        textPlayer2 = dataInputStreamPlayer2.readUTF();
-        System.out.println("INOUT: " + textPlayer2);
-        dataOutputStreamPlayer1.writeUTF(textPlayer2);
-        dataOutputStreamPlayer1.flush();
+    private void forwardToPlayer1() throws IOException {
+        if (Objects.isNull(this.textPlayer2)) {
+            return;
+        }
+
+        System.out.println("OUT: " + this.textPlayer2);
+        this.dataOutputStreamPlayer1.writeUTF(this.textPlayer2);
+        this.dataOutputStreamPlayer1.flush();
+
+        this.textPlayer2 = null;
     }
 }
