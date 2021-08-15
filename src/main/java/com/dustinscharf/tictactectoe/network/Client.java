@@ -30,26 +30,30 @@ public class Client {
     }
 
     private void startClientLoop() {
-        this.sendMessage();
-        this.receiveMessage();
+        new Thread(this::sendMessage).start();
+        new Thread(this::receiveMessage).start();
     }
 
     private void sendMessage() {
-        this.clientText = JOptionPane.showInputDialog("Message");
-        try {
-            this.dataOutputStream.writeUTF(this.clientText);
-            this.dataOutputStream.flush();
-        } catch (IOException e) {
-            System.err.println("Message could not send error");
+        while (true) {
+            this.clientText = JOptionPane.showInputDialog("Message");
+            try {
+                this.dataOutputStream.writeUTF(this.clientText);
+                this.dataOutputStream.flush();
+            } catch (IOException e) {
+                System.err.println("Message could not send error");
+            }
         }
     }
 
     private void receiveMessage() {
-        try {
-            this.serverText = this.dataInputStream.readUTF();
-        } catch (IOException e) {
-            System.err.println("Message not received error");
+        while (true) {
+            try {
+                this.serverText = this.dataInputStream.readUTF();
+            } catch (IOException e) {
+                System.err.println("Message not received error");
+            }
+            JOptionPane.showMessageDialog(null, this.serverText);
         }
-        JOptionPane.showMessageDialog(null, this.serverText);
     }
 }
