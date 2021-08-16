@@ -1,5 +1,7 @@
 package com.dustinscharf.tictactectoe.network.client;
 
+import com.dustinscharf.tictactectoe.game.Field;
+import com.dustinscharf.tictactectoe.game.Game;
 import com.dustinscharf.tictactectoe.network.server.Server;
 
 import javax.swing.*;
@@ -17,10 +19,33 @@ public class Client {
     private String clientText;
     private String serverText;
 
-    public Client() {
-        try {
-            this.socket = new Socket("localhost"/*TODO*/, Server.STANDARD_PORT);
+    private Game controlledGame;
 
+    public Client(Game controlledGame) {
+        this.controlledGame = controlledGame;
+
+        int connectionTries = 0;
+        boolean connected;
+        do {
+            ++connectionTries;
+            try {
+                this.socket = new Socket("localhost"/*TODO*/, Server.STANDARD_PORT);
+                connected = true;
+            } catch (IOException e) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    System.err.println("THREAD ERROR: COULD NOT SLEEP/WAIT");
+                }
+                connected = false;
+                if (connectionTries > 100) {
+                    System.err.println("NETWORK ERROR: CLIENT COULD NOT CONNECT TO SERVER DUE TO TIMEOUT");
+                    System.exit(1);
+                }
+            }
+        } while (!connected);
+
+        try {
             this.dataInputStream = new DataInputStream(this.socket.getInputStream());
             this.dataOutputStream = new DataOutputStream(this.socket.getOutputStream());
         } catch (IOException e) {
@@ -52,6 +77,11 @@ public class Client {
             try {
                 this.serverText = this.dataInputStream.readUTF();
                 System.out.println("IN: " + this.serverText);
+                if (this.serverText.charAt(0) == 'F') {
+                    int clickedRow = Character.getNumericValue(this.serverText.charAt(1));
+                    int clickedCol = Character.getNumericValue(this.serverText.charAt(2));
+                    this.receiveClickedFieldByCords(clickedRow, clickedCol);
+                }
             } catch (IOException e) {
                 System.err.println("NETWORK ERROR: MESSAGE NOT RECEIVED RIGHT BY CLIENT");
             }
@@ -60,5 +90,10 @@ public class Client {
 
     public void sendClickedFieldByCords(int row, int col) {
         this.sendMessage("F" + row + "" + col);
+    }
+
+    public void receiveClickedFieldByCords(int row, int col) {
+        Field clickedField = this.controlledGame.getBoard().getFields()[row][col];
+        this.controlledGame.receiveBoardClick(clickedField);
     }
 }

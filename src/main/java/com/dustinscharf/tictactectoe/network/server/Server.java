@@ -52,6 +52,7 @@ public class Server {
             System.err.println("Could not establish client 1");
             System.exit(1);
         }
+        System.out.println("Client 1 established");
 
         try {
             this.socketPlayer2 = this.serverSocket.accept();
@@ -61,8 +62,9 @@ public class Server {
             System.err.println("Could not establish client 2");
             System.exit(1);
         }
+        System.out.println("Client 2 established");
 
-        System.out.println("Clients established");
+        System.out.println("Both clients established");
 
         System.out.println("Server loop...");
         this.startServerLoop();
