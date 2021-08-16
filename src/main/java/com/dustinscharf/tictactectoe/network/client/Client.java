@@ -81,6 +81,14 @@ public class Client {
                     int clickedRow = Character.getNumericValue(this.serverText.charAt(1));
                     int clickedCol = Character.getNumericValue(this.serverText.charAt(2));
                     this.receiveClickedFieldByCords(clickedRow, clickedCol);
+                } else if (this.serverText.charAt(0) == 'P') {
+                    int placerValue;
+                    if (this.serverText.length() == 2) {
+                        placerValue = Character.getNumericValue(this.serverText.charAt(1));
+                    } else {
+                        placerValue = Integer.parseInt(this.serverText.substring(1,3));
+                    }
+                    this.receiveClickedPlacerByValue(placerValue);
                 }
             } catch (IOException e) {
                 System.err.println("NETWORK ERROR: MESSAGE NOT RECEIVED RIGHT BY CLIENT");
@@ -105,7 +113,7 @@ public class Client {
         this.controlledGame.receivePlacerClick(
                 this.controlledGame.getOppositePlayer(
                         this.controlledGame.getOnlinePlayer()
-                ).getPlacers().getPlacers()[value]
+                ).getPlacers().getPlacers()[value - 1]
         );
     }
 }

@@ -114,6 +114,7 @@ public class Controller {
         }
 
         this.controlledGame.receivePlacerClick(clickedPlacer);
+        this.controlledGame.getClient().sendClickedPlacerByValue(clickedPlacer.getValue());
     }
 
     public void resetClicker() {
