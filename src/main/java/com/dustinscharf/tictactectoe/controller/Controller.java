@@ -79,6 +79,11 @@ public class Controller {
     }
 
     public void boardClicked(MouseEvent mouseEvent) {
+        if (this.controlledGame.isOnlineMode() &&
+                this.controlledGame.getCurrentPlayer() != this.controlledGame.getOnlinePlayer()) {
+            return;
+        }
+
         Node clickedNode = mouseEvent.getPickResult().getIntersectedNode();
         if (!(clickedNode instanceof Canvas)) {
             return;
@@ -98,6 +103,12 @@ public class Controller {
         if (Objects.isNull(clickedPlacer)) {
             clickedPlacer = this.controlledGame.getGamePlayer2().getPlacers().findPlacerByButton(clickedText);
         }
+
+        if (this.controlledGame.isOnlineMode() &&
+                clickedPlacer.getOwner() != this.controlledGame.getOnlinePlayer()) {
+            return;
+        }
+
         this.controlledGame.receivePlacerClick(clickedPlacer);
     }
 

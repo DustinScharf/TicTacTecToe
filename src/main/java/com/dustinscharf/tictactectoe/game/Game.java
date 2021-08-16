@@ -40,6 +40,9 @@ public class Game {
 
     private Text messageBoxText;
 
+    private boolean onlineMode;
+    private GamePlayer onlinePlayer;
+
     public Game(Controller controller, Player player1, Player player2) {
         controller.receiveGame(this, player1, player2);
     }
@@ -54,6 +57,18 @@ public class Game {
 
     public GamePlayer getGamePlayer2() {
         return gamePlayer2;
+    }
+
+    public GamePlayer getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public boolean isOnlineMode() {
+        return onlineMode;
+    }
+
+    public GamePlayer getOnlinePlayer() {
+        return onlinePlayer;
     }
 
     public void initGame(Player player1,
@@ -98,6 +113,9 @@ public class Game {
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
         this.isRunning = true;
 
+        this.onlineMode = true; // TODO
+        this.onlinePlayer = this.gamePlayer1; // TODO
+
         this.round = 0;
         this.playerTurns = 0;
 
@@ -141,7 +159,11 @@ public class Game {
     }
 
     public void receiveBoardClick(Field clickedField) {
-        if (!this.currentPlayer.placers.hasPlacerSelected() || !this.isRunning) {
+        if (!this.isRunning) {
+            return;
+        }
+
+        if (!this.currentPlayer.placers.hasPlacerSelected()) {
             return;
         }
 
