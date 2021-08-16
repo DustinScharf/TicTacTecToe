@@ -38,8 +38,9 @@ public class App extends Application {
             onlineMode = true;
         }
 
+        int createOnlineGame = -1;
         if (onlineMode) {
-            int createOnlineGame = JOptionPane.showConfirmDialog(null,
+            createOnlineGame = JOptionPane.showConfirmDialog(null,
                     "Create new game (or join game)?",
                     "TicTacTecToe | Launcher",
                     JOptionPane.YES_NO_OPTION);
@@ -48,7 +49,15 @@ public class App extends Application {
             }
         }
 
-        Game game = new Game(controller, new Player("Player 1"), new Player("Player 2"), onlineMode);
+        boolean isHost = createOnlineGame == 0;
+
+        Game game = new Game(controller,
+                new Player("Player 1"), new Player("Player 2"),
+                onlineMode, isHost);
+
+        if (onlineMode) {
+            game.setOnlinePlayer(isHost ? game.getGamePlayer1() : game.getGamePlayer2());
+        }
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());

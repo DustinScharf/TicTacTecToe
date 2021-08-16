@@ -21,7 +21,7 @@ public class Client {
 
     private Game controlledGame;
 
-    public Client(Game controlledGame) {
+    public Client(Game controlledGame, String host) {
         this.controlledGame = controlledGame;
 
         int connectionTries = 0;
@@ -29,7 +29,7 @@ public class Client {
         do {
             ++connectionTries;
             try {
-                this.socket = new Socket("localhost"/*TODO*/, Server.STANDARD_PORT);
+                this.socket = new Socket(host, Server.STANDARD_PORT);
                 connected = true;
             } catch (IOException e) {
                 try {

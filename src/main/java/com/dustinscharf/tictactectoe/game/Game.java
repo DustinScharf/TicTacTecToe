@@ -12,6 +12,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+import javax.swing.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -49,8 +52,11 @@ public class Game {
     private Client client;
     private Server server;
 
-    public Game(Controller controller, Player player1, Player player2, boolean onlineMode) {
+    private boolean isHost;
+
+    public Game(Controller controller, Player player1, Player player2, boolean onlineMode, boolean isHost) {
         this.onlineMode = onlineMode;
+        this.isHost = isHost;
         controller.receiveGame(this, player1, player2);
     }
 
@@ -78,8 +84,16 @@ public class Game {
         return onlinePlayer;
     }
 
+    public void setOnlinePlayer(GamePlayer onlinePlayer) {
+        this.onlinePlayer = onlinePlayer;
+    }
+
     public Client getClient() {
         return client;
+    }
+
+    public boolean isHost() {
+        return isHost;
     }
 
     public void initGame(Player player1,
@@ -149,21 +163,37 @@ public class Game {
     private void initClientForOnlineMode() {
 //        this.server = new Server();
 
-        // todo
-        System.out.print("Player: ");
-        switch (new Scanner(System.in).nextLine()) {
-            case "1":
-                this.onlinePlayer = this.gamePlayer1;
-                break;
-            case "2":
-                this.onlinePlayer = this.gamePlayer2;
-                break;
-            default:
-                System.err.println("CLIENT ERROR: SELECTED PLAYER NOT AVAILABLE");
-                break;
+//        // todo
+//        System.out.print("Player: ");
+//        switch (new Scanner(System.in).nextLine()) {
+//            case "1":
+//                this.onlinePlayer = this.gamePlayer1;
+//                break;
+//            case "2":
+//                this.onlinePlayer = this.gamePlayer2;
+//                break;
+//            default:
+//                System.err.println("CLIENT ERROR: SELECTED PLAYER NOT AVAILABLE");
+//                break;
+//        }
+
+        if (!this.isHost) {
+            String host = JOptionPane.showInputDialog(null,
+                    "Enter host (left top side of other players gui)",
+                    "TicTacTecToe | Launcher",
+                    JOptionPane.PLAIN_MESSAGE);
+            this.client = new Client(this, host);
+        } else {
+            try {
+                String ip;
+                ip = InetAddress.getLocalHost().getHostAddress();
+                this.client = new Client(this, ip);
+            } catch (UnknownHostException e) {
+                System.err.println("NETWORK ERROR, NO CONNECTION?");
+                System.exit(1);
+            }
         }
 
-        this.client = new Client(this);
     }
 
     public void switchCurrentPlayer() {

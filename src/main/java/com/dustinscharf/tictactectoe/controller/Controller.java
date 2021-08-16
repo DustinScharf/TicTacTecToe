@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -18,6 +19,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -47,12 +50,27 @@ public class Controller {
     @FXML
     private Text messageBoxText;
 
+    @FXML
+    private TextField ipTextField;
+
     private Game controlledGame;
 
     private boolean guideIsOpen;
 
     public void receiveGame(Game game, Player player1, Player player2) {
         this.controlledGame = game;
+
+        this.ipTextField.setVisible(this.controlledGame.isOnlineMode() && this.controlledGame.isHost());
+        if (this.ipTextField.isVisible()) {
+            String ip;
+            try {
+                ip = InetAddress.getLocalHost().getHostAddress();
+                this.ipTextField.setText(ip);
+            } catch (UnknownHostException e) {
+                System.err.println("NETWORK ERROR, NO CONNECTION?");
+                System.exit(1);
+            }
+        }
 
         this.guideIsOpen = false;
 
