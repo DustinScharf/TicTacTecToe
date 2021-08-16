@@ -21,7 +21,11 @@ public class Client {
 
     private Game controlledGame;
 
+    private boolean stayAlive;
+
     public Client(Game controlledGame, String host) {
+        this.stayAlive = true;
+
         this.controlledGame = controlledGame;
 
         int connectionTries = 0;
@@ -73,7 +77,7 @@ public class Client {
     }
 
     private void receiveMessage() {
-        while (true) {
+        while (this.stayAlive) {
             try {
                 this.serverText = this.dataInputStream.readUTF();
                 System.out.println("IN: " + this.serverText);
@@ -86,12 +90,20 @@ public class Client {
                     if (this.serverText.length() == 2) {
                         placerValue = Character.getNumericValue(this.serverText.charAt(1));
                     } else {
-                        placerValue = Integer.parseInt(this.serverText.substring(1,3));
+                        placerValue = Integer.parseInt(this.serverText.substring(1, 3));
                     }
                     this.receiveClickedPlacerByValue(placerValue);
                 }
             } catch (IOException e) {
-                System.err.println("NETWORK ERROR: MESSAGE NOT RECEIVED RIGHT BY CLIENT");
+                System.err.println("NETWORK ERROR: SERVER NOT REACHABLE");
+                try {
+                    this.socket.close();
+                    this.dataInputStream.close();
+                    this.dataOutputStream.close();
+                } catch (IOException ex) {
+                    System.err.println("ERROR: COULD NOT CLOSE CONNECTION");
+                }
+                this.stayAlive = false;
             }
         }
     }

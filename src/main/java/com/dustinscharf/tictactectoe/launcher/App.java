@@ -45,7 +45,14 @@ public class App extends Application {
                     "TicTacTecToe | Launcher",
                     JOptionPane.YES_NO_OPTION);
             if (createOnlineGame == 0) {
-                new Thread(Server::new).start();
+//                new Thread(Server::new).start();
+
+                Runnable serverRunnable = () -> {
+                    final Server server = new Server();
+                    primaryStage.setOnCloseRequest(windowEvent -> server.close());
+                };
+                Thread serverThread = new Thread(serverRunnable);
+                serverThread.start();
             }
         }
 

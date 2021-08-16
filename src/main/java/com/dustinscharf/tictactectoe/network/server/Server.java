@@ -15,6 +15,7 @@ public class Server {
 
     // SERVER
     private ServerSocket serverSocket;
+    private boolean stayAlive;
 
     // PLAYER 1
     private Socket socketPlayer1;
@@ -32,8 +33,24 @@ public class Server {
 
     private String textPlayer2;
 
+    public void close() {
+        try {
+            this.serverSocket.close();
+            this.socketPlayer1.close();
+            this.dataInputStreamPlayer1.close();
+            this.dataOutputStreamPlayer1.close();
+            this.socketPlayer2.close();
+            this.dataInputStreamPlayer2.close();
+            this.dataOutputStreamPlayer2.close();
+        } catch (IOException e) {
+            System.err.println("COULD NOT CLOSE SERVER");
+        }
+        this.stayAlive = false;
+    }
+
     public Server() {
         System.out.println("Starting server...");
+        this.stayAlive = true;
 
         try {
             this.serverSocket = new ServerSocket(STANDARD_PORT);
@@ -83,7 +100,7 @@ public class Server {
     }
 
     private void receiveFromPlayer1() {
-        while (true) {
+        while (this.stayAlive) {
             try {
                 this.textPlayer1 = this.dataInputStreamPlayer1.readUTF();
             } catch (IOException e) {
@@ -94,7 +111,7 @@ public class Server {
     }
 
     private void forwardToPlayer2() {
-        while (true) {
+        while (this.stayAlive) {
             if (Objects.isNull(this.textPlayer1)) {
                 try {
                     Thread.sleep(50);
@@ -117,7 +134,7 @@ public class Server {
     }
 
     private void receiveFromPlayer2() {
-        while (true) {
+        while (this.stayAlive) {
             try {
                 this.textPlayer2 = this.dataInputStreamPlayer2.readUTF();
             } catch (IOException e) {
@@ -128,7 +145,7 @@ public class Server {
     }
 
     private void forwardToPlayer1() {
-        while (true) {
+        while (this.stayAlive) {
             if (Objects.isNull(this.textPlayer2)) {
                 try {
                     Thread.sleep(1000);
