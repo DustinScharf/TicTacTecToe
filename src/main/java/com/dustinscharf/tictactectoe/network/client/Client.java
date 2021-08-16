@@ -96,4 +96,16 @@ public class Client {
         Field clickedField = this.controlledGame.getBoard().getFields()[row][col];
         this.controlledGame.receiveBoardClick(clickedField);
     }
+
+    public void sendClickedPlacerByValue(int value) {
+        this.sendMessage("P" + value);
+    }
+
+    public void receiveClickedPlacerByValue(int value) {
+        this.controlledGame.receivePlacerClick(
+                this.controlledGame.getOppositePlayer(
+                        this.controlledGame.getOnlinePlayer()
+                ).getPlacers().getPlacers()[value]
+        );
+    }
 }
