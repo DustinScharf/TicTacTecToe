@@ -93,7 +93,7 @@ public class Server {
         while (true) {
             if (Objects.isNull(this.textPlayer1)) {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(50);
                 } catch (InterruptedException e) {
                     System.err.println("Thread could not sleep");
                 }
