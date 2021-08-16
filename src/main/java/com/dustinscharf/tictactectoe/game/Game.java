@@ -15,6 +15,7 @@ import javafx.util.Duration;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Game {
     private Board board;
@@ -147,8 +148,21 @@ public class Game {
 //        this.server = new Server();
 
         this.onlineMode = true;
-        this.onlinePlayer = this.gamePlayer1;
-        this.client = new Client();
+        //todo
+        System.out.print("Player: ");
+        switch (new Scanner(System.in).nextLine()) {
+            case "1":
+                this.onlinePlayer = this.gamePlayer1;
+                break;
+            case "2":
+                this.onlinePlayer = this.gamePlayer2;
+                break;
+            default:
+                System.err.println("CLIENT ERROR: SELECTED PLAYER NOT AVAILABLE");
+                break;
+        }
+
+        this.client = new Client(this);
     }
 
     public void switchCurrentPlayer() {
