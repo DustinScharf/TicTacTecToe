@@ -2,6 +2,8 @@ package com.dustinscharf.tictactectoe.game;
 
 import animatefx.animation.*;
 import com.dustinscharf.tictactectoe.controller.Controller;
+import com.dustinscharf.tictactectoe.network.client.Client;
+import com.dustinscharf.tictactectoe.network.server.Server;
 import javafx.animation.RotateTransition;
 import javafx.concurrent.Task;
 import javafx.scene.Node;
@@ -42,6 +44,9 @@ public class Game {
 
     private boolean onlineMode;
     private GamePlayer onlinePlayer;
+
+    private Client client;
+    private Server server;
 
     public Game(Controller controller, Player player1, Player player2) {
         controller.receiveGame(this, player1, player2);
@@ -113,9 +118,6 @@ public class Game {
         this.currentPlayer.getTextPlayerName().setFill(this.currentPlayer.getColor());
         this.isRunning = true;
 
-        this.onlineMode = true; // TODO
-        this.onlinePlayer = this.gamePlayer1; // TODO
-
         this.round = 0;
         this.playerTurns = 0;
 
@@ -123,6 +125,9 @@ public class Game {
         this.resetSound = new AudioClip(getClass().getResource("/gameReset.wav").toExternalForm());
 
         this.placementPhaseSound = new AudioClip(getClass().getResource("/placementPhase.wav").toExternalForm());
+
+        this.onlineMode = false; // todo
+        this.initClientForOnlineMode(); // todo
 
         this.initSelectionPhase();
 
@@ -132,6 +137,14 @@ public class Game {
 //        this.currentPlayer.getPlacers().revealRandomPlacer();
 
         this.winFields = new Field[3];
+    }
+
+    private void initClientForOnlineMode() {
+//        this.server = new Server();
+
+        this.onlineMode = true;
+        this.onlinePlayer = this.gamePlayer1;
+        this.client = new Client();
     }
 
     public void switchCurrentPlayer() {
