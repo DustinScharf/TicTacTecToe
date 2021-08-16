@@ -49,7 +49,8 @@ public class Game {
     private Client client;
     private Server server;
 
-    public Game(Controller controller, Player player1, Player player2) {
+    public Game(Controller controller, Player player1, Player player2, boolean onlineMode) {
+        this.onlineMode = onlineMode;
         controller.receiveGame(this, player1, player2);
     }
 
@@ -131,8 +132,9 @@ public class Game {
 
         this.placementPhaseSound = new AudioClip(getClass().getResource("/placementPhase.wav").toExternalForm());
 
-        this.onlineMode = false; // todo
-        this.initClientForOnlineMode(); // todo
+        if (this.onlineMode) {
+            this.initClientForOnlineMode();
+        }
 
         this.initSelectionPhase();
 
@@ -147,8 +149,7 @@ public class Game {
     private void initClientForOnlineMode() {
 //        this.server = new Server();
 
-        this.onlineMode = true;
-        //todo
+        // todo
         System.out.print("Player: ");
         switch (new Scanner(System.in).nextLine()) {
             case "1":

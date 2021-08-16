@@ -91,10 +91,12 @@ public class Controller {
         Canvas clickedCanvas = (Canvas) clickedNode;
         Field clickedField = this.controlledGame.getBoard().findFieldByButton(clickedCanvas);
         this.controlledGame.receiveBoardClick(clickedField);
-        this.controlledGame.getClient().sendClickedFieldByCords(
-                clickedField.getBoardRowPosition(),
-                clickedField.getBoardColPosition()
-        );
+        if (this.controlledGame.isOnlineMode()) {
+            this.controlledGame.getClient().sendClickedFieldByCords(
+                    clickedField.getBoardRowPosition(),
+                    clickedField.getBoardColPosition()
+            );
+        }
     }
 
     public void placerClicked(MouseEvent mouseEvent) {
@@ -114,7 +116,9 @@ public class Controller {
         }
 
         this.controlledGame.receivePlacerClick(clickedPlacer);
-        this.controlledGame.getClient().sendClickedPlacerByValue(clickedPlacer.getValue());
+        if (this.controlledGame.isOnlineMode()) {
+            this.controlledGame.getClient().sendClickedPlacerByValue(clickedPlacer.getValue());
+        }
     }
 
     public void resetClicker() {
