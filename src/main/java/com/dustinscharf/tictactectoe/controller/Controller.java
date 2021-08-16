@@ -91,6 +91,10 @@ public class Controller {
         Canvas clickedCanvas = (Canvas) clickedNode;
         Field clickedField = this.controlledGame.getBoard().findFieldByButton(clickedCanvas);
         this.controlledGame.receiveBoardClick(clickedField);
+        this.controlledGame.getClient().sendClickedFieldByCords(
+                clickedField.getBoardRowPosition(),
+                clickedField.getBoardColPosition()
+        );
     }
 
     public void placerClicked(MouseEvent mouseEvent) {
