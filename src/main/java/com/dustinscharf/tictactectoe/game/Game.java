@@ -76,6 +76,10 @@ public class Game {
         return onlinePlayer;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
     public void initGame(Player player1,
                          Player player2,
                          Text textPlayer1,
