@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -53,6 +54,9 @@ public class Controller {
     @FXML
     private TextField ipTextField;
 
+    @FXML
+    private Button resetButton;
+
     private Game controlledGame;
 
     private boolean guideIsOpen;
@@ -60,6 +64,7 @@ public class Controller {
     public void receiveGame(Game game, Player player1, Player player2) {
         this.controlledGame = game;
 
+        this.resetButton.setVisible(!this.controlledGame.isOnlineMode());
         this.ipTextField.setVisible(this.controlledGame.isOnlineMode() && this.controlledGame.isHost());
         if (this.ipTextField.isVisible()) {
             String ip;
