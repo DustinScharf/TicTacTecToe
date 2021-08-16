@@ -398,6 +398,18 @@ public class Game {
         this.gamePlayer2.getTextPlayerName().setFill(Color.BLACK);
     }
 
+    public GamePlayer getCurrentOppositePlayer() {
+        return this.getOppositePlayer(this.currentPlayer);
+    }
+
+    public GamePlayer getOppositePlayer(GamePlayer gamePlayer) {
+        if (gamePlayer == this.gamePlayer1) {
+            return this.gamePlayer2;
+        } else {
+            return this.gamePlayer1;
+        }
+    }
+
     public void reset() {
         this.resetSound.play();
 
