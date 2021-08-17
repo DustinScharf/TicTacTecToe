@@ -33,6 +33,7 @@ public class Client {
         do {
             ++connectionTries;
             try {
+                System.out.println("Try to connect to " + host + ":" + Server.STANDARD_PORT);
                 this.socket = new Socket(host, Server.STANDARD_PORT);
                 connected = true;
             } catch (IOException e) {
