@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dustinscharf.tictactectoe.controller.Controller">
    <children>
@@ -35,16 +35,72 @@
                   </RadialGradient>
                </textFill>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="2 Player 1 PC">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
-            <Button layoutX="172.0" layoutY="241.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="Online">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
+            <VBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="Single vs Bot" textFill="#aaaaaa">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="2 Player 1 PC">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="1.0" blue="0.6166666746139526" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.06396199017763138" green="0.06396199017763138" blue="0.9210526347160339" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="2 Player 1 Network">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.8289473652839661" green="0.04989035055041313" blue="0.5303088426589966" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.007662835249042145">
+                                 <color>
+                                    <Color red="0.5920577645301819" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.9425287356321839">
+                                 <color>
+                                    <Color red="0.13377192616462708" green="0.8026315569877625" blue="0.3121345043182373" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.13377192616462708" green="0.8026315569877625" blue="0.3121345043182373" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="Online" textFill="#aaaaaa">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
          </children>
       </VBox>
    </children>
