@@ -3,31 +3,41 @@ package com.dustinscharf.tictactectoe.network;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.*;
 
 public class Network {
     public static String getMyIP() {
-        URL whatIsMyIPUrl = null;
+//        // TODO EXTERNAL IP
+//        URL whatIsMyIPUrl;
+//        try {
+//            whatIsMyIPUrl = new URL("http://checkip.amazonaws.com");
+//        } catch (MalformedURLException e) {
+//            System.err.println("Could not access IP service from checkip.amazonaws.com");
+//            return null;
+//        }
+//
+//        BufferedReader bufferedReader;
+//        try {
+//            bufferedReader = new BufferedReader(new InputStreamReader(whatIsMyIPUrl.openStream()));
+//        } catch (IOException e) {
+//            System.err.println("Could not get IP reader from checkip.amazonaws.com");
+//            return null;
+//        }
+//
+//        String ip;
+//        try {
+//            ip = bufferedReader.readLine();
+//        } catch (IOException e) {
+//            System.err.println("Could not get IP read from checkip.amazonaws.com");
+//            return null;
+//        }
+
+        String ip;
         try {
-            whatIsMyIPUrl = new URL("http://checkip.amazonaws.com");
-        } catch (MalformedURLException e) {
-            System.err.println("Could not get IP from checkip.amazonaws.com");
+            ip = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            System.err.println("Could not get local IP");
             return null;
-        }
-
-        BufferedReader bufferedReader = null;
-        try {
-            bufferedReader = new BufferedReader(new InputStreamReader(whatIsMyIPUrl.openStream()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        String ip = null;
-        try {
-            ip = bufferedReader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
         return ip;

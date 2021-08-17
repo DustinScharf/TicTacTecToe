@@ -56,7 +56,8 @@ public class Server {
 
         try {
             this.serverSocket = new ServerSocket(STANDARD_PORT);
-            System.out.println("IP: " + Network.getMyIP());
+            System.out.println("INTERNAL IP: " + Network.getMyIP());
+//            System.out.println("EXTERNAL IP (ignored): " + Network.getMyIP());
         } catch (IOException e) {
             System.err.println("Could not start server");
             System.exit(1);
