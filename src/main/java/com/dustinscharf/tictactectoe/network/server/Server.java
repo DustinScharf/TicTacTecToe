@@ -1,5 +1,7 @@
 package com.dustinscharf.tictactectoe.network.server;
 
+import com.dustinscharf.tictactectoe.network.Network;
+
 import javax.swing.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -54,8 +56,7 @@ public class Server {
 
         try {
             this.serverSocket = new ServerSocket(STANDARD_PORT);
-            String ip = InetAddress.getLocalHost().getHostAddress();
-            System.out.println("IP: " + ip);
+            System.out.println("IP: " + Network.getMyIP());
         } catch (IOException e) {
             System.err.println("Could not start server");
             System.exit(1);

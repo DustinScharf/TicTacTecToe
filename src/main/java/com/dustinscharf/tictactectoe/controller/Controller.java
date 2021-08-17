@@ -4,6 +4,7 @@ import com.dustinscharf.tictactectoe.game.Field;
 import com.dustinscharf.tictactectoe.game.Game;
 import com.dustinscharf.tictactectoe.game.Placer;
 import com.dustinscharf.tictactectoe.game.Player;
+import com.dustinscharf.tictactectoe.network.Network;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -66,16 +67,7 @@ public class Controller {
 
         this.resetButton.setVisible(!this.controlledGame.isOnlineMode());
         this.ipTextField.setVisible(this.controlledGame.isOnlineMode() && this.controlledGame.isHost());
-        if (this.ipTextField.isVisible()) {
-            String ip;
-            try {
-                ip = InetAddress.getLocalHost().getHostAddress();
-                this.ipTextField.setText(ip);
-            } catch (UnknownHostException e) {
-                System.err.println("NETWORK ERROR, NO CONNECTION?");
-                System.exit(1);
-            }
-        }
+        this.ipTextField.setText(Network.getMyIP());
 
         this.guideIsOpen = false;
 

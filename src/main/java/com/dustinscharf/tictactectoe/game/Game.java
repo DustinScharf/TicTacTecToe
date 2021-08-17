@@ -2,6 +2,7 @@ package com.dustinscharf.tictactectoe.game;
 
 import animatefx.animation.*;
 import com.dustinscharf.tictactectoe.controller.Controller;
+import com.dustinscharf.tictactectoe.network.Network;
 import com.dustinscharf.tictactectoe.network.client.Client;
 import com.dustinscharf.tictactectoe.network.server.Server;
 import javafx.animation.RotateTransition;
@@ -184,14 +185,7 @@ public class Game {
                     JOptionPane.PLAIN_MESSAGE);
             this.client = new Client(this, host);
         } else {
-            try {
-                String ip;
-                ip = InetAddress.getLocalHost().getHostAddress();
-                this.client = new Client(this, ip);
-            } catch (UnknownHostException e) {
-                System.err.println("NETWORK ERROR, NO CONNECTION?");
-                System.exit(1);
-            }
+            this.client = new Client(this, /*"localhost"*/Network.getMyIP());
         }
 
     }
