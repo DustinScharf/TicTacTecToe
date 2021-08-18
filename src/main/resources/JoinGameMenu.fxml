@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
@@ -35,86 +36,66 @@
                         </RadialGradient>
                     </textFill>
                 </Label>
-                <VBox alignment="CENTER" spacing="10.0">
+                <VBox alignment="CENTER" prefWidth="551.0" spacing="10.0">
                     <children>
-                  <Label text="2 Player 1 Network">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                     <textFill>
-                        <RadialGradient centerX="1.0" centerY="0.15714285714285714" cycleMethod="REPEAT" focusAngle="18.43" focusDistance="-0.20930232558139528" radius="0.32558139534883723">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.8999999761581421" green="0.8178455233573914" blue="0.1080000028014183" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="0.007662835249042145">
-                                 <color>
-                                    <Color red="0.8999999761581421" green="0.8178455233573914" blue="0.1080000028014183" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.23848684132099152" green="0.3815789520740509" blue="0.23848684132099152" opacity="0.699999988079071" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </RadialGradient>
-                     </textFill>
-                  </Label>
-                        <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="Create Game">
+                        <Label text="Enter the code of your opponent">
                             <font>
                                 <Font name="System Bold" size="24.0" />
                             </font>
                             <textFill>
-                                <LinearGradient endX="1.0" endY="1.0">
+                                <LinearGradient cycleMethod="REPEAT" endX="1.0" endY="1.0">
                                     <stops>
                                         <Stop>
                                             <color>
-                                                <Color red="1.0" blue="0.6166666746139526" />
-                                            </color>
-                                        </Stop>
-                                        <Stop offset="1.0">
-                                            <color>
-                                                <Color red="0.06396199017763138" green="0.06396199017763138" blue="0.9210526347160339" />
-                                            </color>
-                                        </Stop>
-                                    </stops>
-                                </LinearGradient>
-                            </textFill>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="Join Game">
-                            <font>
-                                <Font name="System Bold" size="24.0" />
-                            </font>
-                            <textFill>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop>
-                                            <color>
-                                                <Color red="0.8289473652839661" green="0.04989035055041313" blue="0.5303088426589966" />
+                                                <Color red="0.8999999761581421" green="0.8178455233573914" blue="0.1080000028014183" />
                                             </color>
                                         </Stop>
                                         <Stop offset="0.007662835249042145">
                                             <color>
-                                                <Color red="0.5920577645301819" blue="1.0" />
+                                                <Color red="0.8999999761581421" green="0.8178455233573914" blue="0.1080000028014183" />
                                             </color>
                                         </Stop>
-                                        <Stop offset="0.9425287356321839">
+                                        <Stop offset="0.8697318007662834">
                                             <color>
-                                                <Color red="0.13377192616462708" green="0.8026315569877625" blue="0.3121345043182373" />
+                                                <Color red="0.36666667461395264" blue="1.0" opacity="0.8182608485221863" />
                                             </color>
                                         </Stop>
                                         <Stop offset="1.0">
                                             <color>
-                                                <Color red="0.13377192616462708" green="0.8026315569877625" blue="0.3121345043182373" />
+                                                <Color red="0.36666667461395264" blue="1.0" opacity="0.8182608485221863" />
                                             </color>
                                         </Stop>
                                     </stops>
                                 </LinearGradient>
                             </textFill>
-                        </Button>
+                        </Label>
+                        <TextField />
+                  <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="171.0" style="-fx-background-color: lightgrey;" text="Join now">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="1.0" blue="0.8166666626930237" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.10197368264198303" green="0.8157894611358643" blue="0.10197368264198303" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Button>
+                        <Label layoutX="171.0" layoutY="116.0" text="(Game will start automatically)" textFill="#00000070">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
                     </children>
                 </VBox>
             </children>
