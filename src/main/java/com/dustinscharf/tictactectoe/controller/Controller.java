@@ -4,7 +4,9 @@ import com.dustinscharf.tictactectoe.game.Field;
 import com.dustinscharf.tictactectoe.game.Game;
 import com.dustinscharf.tictactectoe.game.Placer;
 import com.dustinscharf.tictactectoe.game.Player;
+import com.dustinscharf.tictactectoe.launcher.GameLauncher;
 import com.dustinscharf.tictactectoe.network.Network;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,6 +16,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -23,11 +26,15 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Controller {
+    @FXML
+    private AnchorPane networkMenu;
+
     @FXML
     private Text textPlayer1;
 
@@ -167,4 +174,17 @@ public class Controller {
 
         secondaryStage.show();
     }
+
+    public void menuClick2Player1PC(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        new GameLauncher().start(stage, false, false);
+
+//        Stage stageTheLabelBelongs = (Stage) label.getScene().getWindow();
+//        stage.setScene(new Scene(new Pane()));
+    }
+
+//    public void menuClick2Player1PC() {
+//        Stage stageTheLabelBelongs = (Stage) label.getScene().getWindow();
+//        stage.setScene(new Scene(new Pane()));
+//    }
 }

@@ -42,7 +42,7 @@
                         <Font size="24.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="2 Player 1 PC">
+                  <Button mnemonicParsing="false" onAction="#menuClick2Player1PC" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="2 Player 1 PC">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>

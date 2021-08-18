@@ -13,7 +13,7 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class GameLauncher {
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage, boolean online, boolean host) throws IOException {
         primaryStage.setMinWidth(600);
         primaryStage.setMinHeight(400);
 
@@ -22,41 +22,41 @@ public class GameLauncher {
 
         Controller controller = fxmlLoader.getController();
 
-        boolean onlineMode = false;
-        int playOnlineGame = JOptionPane.showConfirmDialog(null,
-                "Play online (or offline)?",
-                "TicTacTecToe | Launcher",
-                JOptionPane.YES_NO_OPTION);
-        if (playOnlineGame == 0) {
-            onlineMode = true;
-        }
-
-        int createOnlineGame = -1;
-        if (onlineMode) {
-            createOnlineGame = JOptionPane.showConfirmDialog(null,
-                    "Create new game (or join game)?",
-                    "TicTacTecToe | Launcher",
-                    JOptionPane.YES_NO_OPTION);
-            if (createOnlineGame == 0) {
-//                new Thread(Server::new).start();
-
-                Runnable serverRunnable = () -> {
-                    final Server server = new Server();
-                    primaryStage.setOnCloseRequest(windowEvent -> server.close());
-                };
-                Thread serverThread = new Thread(serverRunnable);
-                serverThread.start();
-            }
-        }
-
-        boolean isHost = createOnlineGame == 0;
+//        boolean onlineMode = false;
+//        int playOnlineGame = JOptionPane.showConfirmDialog(null,
+//                "Play online (or offline)?",
+//                "TicTacTecToe | Launcher",
+//                JOptionPane.YES_NO_OPTION);
+//        if (playOnlineGame == 0) {
+//            onlineMode = true;
+//        }
+//
+//        int createOnlineGame = -1;
+//        if (onlineMode) {
+//            createOnlineGame = JOptionPane.showConfirmDialog(null,
+//                    "Create new game (or join game)?",
+//                    "TicTacTecToe | Launcher",
+//                    JOptionPane.YES_NO_OPTION);
+//            if (createOnlineGame == 0) {
+////                new Thread(Server::new).start();
+//
+//                Runnable serverRunnable = () -> {
+//                    final Server server = new Server();
+//                    primaryStage.setOnCloseRequest(windowEvent -> server.close());
+//                };
+//                Thread serverThread = new Thread(serverRunnable);
+//                serverThread.start();
+//            }
+//        }
+//
+//        boolean isHost = createOnlineGame == 0;
 
         Game game = new Game(controller,
                 new Player("Player 1"), new Player("Player 2"),
-                onlineMode, isHost);
+                online, host);
 
-        if (onlineMode) {
-            game.setOnlinePlayer(isHost ? game.getGamePlayer1() : game.getGamePlayer2());
+        if (online) {
+            game.setOnlinePlayer(host ? game.getGamePlayer1() : game.getGamePlayer2());
         }
 
         Scene scene = new Scene(root);

@@ -21,6 +21,14 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        new GameLauncher().start(primaryStage);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/StartMenu.fxml"));
+
+        Parent root = fxmlLoader.load();
+
+        Scene scene = new Scene(root);
+
+        primaryStage.setTitle("TicTacTecToe");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
