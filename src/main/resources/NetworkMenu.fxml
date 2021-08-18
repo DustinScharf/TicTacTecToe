@@ -6,9 +6,118 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.dustinscharf.tictactectoe.controller.Controller"
             prefHeight="400.0" prefWidth="600.0">
-
+    <children>
+        <VBox alignment="CENTER" layoutX="226.0" layoutY="121.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0"
+              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+              AnchorPane.topAnchor="0.0">
+            <children>
+                <Label text="TIC TAC TEC TOE">
+                    <font>
+                        <Font name="System Bold Italic" size="64.0"/>
+                    </font>
+                    <textFill>
+                        <RadialGradient centerX="1.0" cycleMethod="REPEAT" proportional="false" radius="0.5">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color red="0.8399999737739563" green="0.09239999949932098"
+                                               blue="0.09239999949932098"/>
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="0.22685185074806213" green="0.19700291752815247"
+                                               blue="0.6447368264198303"/>
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </RadialGradient>
+                    </textFill>
+                </Label>
+                <VBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0"
+                                style="-fx-background-color: lightgrey;" text="Single vs Bot" textFill="#aaaaaa">
+                            <font>
+                                <Font size="24.0"/>
+                            </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0"
+                                style="-fx-background-color: lightgrey;" text="2 Player 1 PC">
+                            <font>
+                                <Font name="System Bold" size="24.0"/>
+                            </font>
+                            <textFill>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop>
+                                            <color>
+                                                <Color red="1.0" blue="0.6166666746139526"/>
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="1.0">
+                                            <color>
+                                                <Color red="0.06396199017763138" green="0.06396199017763138"
+                                                       blue="0.9210526347160339"/>
+                                            </color>
+                                        </Stop>
+                                    </stops>
+                                </LinearGradient>
+                            </textFill>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0"
+                                style="-fx-background-color: lightgrey;" text="2 Player 1 Network">
+                            <font>
+                                <Font name="System Bold" size="24.0"/>
+                            </font>
+                            <textFill>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop>
+                                            <color>
+                                                <Color red="0.8289473652839661" green="0.04989035055041313"
+                                                       blue="0.5303088426589966"/>
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="0.007662835249042145">
+                                            <color>
+                                                <Color red="0.5920577645301819" blue="1.0"/>
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="0.9425287356321839">
+                                            <color>
+                                                <Color red="0.13377192616462708" green="0.8026315569877625"
+                                                       blue="0.3121345043182373"/>
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="1.0">
+                                            <color>
+                                                <Color red="0.13377192616462708" green="0.8026315569877625"
+                                                       blue="0.3121345043182373"/>
+                                            </color>
+                                        </Stop>
+                                    </stops>
+                                </LinearGradient>
+                            </textFill>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0"
+                                style="-fx-background-color: lightgrey;" text="Online" textFill="#aaaaaa">
+                            <font>
+                                <Font size="24.0"/>
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>
