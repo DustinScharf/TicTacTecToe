@@ -5,6 +5,7 @@ import com.dustinscharf.tictactectoe.game.Game;
 import com.dustinscharf.tictactectoe.game.Placer;
 import com.dustinscharf.tictactectoe.game.Player;
 import com.dustinscharf.tictactectoe.launcher.GameLauncher;
+import com.dustinscharf.tictactectoe.launcher.menus.NetworkModeMenu;
 import com.dustinscharf.tictactectoe.network.Network;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,9 +33,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class Controller {
-    @FXML
-    private AnchorPane networkMenu;
-
     @FXML
     private Text textPlayer1;
 
@@ -178,13 +176,10 @@ public class Controller {
     public void menuClick2Player1PC(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         new GameLauncher().start(stage, false, false);
-
-//        Stage stageTheLabelBelongs = (Stage) label.getScene().getWindow();
-//        stage.setScene(new Scene(new Pane()));
     }
 
-//    public void menuClick2Player1PC() {
-//        Stage stageTheLabelBelongs = (Stage) label.getScene().getWindow();
-//        stage.setScene(new Scene(new Pane()));
-//    }
+    public void menuClick2Player1Network(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        new NetworkModeMenu().show(stage);
+    }
 }

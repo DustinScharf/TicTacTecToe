@@ -21,6 +21,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        primaryStage.setMinWidth(600);
+        primaryStage.setMinHeight(400);
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/StartMenu.fxml"));
 
         Parent root = fxmlLoader.load();

@@ -9,13 +9,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
 
 public class GameLauncher {
     public void start(Stage primaryStage, boolean online, boolean host) throws IOException {
-        primaryStage.setMinWidth(600);
-        primaryStage.setMinHeight(400);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Game.fxml"));
         Parent root = fxmlLoader.load();

@@ -63,7 +63,7 @@
                         </LinearGradient>
                      </textFill>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="2 Player 1 Network">
+                  <Button mnemonicParsing="false" onAction="#menuClick2Player1Network" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="2 Player 1 Network">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
