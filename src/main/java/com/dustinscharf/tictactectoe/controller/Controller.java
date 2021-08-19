@@ -175,7 +175,7 @@ public class Controller {
 
     public void menuClick2Player1PC(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        new GameLauncher().start(stage, false, false);
+        new GameLauncher().start(stage, false, false, null);
     }
 
     public void menuClick2Player1Network(ActionEvent actionEvent) throws IOException {

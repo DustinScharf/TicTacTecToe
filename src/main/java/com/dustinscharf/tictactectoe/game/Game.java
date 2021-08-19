@@ -55,9 +55,14 @@ public class Game {
 
     private boolean isHost;
 
-    public Game(Controller controller, Player player1, Player player2, boolean onlineMode, boolean isHost) {
+    private String host;
+
+    public Game(Controller controller,
+                Player player1, Player player2,
+                boolean onlineMode, boolean isHost, String host) {
         this.onlineMode = onlineMode;
         this.isHost = isHost;
+        this.host = host;
         controller.receiveGame(this, player1, player2);
     }
 
@@ -178,15 +183,17 @@ public class Game {
 //                break;
 //        }
 
-        if (!this.isHost) {
-            String host = JOptionPane.showInputDialog(null,
-                    "Enter host (left top side of other players gui)",
-                    "TicTacTecToe | Launcher",
-                    JOptionPane.PLAIN_MESSAGE);
-            this.client = new Client(this, host);
-        } else {
-            this.client = new Client(this, /*"localhost"*/Network.getMyIP());
-        }
+//        if (!this.isHost) {
+//            String host = JOptionPane.showInputDialog(null,
+//                    "Enter host (left top side of other players gui)",
+//                    "TicTacTecToe | Launcher",
+//                    JOptionPane.PLAIN_MESSAGE);
+//            this.client = new Client(this, host);
+//        } else {
+//            this.client = new Client(this, /*"localhost"*/Network.getMyIP());
+//        }
+
+        this.client = new Client(this, this.host);
 
     }
 

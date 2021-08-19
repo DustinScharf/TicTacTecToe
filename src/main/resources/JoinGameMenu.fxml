@@ -11,7 +11,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dustinscharf.tictactectoe.controller.Controller">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <VBox alignment="CENTER" layoutX="226.0" layoutY="121.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -69,8 +69,8 @@
                                 </LinearGradient>
                             </textFill>
                         </Label>
-                        <TextField />
-                  <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="171.0" style="-fx-background-color: lightgrey;" text="Join now">
+                        <TextField fx:id="joinIP" />
+                  <Button mnemonicParsing="false" onAction="#joinNow" prefHeight="51.0" prefWidth="171.0" style="-fx-background-color: lightgrey;" text="Join now">
                      <textFill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>

@@ -47,6 +47,6 @@ public class NetworkModeHostMenu {
         Thread serverThread = new Thread(serverRunnable);
         serverThread.start();
 
-        new GameLauncher().start(primaryStage, true, true);
+        new GameLauncher().start(primaryStage, true, true, Network.getMyIP());
     }
 }

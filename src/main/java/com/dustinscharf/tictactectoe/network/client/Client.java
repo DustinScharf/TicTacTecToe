@@ -72,6 +72,7 @@ public class Client {
     private void startClientLoop() {
 //        new Thread(this::sendMessage).start();
         new Thread(this::receiveMessage).start();
+        this.sendMessage("S");
     }
 
     private void sendMessage(String message) {

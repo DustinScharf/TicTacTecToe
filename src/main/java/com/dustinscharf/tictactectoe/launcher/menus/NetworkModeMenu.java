@@ -13,8 +13,10 @@ import java.io.IOException;
 public class NetworkModeMenu {
     public void show(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/NetworkMenu.fxml"));
-        Parent root = fxmlLoader.load();
 
+        fxmlLoader.setController(this);
+
+        Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
 
         primaryStage.setTitle("TicTacTecToe");
@@ -27,5 +29,10 @@ public class NetworkModeMenu {
     public void toCreateGameMenu(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         new NetworkModeHostMenu().show(stage);
+    }
+
+    public void toJoinGameMenu(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        new NetworkModeJoinMenu().show(stage);
     }
 }

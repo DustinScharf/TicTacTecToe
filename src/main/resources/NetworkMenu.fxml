@@ -10,7 +10,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dustinscharf.tictactectoe.launcher.menus.NetworkModeMenu">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <VBox alignment="CENTER" layoutX="226.0" layoutY="121.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -84,7 +84,7 @@
                                 </LinearGradient>
                             </textFill>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="Join Game">
+                        <Button mnemonicParsing="false" onAction="#toJoinGameMenu" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="Join Game">
                             <font>
                                 <Font name="System Bold" size="24.0" />
                             </font>
