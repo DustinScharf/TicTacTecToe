@@ -4,6 +4,8 @@ Download TicTacTecToe.jar and start by click on it<br>
 Link: TODO, COMING SOON<br>
 (Requires Java 11)
 ## How does the game work?
+First select the game mode (2 Player 1 PC or 2 Player 1 Network)
+
 1. **Selection Phase**<br>
 Select a PLACER, the player sending the higher PLACER starts this round<br>
 PLACERs are the numbers above / below the 3x3 board
