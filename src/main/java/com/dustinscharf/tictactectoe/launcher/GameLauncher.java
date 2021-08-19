@@ -14,7 +14,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class GameLauncher {
-    public void start(Stage primaryStage, boolean online, boolean host, String hostName) throws IOException {
+    public void start(Stage primaryStage,
+                      boolean online, boolean host, String hostName,
+                      boolean botMode)
+            throws IOException {
 
 
 //        boolean onlineMode = false;
@@ -53,7 +56,7 @@ public class GameLauncher {
 
         Game game = new Game(controller,
                 new Player("Player 1"), new Player("Player 2"),
-                true,
+                botMode,
                 online, host, hostName,
                 primaryStage);
 

@@ -33,6 +33,6 @@ public class NetworkModeJoinMenu {
     }
 
     public void joinNow(ActionEvent actionEvent) throws IOException {
-        new GameLauncher().start(this.primaryStage, true, false, joinIP.getText());
+        new GameLauncher().start(this.primaryStage, true, false, joinIP.getText(), false);
     }
 }

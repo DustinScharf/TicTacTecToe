@@ -2,7 +2,6 @@ package com.dustinscharf.tictactectoe.game;
 
 import animatefx.animation.*;
 import com.dustinscharf.tictactectoe.controller.Controller;
-import com.dustinscharf.tictactectoe.network.Network;
 import com.dustinscharf.tictactectoe.network.client.Client;
 import com.dustinscharf.tictactectoe.network.server.Server;
 import javafx.animation.RotateTransition;
@@ -14,13 +13,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import javax.swing.*;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Game {
     private Board board;
@@ -246,7 +241,7 @@ public class Game {
         }
 
         if (this.botMode && this.currentPlayer == this.gamePlayer2) {
-            ((Bot) this.gamePlayer2).placeRandom();
+            ((Bot) this.gamePlayer2).placeRandomWithDelay();
         }
     }
 
@@ -427,7 +422,7 @@ public class Game {
                 }
 
                 if (this.botMode && this.currentPlayer == this.gamePlayer2) {
-                    ((Bot) this.gamePlayer2).placeRandom();
+                    ((Bot) this.gamePlayer2).placeRandomWithDelay();
                 }
             }
         } else {
