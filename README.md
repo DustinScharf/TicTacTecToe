@@ -1,9 +1,23 @@
 # TicTacTecToe
-Advanced TicTacToe Game
-- The Board is 3x3 like Tic Tac Toe
-- Everyone has 20 Placers (10 at start)
-- A Placer can be placed on the Board, if there is no placer or a lower placer
-- Win logic is like Tic Tac Toe
+## Installation
+Download TicTacTecToe.jar and start by click on it<br>
+Link: TODO, COMING SOON<br>
+(Requires Java 11)
+## How does the game work?
+1. **Selection Phase**<br>
+Select a PLACER, the player sending the higher PLACER starts this round<br>
+PLACERs are the numbers above / below the 3x3 board
 
-Not build yet (but you could with Maven ```mvn clean compile exec:java```),
-only 2 Player 1 PC mode yet.
+2. **Place Phase**<br>
+Select a PLACER, and place it on the board<br>
+Placing is possible on an empty field or a field with a lower placer on it
+
+3. **Win Check**<br>
+If a player hits 3 in a row (like normal TicTacToe) the players wins<br>
+If a player can not set anything, the other player wins<br>
+If none of them holds, the selection phase starts again
+
+### Project for trying and learning
+The Project is used for trying and learning JavaFX and network programming stuff.<br>
+The network traffic is minimal for hosting on a private computer,
+but the network is not designed secure.
