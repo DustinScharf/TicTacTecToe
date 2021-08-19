@@ -2,7 +2,9 @@ package com.dustinscharf.tictactectoe.launcher.menus;
 
 import animatefx.animation.Pulse;
 import animatefx.animation.Tada;
+import com.dustinscharf.tictactectoe.launcher.GameLauncher;
 import com.dustinscharf.tictactectoe.network.Network;
+import com.dustinscharf.tictactectoe.network.server.Server;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -38,6 +40,13 @@ public class NetworkModeHostMenu {
 
         primaryStage.show();
 
-//        new GameLauncher().start(primaryStage, true, false);
+        Runnable serverRunnable = () -> {
+            final Server server = new Server();
+            primaryStage.setOnCloseRequest(windowEvent -> server.close());
+        };
+        Thread serverThread = new Thread(serverRunnable);
+        serverThread.start();
+
+        new GameLauncher().start(primaryStage, true, true);
     }
 }

@@ -4,9 +4,11 @@ import com.dustinscharf.tictactectoe.controller.Controller;
 import com.dustinscharf.tictactectoe.game.Game;
 import com.dustinscharf.tictactectoe.game.Player;
 import com.dustinscharf.tictactectoe.network.server.Server;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,10 +16,6 @@ import java.io.IOException;
 public class GameLauncher {
     public void start(Stage primaryStage, boolean online, boolean host) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Game.fxml"));
-        Parent root = fxmlLoader.load();
-
-        Controller controller = fxmlLoader.getController();
 
 //        boolean onlineMode = false;
 //        int playOnlineGame = JOptionPane.showConfirmDialog(null,
@@ -48,6 +46,11 @@ public class GameLauncher {
 //
 //        boolean isHost = createOnlineGame == 0;
 
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Game.fxml"));
+        Parent root = fxmlLoader.load();
+
+        Controller controller = fxmlLoader.getController();
+
         Game game = new Game(controller,
                 new Player("Player 1"), new Player("Player 2"),
                 online, host);
@@ -56,6 +59,28 @@ public class GameLauncher {
             game.setOnlinePlayer(host ? game.getGamePlayer1() : game.getGamePlayer2());
         }
 
+        if (host) {
+            Task<Void> sleeper = new Task<>() {
+                @Override
+                protected Void call() {
+                    try {
+                        while (!game.getClient().isConnectedToAnotherPlayer()) {
+                            Thread.sleep(500);
+                        }
+                    } catch (InterruptedException e) {
+                        System.err.println("Thread could not sleep...");
+                    }
+                    return null;
+                }
+            };
+            sleeper.setOnSucceeded(event -> this.show(primaryStage, root));
+            new Thread(sleeper).start();
+        } else {
+            this.show(primaryStage, root);
+        }
+    }
+
+    private void show(Stage primaryStage, Parent root) {
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
 

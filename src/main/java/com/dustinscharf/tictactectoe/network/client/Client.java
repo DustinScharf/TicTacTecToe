@@ -23,6 +23,8 @@ public class Client {
 
     private boolean stayAlive;
 
+    private boolean isConnectedToAnotherPlayer;
+
     public Client(Game controlledGame, String host) {
         this.stayAlive = true;
 
@@ -43,7 +45,7 @@ public class Client {
                     System.err.println("THREAD ERROR: COULD NOT SLEEP/WAIT");
                 }
                 connected = false;
-                if (connectionTries > 100) {
+                if (connectionTries > 10) {
                     System.err.println("NETWORK ERROR: CLIENT COULD NOT CONNECT TO SERVER DUE TO TIMEOUT");
                     System.exit(1);
                 }
@@ -58,7 +60,13 @@ public class Client {
             System.exit(1);
         }
 
+        this.isConnectedToAnotherPlayer = false;
+
         this.startClientLoop();
+    }
+
+    public boolean isConnectedToAnotherPlayer() {
+        return isConnectedToAnotherPlayer;
     }
 
     private void startClientLoop() {
@@ -94,6 +102,8 @@ public class Client {
                         placerValue = Integer.parseInt(this.serverText.substring(1, 3));
                     }
                     this.receiveClickedPlacerByValue(placerValue);
+                } else if (this.serverText.charAt(0) == 'S') {
+                    this.isConnectedToAnotherPlayer = true;
                 }
             } catch (IOException e) {
                 System.err.println("NETWORK ERROR: SERVER NOT REACHABLE");
