@@ -36,16 +36,18 @@ public class NetworkModeHostMenu {
 
         this.ipTextField.setText(Network.getMyIP());
 
-        new Pulse(this.waitingText).setCycleCount(999).play();
+        new Pulse(this.waitingText).setCycleCount(1).play();
 
         primaryStage.show();
 
-        Runnable serverRunnable = () -> {
-            final Server server = new Server();
-            primaryStage.setOnCloseRequest(windowEvent -> server.close());
-        };
-        Thread serverThread = new Thread(serverRunnable);
-        serverThread.start();
+        new Thread(() -> new Server(primaryStage)).start();
+
+//        Runnable serverRunnable = () -> {
+//            final Server server = new Server(primaryStage);
+//            primaryStage.setOnCloseRequest(windowEvent -> server.close());
+//        };
+//        Thread serverThread = new Thread(serverRunnable);
+//        serverThread.start();
 
         new GameLauncher().start(primaryStage, true, true, Network.getMyIP());
     }

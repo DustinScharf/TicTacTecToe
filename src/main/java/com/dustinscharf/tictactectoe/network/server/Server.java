@@ -1,6 +1,7 @@
 package com.dustinscharf.tictactectoe.network.server;
 
 import com.dustinscharf.tictactectoe.network.Network;
+import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.DataInputStream;
@@ -35,24 +36,49 @@ public class Server {
 
     private String textPlayer2;
 
-    public void close() {
+    private Stage closeCheckingStage;
+
+    public void closeCheck() {
+        while (this.stayAlive) {
+            this.stayAlive = this.closeCheckingStage.isShowing();
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        System.out.println("Closing server...");
+
         try {
+            this.sendMessageToPlayer1("C");
             this.serverSocket.close();
             this.socketPlayer1.close();
             this.dataInputStreamPlayer1.close();
             this.dataOutputStreamPlayer1.close();
-            this.socketPlayer2.close();
-            this.dataInputStreamPlayer2.close();
-            this.dataOutputStreamPlayer2.close();
+            if (Objects.nonNull(this.socketPlayer2)) {
+                this.sendMessageToPlayer2("C");
+                this.socketPlayer2.close();
+                this.dataInputStreamPlayer2.close();
+                this.dataOutputStreamPlayer2.close();
+            }
         } catch (IOException e) {
             System.err.println("COULD NOT CLOSE SERVER");
         }
+
+        System.out.println("Closed server");
         this.stayAlive = false;
+
+
     }
 
-    public Server() {
-        System.out.println("Starting server...");
+    public Server(Stage closeCheckingStage) {
         this.stayAlive = true;
+
+        this.closeCheckingStage = closeCheckingStage;
+        new Thread(this::closeCheck).start();
+
+        System.out.println("Starting server...");
 
         try {
             this.serverSocket = new ServerSocket(STANDARD_PORT);
@@ -71,26 +97,27 @@ public class Server {
             this.socketPlayer1 = this.serverSocket.accept();
             this.dataInputStreamPlayer1 = new DataInputStream(this.socketPlayer1.getInputStream());
             this.dataOutputStreamPlayer1 = new DataOutputStream(this.socketPlayer1.getOutputStream());
+
+            System.out.println("Client 1 established");
         } catch (IOException e) {
             System.err.println("Could not establish client 1");
             System.exit(1);
         }
-        System.out.println("Client 1 established");
 
         try {
             this.socketPlayer2 = this.serverSocket.accept();
             this.dataInputStreamPlayer2 = new DataInputStream(this.socketPlayer2.getInputStream());
             this.dataOutputStreamPlayer2 = new DataOutputStream(this.socketPlayer2.getOutputStream());
+
+            System.out.println("Client 2 established");
+
+            System.out.println("Both clients established");
+
+            System.out.println("Server loop...");
+            this.startServerLoop();
         } catch (IOException e) {
-            System.err.println("Could not establish client 2");
-            System.exit(1);
+            System.out.println("Could not establish client 2, program exit?");
         }
-        System.out.println("Client 2 established");
-
-        System.out.println("Both clients established");
-
-        System.out.println("Server loop...");
-        this.startServerLoop();
     }
 
     private void startServerLoop() {
@@ -166,6 +193,24 @@ public class Server {
             }
 
             this.textPlayer2 = null;
+        }
+    }
+
+    private void sendMessageToPlayer1(String message) {
+        try {
+            this.dataOutputStreamPlayer1.writeUTF(message);
+            this.dataOutputStreamPlayer1.flush();
+        } catch (IOException e) {
+            System.err.println("Server could not message player 1");
+        }
+    }
+
+    private void sendMessageToPlayer2(String message) {
+        try {
+            this.dataOutputStreamPlayer2.writeUTF(message);
+            this.dataOutputStreamPlayer2.flush();
+        } catch (IOException e) {
+            System.err.println("Server could not message player 2");
         }
     }
 }

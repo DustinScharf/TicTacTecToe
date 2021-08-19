@@ -3,6 +3,7 @@ package com.dustinscharf.tictactectoe.network.client;
 import com.dustinscharf.tictactectoe.game.Field;
 import com.dustinscharf.tictactectoe.game.Game;
 import com.dustinscharf.tictactectoe.network.server.Server;
+import javafx.concurrent.Task;
 
 import javax.swing.*;
 import java.io.DataInputStream;
@@ -73,6 +74,23 @@ public class Client {
 //        new Thread(this::sendMessage).start();
         new Thread(this::receiveMessage).start();
         this.sendMessage("S");
+
+        new Thread(this::closeOnConnectionLoss).start();
+    }
+
+    private void closeOnConnectionLoss() {
+        while (this.stayAlive) {
+            this.stayAlive = !this.socket.isClosed();
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                System.err.println("A client thread could not sleep");
+            }
+        }
+
+        System.out.println("Closing client...");
+        this.close();
+        System.out.println("Client closed");
     }
 
     private void sendMessage(String message) {
@@ -105,9 +123,11 @@ public class Client {
                     this.receiveClickedPlacerByValue(placerValue);
                 } else if (this.serverText.charAt(0) == 'S') {
                     this.isConnectedToAnotherPlayer = true;
+                } else if (this.serverText.charAt(0) == 'C') {
+                    this.close();
                 }
             } catch (IOException e) {
-                System.err.println("NETWORK ERROR: SERVER NOT REACHABLE");
+                System.out.println("Server not reachable, exit...");
                 try {
                     this.socket.close();
                     this.dataInputStream.close();
@@ -139,5 +159,24 @@ public class Client {
                         this.controlledGame.getOnlinePlayer()
                 ).getPlacers().getPlacers()[value - 1]
         );
+    }
+
+    private void close() {
+        this.stayAlive = false;
+        this.isConnectedToAnotherPlayer = false;
+        try {
+            this.socket.close();
+            this.dataInputStream.close();
+            this.dataOutputStream.close();
+        } catch (IOException e) {
+            System.err.println("COULD NOT CLOSE CLIENT");
+        }
+
+        try {
+            Thread.sleep(10_000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
     }
 }

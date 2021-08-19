@@ -5,6 +5,7 @@ import com.dustinscharf.tictactectoe.game.Game;
 import com.dustinscharf.tictactectoe.game.Player;
 import com.dustinscharf.tictactectoe.network.server.Server;
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -32,6 +33,7 @@ public class App extends Application {
 
         primaryStage.setTitle("TicTacTecToe");
         primaryStage.setScene(scene);
+
         primaryStage.show();
     }
 }
