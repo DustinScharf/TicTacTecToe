@@ -39,7 +39,7 @@
                <children>
                   <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="Single vs Bot" textFill="#aaaaaa">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                      </font>
                   </Button>
                   <Button mnemonicParsing="false" onAction="#menuClick2Player1PC" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="2 Player 1 PC">
@@ -96,7 +96,7 @@
                   </Button>
                   <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="Online" textFill="#aaaaaa">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                      </font>
                   </Button>
                </children>
