@@ -42,8 +42,10 @@ public class Bot extends GamePlayer {
 
             placeable = randomField.couldSetPlacer(super.placers.getSelectedPlacer());
 
-            boolean notAlreadyOwned = randomField.isSet() &&
-                    randomField.getPlacer().getOwner() != super.game.getGamePlayer2();
+            boolean notAlreadyOwned = true;
+            if (randomField.isSet()) {
+                notAlreadyOwned = randomField.getPlacer().getOwner() != super.game.getGamePlayer2();
+            }
 
             if (placeable && notAlreadyOwned) { // todo buggy
                 super.game.receiveBoardClick(randomField);
