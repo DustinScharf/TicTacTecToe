@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import javax.swing.*;
@@ -57,12 +58,16 @@ public class Game {
 
     private String host;
 
+    private Stage closeCheckingStage;
+
     public Game(Controller controller,
                 Player player1, Player player2,
-                boolean onlineMode, boolean isHost, String host) {
+                boolean onlineMode, boolean isHost, String host,
+                Stage closeCheckingStage) {
         this.onlineMode = onlineMode;
         this.isHost = isHost;
         this.host = host;
+        this.closeCheckingStage = closeCheckingStage;
         controller.receiveGame(this, player1, player2);
     }
 
@@ -100,6 +105,10 @@ public class Game {
 
     public boolean isHost() {
         return isHost;
+    }
+
+    public Stage getCloseCheckingStage() {
+        return closeCheckingStage;
     }
 
     public void initGame(Player player1,

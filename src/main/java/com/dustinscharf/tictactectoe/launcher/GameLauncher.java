@@ -53,7 +53,8 @@ public class GameLauncher {
 
         Game game = new Game(controller,
                 new Player("Player 1"), new Player("Player 2"),
-                online, host, hostName);
+                online, host, hostName,
+                primaryStage);
 
         if (online) {
             game.setOnlinePlayer(host ? game.getGamePlayer1() : game.getGamePlayer2());

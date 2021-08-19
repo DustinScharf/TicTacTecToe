@@ -4,6 +4,7 @@ import com.dustinscharf.tictactectoe.game.Field;
 import com.dustinscharf.tictactectoe.game.Game;
 import com.dustinscharf.tictactectoe.network.server.Server;
 import javafx.concurrent.Task;
+import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.DataInputStream;
@@ -25,6 +26,8 @@ public class Client {
     private boolean stayAlive;
 
     private boolean isConnectedToAnotherPlayer;
+
+    private Stage closeCheckingStage;
 
     public Client(Game controlledGame, String host) {
         this.stayAlive = true;
@@ -80,7 +83,7 @@ public class Client {
 
     private void closeOnConnectionLoss() {
         while (this.stayAlive) {
-            this.stayAlive = !this.socket.isClosed();
+            this.stayAlive = !this.socket.isClosed() && this.controlledGame.getCloseCheckingStage().isShowing();
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
@@ -162,6 +165,14 @@ public class Client {
     }
 
     private void close() {
+        if (this.socket.isClosed()) {
+            return;
+        }
+
+        this.sendMessage("C");
+
+        this.controlledGame.sendMessageToScreen("Connection closed, exit...", 8);
+
         this.stayAlive = false;
         this.isConnectedToAnotherPlayer = false;
         try {
