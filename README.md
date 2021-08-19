@@ -21,7 +21,9 @@ If a player hits 3 in a row (like normal TicTacToe) the players wins<br>
 If a player can not set anything, the other player wins<br>
 If none of them holds, the selection phase starts again
 
-### Project for trying and learning
-The Project is used for trying and learning JavaFX and network programming stuff.<br>
+<hr>
+
+#### Note: Project for trying and learning
+_The Project is used for trying and learning JavaFX and network programming stuff.<br>
 The network traffic is minimal for hosting on a private computer,
-but the network is not designed secure.
+but the network is not designed secure._
