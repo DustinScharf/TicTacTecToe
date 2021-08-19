@@ -1,7 +1,7 @@
 # TicTacTecToe
 ## Installation
-Download TicTacTecToe.jar and start by click on it.<br>
-Link: TODO, COMING SOON<br>
+**Download TicTacTecToe.jar** from **build directory**<br>
+or **releases on the right** and start by click on it.<br>
 (Requires Java 11)
 ## How does the game work?
 First select the game mode (2 Player 1 PC or 2 Player 1 Network)
