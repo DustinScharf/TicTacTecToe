@@ -4,6 +4,8 @@ Download TicTacTecToe.jar and start by click on it<br>
 Link: TODO, COMING SOON<br>
 (Requires Java 11)
 ## How does the game work?
+![Demo GIF could not load, read the tutorial below](gameDemo.gif)
+
 First select the game mode (2 Player 1 PC or 2 Player 1 Network)
 
 1. **Selection Phase**<br>
