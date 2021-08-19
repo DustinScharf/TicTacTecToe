@@ -36,7 +36,7 @@ public class NetworkModeHostMenu {
 
         this.ipTextField.setText(Network.getMyIP());
 
-        new Pulse(this.waitingText).setCycleCount(1).play();
+        new Pulse(this.waitingText).setCycleCount(999).play();
 
         primaryStage.show();
 
