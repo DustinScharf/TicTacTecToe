@@ -8,21 +8,51 @@ import java.util.List;
 import java.util.Random;
 
 public class Bot extends GamePlayer {
+    private Random random = new Random();
+    ;
+
     public Bot(Text textPlayerName, Game game, Player player, List<Node> placerButtonList, Text placerChallengingAreaText, Color color) {
         super(textPlayerName, game, player, placerButtonList, placerChallengingAreaText, color);
     }
 
-    public boolean placeRandom() {
-        Random random = new Random();
-        int rand1 = random.nextInt(3);
-        int rand2 = random.nextInt(3);
+//    public void sendRandomPlacerToSelectionPhase() {
+//        boolean foundAndSentPlacer = false;
+//        while (!foundAndSentPlacer) {
+//            Placer randomPlacer = super.placers.getPlacers()[this.random.nextInt(20)];
+//            foundAndSentPlacer = super.placers.select(randomPlacer);
+//        }
+//        super.game.receivePlacerClick();
+//    }
 
-        // todo super ineffective and can cause errors
-        while (!super.placers.select(super.placers.getPlacers()[random.nextInt(20)])) continue;
+    public void selectRandomPlacer() {
+        Placer randomPlacer;
+        do {
+            randomPlacer = super.placers.getPlacers()[this.random.nextInt(20)];
+            if (randomPlacer.isThere()) {
+                super.game.receivePlacerClick(randomPlacer);
+            }
+        } while (!randomPlacer.isThere());
+    }
 
-        // todo super ineffective and can cause errors
-        while (!super.game.getBoard().getFields()[rand1][rand2].setPlacer(this.placers.getSelectedPlacer())) continue;
+    private void placeOnRandomField() {
+        boolean placeable = false;
+        while (!placeable) {
+            Field randomField = super.game.getBoard().getFields()
+                    [this.random.nextInt(3)][this.random.nextInt(3)];
 
-        return true; // todo board could be full or something
+            placeable = randomField.couldSetPlacer(super.placers.getSelectedPlacer());
+
+            boolean notAlreadyOwned = randomField.isSet() &&
+                    randomField.getPlacer().getOwner() != super.game.getGamePlayer2();
+
+            if (placeable && notAlreadyOwned) { // todo buggy
+                super.game.receiveBoardClick(randomField);
+            }
+        }
+    }
+
+    public void placeRandom() {
+        this.selectRandomPlacer();
+        this.placeOnRandomField();
     }
 }

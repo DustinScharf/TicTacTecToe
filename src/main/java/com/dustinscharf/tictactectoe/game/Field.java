@@ -35,6 +35,10 @@ public class Field {
         return placer;
     }
 
+    public boolean couldSetPlacer(Placer placer) {
+        return !this.isSet() || placer.getValue() > this.placer.getValue();
+    }
+
     public boolean setPlacer(Placer placer) {
         if (this.isSet() && placer.getValue() <= this.placer.getValue()) {
             return false;

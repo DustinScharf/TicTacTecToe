@@ -48,6 +48,8 @@ public class Game {
 
     private Text messageBoxText;
 
+    private boolean botMode;
+
     private boolean onlineMode;
     private GamePlayer onlinePlayer;
 
@@ -62,8 +64,10 @@ public class Game {
 
     public Game(Controller controller,
                 Player player1, Player player2,
+                boolean botMode,
                 boolean onlineMode, boolean isHost, String host,
                 Stage closeCheckingStage) {
+        this.botMode = botMode;
         this.onlineMode = onlineMode;
         this.isHost = isHost;
         this.host = host;
@@ -133,14 +137,26 @@ public class Game {
                 textPlayer1ChallengeArea,
                 Color.SEAGREEN
         );
-        this.gamePlayer2 = new GamePlayer(
-                textPlayer2,
-                this,
-                player2,
-                player2Placers,
-                textPlayer2ChallengeArea,
-                Color.SLATEBLUE
-        );
+
+        if (botMode) {
+            this.gamePlayer2 = new Bot(
+                    textPlayer2,
+                    this,
+                    new Player("Bot"),
+                    player2Placers,
+                    textPlayer2ChallengeArea,
+                    Color.SLATEBLUE
+            );
+        } else {
+            this.gamePlayer2 = new GamePlayer(
+                    textPlayer2,
+                    this,
+                    player2,
+                    player2Placers,
+                    textPlayer2ChallengeArea,
+                    Color.SLATEBLUE
+            );
+        }
 
         this.board = new Board(boardButtons);
 
@@ -227,6 +243,10 @@ public class Game {
             } else {
                 this.gameWon(this.gamePlayer1);
             }
+        }
+
+        if (this.botMode && this.currentPlayer == this.gamePlayer2) {
+            ((Bot) this.gamePlayer2).placeRandom();
         }
     }
 
@@ -379,7 +399,7 @@ public class Game {
             clickedPlacer.getOwner().getPlacerChallengingArea().setChallengedPlacer(clickedPlacer);
             if (this.placerChallengeAreas.isReady()) {
                 this.currentPlayer = this.placerChallengeAreas.getHigherPlayer();
-                if (!Objects.nonNull(this.currentPlayer)) {
+                if (Objects.isNull(this.currentPlayer)) {
                     Random random = new Random();
                     int randomIntForPlayerSelection = random.nextInt(2);
                     switch (randomIntForPlayerSelection) {
@@ -404,6 +424,10 @@ public class Game {
                     } else {
                         this.gameWon(this.gamePlayer1);
                     }
+                }
+
+                if (this.botMode && this.currentPlayer == this.gamePlayer2) {
+                    ((Bot) this.gamePlayer2).placeRandom();
                 }
             }
         } else {
@@ -437,6 +461,10 @@ public class Game {
 //        this.placementPhaseSound.play();
         this.gamePlayer1.getTextPlayerName().setFill(Color.BLACK);
         this.gamePlayer2.getTextPlayerName().setFill(Color.BLACK);
+
+        if (this.botMode) {
+            ((Bot) gamePlayer2).selectRandomPlacer();
+        }
     }
 
     public GamePlayer getCurrentOppositePlayer() {

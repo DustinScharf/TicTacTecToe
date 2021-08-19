@@ -53,6 +53,7 @@ public class GameLauncher {
 
         Game game = new Game(controller,
                 new Player("Player 1"), new Player("Player 2"),
+                true,
                 online, host, hostName,
                 primaryStage);
 
