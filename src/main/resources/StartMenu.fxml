@@ -37,10 +37,26 @@
             </Label>
             <VBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="Single vs Bot" textFill="#aaaaaa">
+                  <Button mnemonicParsing="false" onAction="#menuClickSingleVsBot" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="Single vs Bot">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color green="0.8815789222717285" blue="0.27916666865348816" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" blue="0.8333333134651184" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
                   </Button>
                   <Button mnemonicParsing="false" onAction="#menuClick2Player1PC" prefHeight="51.0" prefWidth="277.0" style="-fx-background-color: lightgrey;" text="2 Player 1 PC">
                      <font>
