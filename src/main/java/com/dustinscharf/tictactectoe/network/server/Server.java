@@ -143,7 +143,7 @@ public class Server {
         while (this.stayAlive) {
             if (Objects.isNull(this.textPlayer1)) {
                 try {
-                    Thread.sleep(50);
+                    Thread.sleep(25);
                 } catch (InterruptedException e) {
                     System.err.println("Thread could not sleep");
                 }
@@ -177,7 +177,7 @@ public class Server {
         while (this.stayAlive) {
             if (Objects.isNull(this.textPlayer2)) {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(25);
                 } catch (InterruptedException e) {
                     System.err.println("Thread could not sleep");
                 }
