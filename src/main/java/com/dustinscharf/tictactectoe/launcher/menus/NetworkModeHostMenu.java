@@ -40,7 +40,11 @@ public class NetworkModeHostMenu {
 
         primaryStage.show();
 
-        new Thread(() -> new Server(primaryStage)).start(); // TODO: MAKE CLOSABLE
+//        Thread serverThread = new Thread(() -> new Server(primaryStage)).start();
+
+        Runnable serverRunnable = () -> new Server(primaryStage);
+        Thread serverThread = new Thread(serverRunnable);
+        serverThread.start();
 
 //        Runnable serverRunnable = () -> {
 //            final Server server = new Server(primaryStage);
