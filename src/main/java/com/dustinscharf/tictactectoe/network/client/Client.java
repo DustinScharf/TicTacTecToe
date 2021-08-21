@@ -49,8 +49,11 @@ public class Client {
                     System.err.println("THREAD ERROR: COULD NOT SLEEP/WAIT");
                 }
                 connected = false;
-                if (connectionTries > 10) {
-                    System.err.println("NETWORK ERROR: CLIENT COULD NOT CONNECT TO SERVER DUE TO TIMEOUT");
+                if (connectionTries > 5) {
+                    JOptionPane.showMessageDialog(null,
+                            "Could not connect to " + host + ", exit...",
+                            "TicTacTecToe | Network Error",
+                            JOptionPane.ERROR_MESSAGE);
                     System.exit(1);
                 }
             }
