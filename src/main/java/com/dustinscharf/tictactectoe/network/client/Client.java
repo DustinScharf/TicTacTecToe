@@ -78,10 +78,10 @@ public class Client {
 
     private void startClientLoop() {
 //        new Thread(this::sendMessage).start();
-        new Thread(this::receiveMessage).start();
+        new Thread(this::receiveMessage).start(); // TODO: MAKE CLOSABLE
         this.sendMessage("S");
 
-        new Thread(this::closeOnConnectionLoss).start();
+        new Thread(this::closeOnConnectionLoss).start(); // TODO: MAKE CLOSABLE
     }
 
     private void closeOnConnectionLoss() {

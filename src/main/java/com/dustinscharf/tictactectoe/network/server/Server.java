@@ -76,7 +76,7 @@ public class Server {
         this.stayAlive = true;
 
         this.closeCheckingStage = closeCheckingStage;
-        new Thread(this::closeCheck).start();
+        new Thread(this::closeCheck).start(); // TODO: MAKE CLOSABLE
 
         System.out.println("Starting server...");
 
@@ -121,11 +121,11 @@ public class Server {
     }
 
     private void startServerLoop() {
-        new Thread(this::receiveFromPlayer1).start();
-        new Thread(this::forwardToPlayer2).start();
+        new Thread(this::receiveFromPlayer1).start(); // TODO: MAKE CLOSABLE
+        new Thread(this::forwardToPlayer2).start(); // TODO: MAKE CLOSABLE
 
-        new Thread(this::receiveFromPlayer2).start();
-        new Thread(this::forwardToPlayer1).start();
+        new Thread(this::receiveFromPlayer2).start(); // TODO: MAKE CLOSABLE
+        new Thread(this::forwardToPlayer1).start(); // TODO: MAKE CLOSABLE
     }
 
     private void receiveFromPlayer1() {
