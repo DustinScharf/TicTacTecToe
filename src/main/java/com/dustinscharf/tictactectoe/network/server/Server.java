@@ -76,7 +76,10 @@ public class Server {
         this.stayAlive = true;
 
         this.closeCheckingStage = closeCheckingStage;
-        new Thread(this::closeCheck).start(); // TODO: MAKE CLOSABLE
+
+        Runnable closeCheckRunnable = this::closeCheck;
+        Thread closeCheckThread = new Thread(closeCheckRunnable);
+        closeCheckThread.start();
 
         System.out.println("Starting server...");
 
