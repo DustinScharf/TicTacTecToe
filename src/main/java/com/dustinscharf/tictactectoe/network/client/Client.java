@@ -84,7 +84,9 @@ public class Client {
 
         this.sendMessage("S");
 
-        new Thread(this::closeOnConnectionLoss).start(); // TODO: MAKE CLOSABLE
+        Runnable closeOnConnectionLossRunnable = this::closeOnConnectionLoss;
+        Thread closeOnConnectionLossThread = new Thread(closeOnConnectionLossRunnable);
+        closeOnConnectionLossThread.start();
     }
 
     private void closeOnConnectionLoss() {
