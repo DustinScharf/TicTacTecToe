@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class GameLauncher {
+    private Game game;
+
     private boolean isRunning;
 
     public GameLauncher() {
@@ -34,7 +36,7 @@ public class GameLauncher {
 
         Controller controller = fxmlLoader.getController();
 
-        Game game = new Game(controller,
+        this.game = new Game(controller,
                 new Player("Player 1"), new Player("Player 2"),
                 botMode,
                 online, host, hostName,
@@ -71,7 +73,8 @@ public class GameLauncher {
         }
         this.isRunning = false;
 
-        // TODO implement game stop for restart
+        // TODO implement game stop for restart / kill threads
+        this.game = null;
     }
 
     private void show(Stage primaryStage, Parent root) {
