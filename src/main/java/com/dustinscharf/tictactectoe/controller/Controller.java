@@ -63,11 +63,15 @@ public class Controller {
     @FXML
     private Button resetButton;
 
+    private GameLauncher gameLauncher;
+
     private Game controlledGame;
 
     private boolean guideIsOpen;
 
     public void receiveGame(Game game, Player player1, Player player2) {
+        this.gameLauncher = new GameLauncher();
+
         this.controlledGame = game;
 
         this.resetButton.setVisible(!this.controlledGame.isOnlineMode());
@@ -175,12 +179,12 @@ public class Controller {
 
     public void menuClickSingleVsBot(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        new GameLauncher().start(stage, false, false, null, true);
+        this.gameLauncher.start(stage, false, false, null, true);
     }
 
     public void menuClick2Player1PC(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        new GameLauncher().start(stage, false, false, null, false);
+        this.gameLauncher.start(stage, false, false, null, false);
     }
 
     public void menuClick2Player1Network(ActionEvent actionEvent) throws IOException {
