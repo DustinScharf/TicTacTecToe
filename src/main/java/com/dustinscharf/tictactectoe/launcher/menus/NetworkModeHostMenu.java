@@ -22,7 +22,15 @@ public class NetworkModeHostMenu {
     @FXML
     private Label waitingText;
 
+    private GameLauncher gameLauncher;
+
+    private Server server;
+
     private Thread serverThread; // has kill
+
+    public Server getServer() {
+        return server;
+    }
 
     public void show(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/HostGameMenu.fxml"));
@@ -42,11 +50,14 @@ public class NetworkModeHostMenu {
 
         primaryStage.show();
 
-        Runnable serverRunnable = () -> new Server(primaryStage);
+        server = new Server(primaryStage);
+        Runnable serverRunnable = server::start;
         serverThread = new Thread(serverRunnable);
         serverThread.start();
 
-        new GameLauncher().start(primaryStage, true, true, Network.getMyIP(), false);
+        this.gameLauncher = new GameLauncher();
+        this.gameLauncher.start(primaryStage, true, true, Network.getMyIP(), false);
+        this.gameLauncher.getHosterClass(this);
     }
 
     public void kill() {

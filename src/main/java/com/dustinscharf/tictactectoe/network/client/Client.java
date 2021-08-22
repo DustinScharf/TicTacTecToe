@@ -58,7 +58,7 @@ public class Client {
                             "Could not connect to " + host + ", exit...",
                             "TicTacTecToe | Network Error",
                             JOptionPane.ERROR_MESSAGE);
-                    System.exit(1);
+                    System.exit(1); // todo get rid
                 }
             }
         } while (!connected);
@@ -182,7 +182,7 @@ public class Client {
 
         this.sendMessage("C");
 
-        this.controlledGame.sendMessageToScreen("Connection closed, exit...", 8);
+        this.controlledGame.sendMessageToScreen("Connection closed, exit...", 3);
 
         this.stayAlive = false;
         this.isConnectedToAnotherPlayer = false;
@@ -194,15 +194,16 @@ public class Client {
             System.err.println("COULD NOT CLOSE CLIENT");
         }
 
-        try {
-            Thread.sleep(10_000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.exit(0);
+//        try {
+//            Thread.sleep(10_000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        System.exit(0); // todo get rid
     }
 
     public void kill() {
+        this.close();
         this.receiveMessageThread.stop();
         this.closeOnConnectionLossThread.stop();
     }

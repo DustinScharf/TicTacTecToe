@@ -58,8 +58,11 @@ public class Server {
             }
         }
 
-        System.out.println("Closing server...");
+        this.close();
+    }
 
+    private void close() {
+        System.out.println("Closing server...");
         try {
             this.sendMessageToPlayer1("C");
             this.serverSocket.close();
@@ -74,19 +77,18 @@ public class Server {
             }
         } catch (IOException e) {
             System.err.println("COULD NOT CLOSE SERVER");
+        } finally {
+            System.out.println("Closed server");
+            this.stayAlive = false;
         }
-
-        System.out.println("Closed server");
-        this.stayAlive = false;
-
-
     }
 
     public Server(Stage closeCheckingStage) {
         this.stayAlive = true;
-
         this.closeCheckingStage = closeCheckingStage;
+    }
 
+    public void start() {
         Runnable closeCheckRunnable = this::closeCheck;
         closeCheckThread = new Thread(closeCheckRunnable);
         closeCheckThread.start();
@@ -240,6 +242,7 @@ public class Server {
     }
 
     public void kill() {
+        this.close();
         this.closeCheckThread.stop();
         this.receiveFromPlayer1Thread.stop();
         this.forwardToPlayer2Thread.stop();

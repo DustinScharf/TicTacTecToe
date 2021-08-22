@@ -3,6 +3,7 @@ package com.dustinscharf.tictactectoe.launcher;
 import com.dustinscharf.tictactectoe.controller.Controller;
 import com.dustinscharf.tictactectoe.game.Game;
 import com.dustinscharf.tictactectoe.game.Player;
+import com.dustinscharf.tictactectoe.launcher.menus.NetworkModeHostMenu;
 import com.dustinscharf.tictactectoe.network.server.Server;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
@@ -18,8 +19,14 @@ public class GameLauncher {
 
     private boolean isRunning;
 
+    private NetworkModeHostMenu networkModeHostMenu;
+
     public GameLauncher() {
         this.isRunning = false;
+    }
+
+    public void getHosterClass(NetworkModeHostMenu networkModeHostMenu) {
+        this.networkModeHostMenu = networkModeHostMenu;
     }
 
     public void start(Stage primaryStage,
@@ -67,14 +74,16 @@ public class GameLauncher {
         }
     }
 
+    // TODO call on "HOME" button click
     public void stop() {
         if (!this.isRunning) {
             return;
         }
         this.isRunning = false;
 
-        // TODO implement game stop for restart / kill threads
-
+        this.networkModeHostMenu.getServer().kill();
+        this.networkModeHostMenu.kill();
+        this.game.getClient().kill();
         this.game = null;
     }
 
