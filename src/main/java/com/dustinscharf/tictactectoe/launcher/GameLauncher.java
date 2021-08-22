@@ -14,10 +14,20 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class GameLauncher {
+    private boolean isRunning;
+
+    public GameLauncher() {
+        this.isRunning = false;
+    }
+
     public void start(Stage primaryStage,
                       boolean online, boolean host, String hostName,
                       boolean botMode)
             throws IOException {
+        if (this.isRunning) {
+            return;
+        }
+        this.isRunning = true;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Game.fxml"));
         Parent root = fxmlLoader.load();
@@ -53,6 +63,13 @@ public class GameLauncher {
         } else {
             this.show(primaryStage, root);
         }
+    }
+
+    public void stop() {
+        if (!this.isRunning) {
+            return;
+        }
+        this.isRunning = false;
     }
 
     private void show(Stage primaryStage, Parent root) {
