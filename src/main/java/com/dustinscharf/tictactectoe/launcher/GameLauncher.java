@@ -19,36 +19,6 @@ public class GameLauncher {
                       boolean botMode)
             throws IOException {
 
-
-//        boolean onlineMode = false;
-//        int playOnlineGame = JOptionPane.showConfirmDialog(null,
-//                "Play online (or offline)?",
-//                "TicTacTecToe | Launcher",
-//                JOptionPane.YES_NO_OPTION);
-//        if (playOnlineGame == 0) {
-//            onlineMode = true;
-//        }
-//
-//        int createOnlineGame = -1;
-//        if (onlineMode) {
-//            createOnlineGame = JOptionPane.showConfirmDialog(null,
-//                    "Create new game (or join game)?",
-//                    "TicTacTecToe | Launcher",
-//                    JOptionPane.YES_NO_OPTION);
-//            if (createOnlineGame == 0) {
-////                new Thread(Server::new).start();
-//
-//                Runnable serverRunnable = () -> {
-//                    final Server server = new Server();
-//                    primaryStage.setOnCloseRequest(windowEvent -> server.close());
-//                };
-//                Thread serverThread = new Thread(serverRunnable);
-//                serverThread.start();
-//            }
-//        }
-//
-//        boolean isHost = createOnlineGame == 0;
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Game.fxml"));
         Parent root = fxmlLoader.load();
 
