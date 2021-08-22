@@ -178,43 +178,11 @@ public class Game {
 
         this.initSelectionPhase();
 
-//        this.gamePlayer1.getPlacers().setVisible(false);
-//        this.gamePlayer2.getPlacers().setVisible(false);
-//
-//        this.currentPlayer.getPlacers().revealRandomPlacer();
-
         this.winFields = new Field[3];
     }
 
     private void initClientForOnlineMode() {
-//        this.server = new Server();
-
-//        // todo
-//        System.out.print("Player: ");
-//        switch (new Scanner(System.in).nextLine()) {
-//            case "1":
-//                this.onlinePlayer = this.gamePlayer1;
-//                break;
-//            case "2":
-//                this.onlinePlayer = this.gamePlayer2;
-//                break;
-//            default:
-//                System.err.println("CLIENT ERROR: SELECTED PLAYER NOT AVAILABLE");
-//                break;
-//        }
-
-//        if (!this.isHost) {
-//            String host = JOptionPane.showInputDialog(null,
-//                    "Enter host (left top side of other players gui)",
-//                    "TicTacTecToe | Launcher",
-//                    JOptionPane.PLAIN_MESSAGE);
-//            this.client = new Client(this, host);
-//        } else {
-//            this.client = new Client(this, /*"localhost"*/Network.getMyIP());
-//        }
-
         this.client = new Client(this, this.host);
-
     }
 
     public void switchCurrentPlayer() {

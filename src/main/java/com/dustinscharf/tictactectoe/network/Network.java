@@ -7,7 +7,6 @@ import java.net.*;
 
 public class Network {
     public static String getMyIP() {
-//        // TODO EXTERNAL IP
 //        URL whatIsMyIPUrl;
 //        try {
 //            whatIsMyIPUrl = new URL("http://checkip.amazonaws.com");
