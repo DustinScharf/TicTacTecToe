@@ -74,6 +74,7 @@ public class GameLauncher {
         this.isRunning = false;
 
         // TODO implement game stop for restart / kill threads
+
         this.game = null;
     }
 

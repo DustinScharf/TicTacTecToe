@@ -22,7 +22,7 @@ public class NetworkModeHostMenu {
     @FXML
     private Label waitingText;
 
-    private Thread serverThread;
+    private Thread serverThread; // has kill
 
     public void show(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/HostGameMenu.fxml"));
@@ -47,5 +47,9 @@ public class NetworkModeHostMenu {
         serverThread.start();
 
         new GameLauncher().start(primaryStage, true, true, Network.getMyIP(), false);
+    }
+
+    public void kill() {
+        this.serverThread.stop();
     }
 }

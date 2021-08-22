@@ -29,9 +29,9 @@ public class Client {
 
     private Stage closeCheckingStage;
 
-    private Thread receiveMessageThread;
+    private Thread receiveMessageThread; // has kill
 
-    private Thread closeOnConnectionLossThread;
+    private Thread closeOnConnectionLossThread; // has kill
 
     public Client(Game controlledGame, String host) {
         this.stayAlive = true;
@@ -200,5 +200,10 @@ public class Client {
             e.printStackTrace();
         }
         System.exit(0);
+    }
+
+    public void kill() {
+        this.receiveMessageThread.stop();
+        this.closeOnConnectionLossThread.stop();
     }
 }

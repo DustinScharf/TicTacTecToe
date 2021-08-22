@@ -38,15 +38,15 @@ public class Server {
 
     private Stage closeCheckingStage;
 
-    private Thread closeCheckThread;
+    private Thread closeCheckThread; // has kill
 
-    private Thread receiveFromPlayer1Thread;
+    private Thread receiveFromPlayer1Thread; // has kill
 
-    private Thread forwardToPlayer2Thread;
+    private Thread forwardToPlayer2Thread; // has kill
 
-    private Thread receiveFromPlayer2Thread;
+    private Thread receiveFromPlayer2Thread; // has kill
 
-    private Thread forwardToPlayer1Thread;
+    private Thread forwardToPlayer1Thread; // has kill
 
     public void closeCheck() {
         while (this.stayAlive) {
@@ -237,5 +237,13 @@ public class Server {
         } catch (IOException e) {
             System.err.println("Server could not message player 2");
         }
+    }
+
+    public void kill() {
+        this.closeCheckThread.stop();
+        this.receiveFromPlayer1Thread.stop();
+        this.forwardToPlayer2Thread.stop();
+        this.receiveFromPlayer2Thread.stop();
+        this.forwardToPlayer1Thread.stop();
     }
 }
