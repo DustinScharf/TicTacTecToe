@@ -70,6 +70,8 @@ public class GameLauncher {
             return;
         }
         this.isRunning = false;
+
+        // TODO implement game stop for restart
     }
 
     private void show(Stage primaryStage, Parent root) {
