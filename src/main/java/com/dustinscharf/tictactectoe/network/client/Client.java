@@ -29,6 +29,10 @@ public class Client {
 
     private Stage closeCheckingStage;
 
+    private Thread receiveMessageThread;
+
+    private Thread closeOnConnectionLossThread;
+
     public Client(Game controlledGame, String host) {
         this.stayAlive = true;
 
@@ -78,13 +82,13 @@ public class Client {
 
     private void startClientLoop() {
         Runnable receiveMessageRunnable = this::receiveMessage;
-        Thread receiveMessageThread = new Thread(receiveMessageRunnable);
+        receiveMessageThread = new Thread(receiveMessageRunnable);
         receiveMessageThread.start();
 
         this.sendMessage("S");
 
         Runnable closeOnConnectionLossRunnable = this::closeOnConnectionLoss;
-        Thread closeOnConnectionLossThread = new Thread(closeOnConnectionLossRunnable);
+        closeOnConnectionLossThread = new Thread(closeOnConnectionLossRunnable);
         closeOnConnectionLossThread.start();
     }
 

@@ -38,6 +38,16 @@ public class Server {
 
     private Stage closeCheckingStage;
 
+    private Thread closeCheckThread;
+
+    private Thread receiveFromPlayer1Thread;
+
+    private Thread forwardToPlayer2Thread;
+
+    private Thread receiveFromPlayer2Thread;
+
+    private Thread forwardToPlayer1Thread;
+
     public void closeCheck() {
         while (this.stayAlive) {
             this.stayAlive = this.closeCheckingStage.isShowing();
@@ -78,7 +88,7 @@ public class Server {
         this.closeCheckingStage = closeCheckingStage;
 
         Runnable closeCheckRunnable = this::closeCheck;
-        Thread closeCheckThread = new Thread(closeCheckRunnable);
+        closeCheckThread = new Thread(closeCheckRunnable);
         closeCheckThread.start();
 
         System.out.println("Starting server...");
@@ -125,21 +135,21 @@ public class Server {
 
     private void startServerLoop() {
         Runnable receiveFromPlayer1Runnable = this::receiveFromPlayer1;
-        Thread receiveFromPlayer1Thread = new Thread(receiveFromPlayer1Runnable);
+        receiveFromPlayer1Thread = new Thread(receiveFromPlayer1Runnable);
         receiveFromPlayer1Thread.start();
 
         Runnable forwardToPlayer2Runnable = this::forwardToPlayer2;
-        Thread forwardToPlayer2Thread = new Thread(forwardToPlayer2Runnable);
+        forwardToPlayer2Thread = new Thread(forwardToPlayer2Runnable);
         forwardToPlayer2Thread.start();
 
         ////////////////////////////////////////////////////////////////////////////
 
         Runnable receiveFromPlayer2Runnable = this::receiveFromPlayer2;
-        Thread receiveFromPlayer2Thread = new Thread(receiveFromPlayer2Runnable);
+        receiveFromPlayer2Thread = new Thread(receiveFromPlayer2Runnable);
         receiveFromPlayer2Thread.start();
 
         Runnable forwardToPlayer1Runnable = this::forwardToPlayer1;
-        Thread forwardToPlayer1Thread = new Thread(forwardToPlayer1Runnable);
+        forwardToPlayer1Thread = new Thread(forwardToPlayer1Runnable);
         forwardToPlayer1Thread.start();
     }
 
