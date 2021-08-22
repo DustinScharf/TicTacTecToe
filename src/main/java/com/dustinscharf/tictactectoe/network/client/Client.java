@@ -77,7 +77,6 @@ public class Client {
     }
 
     private void startClientLoop() {
-//        new Thread(this::sendMessage).start();
         Runnable receiveMessageRunnable = this::receiveMessage;
         Thread receiveMessageThread = new Thread(receiveMessageRunnable);
         receiveMessageThread.start();
