@@ -15,15 +15,6 @@ public class Bot extends GamePlayer {
         super(textPlayerName, game, player, placerButtonList, placerChallengingAreaText, color);
     }
 
-//    public void sendRandomPlacerToSelectionPhase() {
-//        boolean foundAndSentPlacer = false;
-//        while (!foundAndSentPlacer) {
-//            Placer randomPlacer = super.placers.getPlacers()[this.random.nextInt(20)];
-//            foundAndSentPlacer = super.placers.select(randomPlacer);
-//        }
-//        super.game.receivePlacerClick();
-//    }
-
     public void selectRandomPlacer() {
         Task<Void> sleeper = this.createRandomTimeSleeper(75, 150);
         sleeper.setOnSucceeded(event -> this.selectRandomPlacerWithSafeDelay());
