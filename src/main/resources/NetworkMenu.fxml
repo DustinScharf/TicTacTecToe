@@ -115,7 +115,7 @@
                                 </LinearGradient>
                             </textFill>
                         </Button>
-                  <Button mnemonicParsing="false" onAction="#backToMainMenu" style="-fx-background-color: lightgrey;" text="Back">
+                  <Button cancelButton="true" mnemonicParsing="false" onAction="#backToMainMenu" style="-fx-background-color: lightgrey;" text="Back">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
