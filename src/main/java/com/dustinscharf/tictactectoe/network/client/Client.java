@@ -184,7 +184,7 @@ public class Client {
 
         this.sendMessage("C");
 
-        this.controlledGame.sendMessageToScreen("Game closed, please go to menu.", 3);
+        this.controlledGame.sendMessageToScreen("Game closed, please go to menu.", 10);
 
         this.stayAlive = false;
         this.isConnectedToAnotherPlayer = false;
