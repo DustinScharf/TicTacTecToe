@@ -244,9 +244,22 @@ public class Server {
     public void kill() {
         this.close();
         this.closeCheckThread.stop();
-        this.receiveFromPlayer1Thread.stop();
-        this.forwardToPlayer2Thread.stop();
-        this.receiveFromPlayer2Thread.stop();
-        this.forwardToPlayer1Thread.stop();
+
+        if (Objects.nonNull(this.receiveFromPlayer1Thread) && this.receiveFromPlayer1Thread.isAlive()) {
+            this.receiveFromPlayer1Thread.stop();
+        }
+        if (Objects.nonNull(this.forwardToPlayer2Thread) && this.forwardToPlayer2Thread.isAlive()) {
+            this.forwardToPlayer2Thread.stop();
+        }
+
+        if (Objects.nonNull(this.receiveFromPlayer2Thread) && this.receiveFromPlayer2Thread.isAlive()) {
+            this.receiveFromPlayer2Thread.stop();
+        }
+        if (Objects.nonNull(this.forwardToPlayer1Thread) && this.forwardToPlayer1Thread.isAlive()) {
+            this.forwardToPlayer1Thread.stop();
+        }
+
+
+
     }
 }
