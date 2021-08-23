@@ -207,7 +207,20 @@ public class Client {
 
         this.sendMessage("C");
 
-        this.controlledGame.sendMessageToScreen("Game closed, please go to menu.", 10);
+        this.controlledGame.sendMessageToScreen("Game closed...", 3);
+        Task<Void> sleeper = new Task<>() {
+            @Override
+            protected Void call() {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        };
+        sleeper.setOnSucceeded(event -> this.controlledGame.sendMessageToScreen("Click menu", 10));
+        new Thread(sleeper).start();
 
         this.stayAlive = false;
         this.isConnectedToAnotherPlayer = false;
