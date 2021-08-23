@@ -75,7 +75,13 @@ public class GameLauncher {
             sleeper.setOnSucceeded(event -> this.show(primaryStage, root));
             new Thread(sleeper).start();
         } else {
-            this.show(primaryStage, root);
+            if (this.online) {
+                if (!this.game.getClient().hasConnectError()) {
+                    this.show(primaryStage, root);
+                }
+            } else {
+                this.show(primaryStage, root);
+            }
         }
     }
 

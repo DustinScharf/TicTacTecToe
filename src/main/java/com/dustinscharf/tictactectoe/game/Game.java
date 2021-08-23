@@ -4,6 +4,7 @@ import animatefx.animation.*;
 import com.dustinscharf.tictactectoe.controller.Controller;
 import com.dustinscharf.tictactectoe.launcher.GameLauncher;
 import com.dustinscharf.tictactectoe.launcher.Launcher;
+import com.dustinscharf.tictactectoe.launcher.menus.NetworkModeMenu;
 import com.dustinscharf.tictactectoe.network.client.Client;
 import com.dustinscharf.tictactectoe.network.server.Server;
 import javafx.animation.RotateTransition;
@@ -15,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -182,17 +184,14 @@ public class Game {
 
         this.placementPhaseSound = new AudioClip(getClass().getResource("/placementPhase.wav").toExternalForm());
 
+        this.winFields = new Field[3];
+
         if (this.onlineMode) {
-            this.initClientForOnlineMode();
+            this.client = new Client(this, this.host);
+//            if (this.c)
         }
 
         this.initSelectionPhase();
-
-        this.winFields = new Field[3];
-    }
-
-    private void initClientForOnlineMode() {
-        this.client = new Client(this, this.host);
     }
 
     public void switchCurrentPlayer() {

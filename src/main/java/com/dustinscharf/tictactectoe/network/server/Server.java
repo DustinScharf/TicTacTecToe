@@ -52,7 +52,7 @@ public class Server {
         while (this.stayAlive) {
             this.stayAlive = this.closeCheckingStage.isShowing();
             try {
-                Thread.sleep(5000);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -66,9 +66,11 @@ public class Server {
         try {
             this.sendMessageToPlayer1("C");
             this.serverSocket.close();
-            this.socketPlayer1.close();
-            this.dataInputStreamPlayer1.close();
-            this.dataOutputStreamPlayer1.close();
+            if (Objects.nonNull(this.socketPlayer1)) {
+                this.socketPlayer1.close();
+                this.dataInputStreamPlayer1.close();
+                this.dataOutputStreamPlayer1.close();
+            }
             if (Objects.nonNull(this.socketPlayer2)) {
                 this.sendMessageToPlayer2("C");
                 this.socketPlayer2.close();
@@ -116,7 +118,6 @@ public class Server {
             System.out.println("Client 1 established");
         } catch (IOException e) {
             System.err.println("Could not establish client 1");
-            System.exit(1);
         }
 
         try {
@@ -225,8 +226,10 @@ public class Server {
 
     private void sendMessageToPlayer1(String message) {
         try {
-            this.dataOutputStreamPlayer1.writeUTF(message);
-            this.dataOutputStreamPlayer1.flush();
+            if (Objects.nonNull(this.dataOutputStreamPlayer1)) {
+                this.dataOutputStreamPlayer1.writeUTF(message);
+                this.dataOutputStreamPlayer1.flush();
+            }
         } catch (IOException e) {
             System.err.println("Server could not message player 1");
         }

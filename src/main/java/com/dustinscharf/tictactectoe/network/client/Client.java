@@ -2,9 +2,12 @@ package com.dustinscharf.tictactectoe.network.client;
 
 import com.dustinscharf.tictactectoe.game.Field;
 import com.dustinscharf.tictactectoe.game.Game;
+import com.dustinscharf.tictactectoe.launcher.menus.NetworkModeJoinMenu;
+import com.dustinscharf.tictactectoe.launcher.menus.NetworkModeMenu;
 import com.dustinscharf.tictactectoe.network.server.Server;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -35,8 +38,11 @@ public class Client {
 
     private Thread closeOnConnectionLossThread; // has kill
 
+    private boolean connectError;
+
     public Client(Game controlledGame, String host) {
         this.stayAlive = true;
+        this.connectError = false;
 
         this.controlledGame = controlledGame;
 
@@ -50,20 +56,33 @@ public class Client {
                 connected = true;
             } catch (IOException e) {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 } catch (InterruptedException ex) {
                     System.err.println("THREAD ERROR: COULD NOT SLEEP/WAIT");
                 }
                 connected = false;
-                if (connectionTries > 5) {
-                    JOptionPane.showMessageDialog(null,
-                            "Could not connect to " + host + ", exit...",
-                            "TicTacTecToe | Network Error",
-                            JOptionPane.ERROR_MESSAGE);
-                    System.exit(1); // todo get rid
+                if (connectionTries >= 3) {
+                    this.connectError = true;
                 }
             }
-        } while (!connected);
+        } while (!connected && !this.connectError);
+
+        if (!connected || this.connectError) {
+            JOptionPane.showMessageDialog(null,
+                    "Could not connect to " + host + ".",
+                    "TicTacTecToe | Network Error",
+                    JOptionPane.ERROR_MESSAGE);
+
+            Stage stage = this.controlledGame.getCloseCheckingStage();
+            try {
+                this.controlledGame.getGameLauncher().stop();
+                new NetworkModeJoinMenu().show(stage, this.controlledGame.getGameLauncher());
+            } catch (IOException ex) {
+                System.err.println("Could not connect and go back to join game menu");
+            }
+
+            return;
+        }
 
         try {
             this.dataInputStream = new DataInputStream(this.socket.getInputStream());
@@ -82,6 +101,10 @@ public class Client {
         return isConnectedToAnotherPlayer;
     }
 
+    public boolean hasConnectError() {
+        return connectError;
+    }
+
     private void startClientLoop() {
         Runnable receiveMessageRunnable = this::receiveMessage;
         receiveMessageThread = new Thread(receiveMessageRunnable);
@@ -98,7 +121,7 @@ public class Client {
         while (this.stayAlive) {
             this.stayAlive = !this.socket.isClosed() && this.controlledGame.getCloseCheckingStage().isShowing();
             try {
-                Thread.sleep(5000);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 System.err.println("A client thread could not sleep");
             }

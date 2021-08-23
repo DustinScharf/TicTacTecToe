@@ -59,9 +59,8 @@ public class NetworkModeHostMenu {
         serverThread = new Thread(serverRunnable);
         serverThread.start();
 
-        this.gameLauncher.start(primaryStage, true, true, Network.getMyIP(), false); //todo check start
+        this.gameLauncher.start(primaryStage, true, true, Network.getMyIP(), false);
         this.gameLauncher.getHosterClass(this);
-        System.out.println("GL2:" + this.gameLauncher);
     }
 
     public void kill() {
