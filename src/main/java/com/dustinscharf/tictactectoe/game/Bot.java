@@ -16,7 +16,7 @@ public class Bot extends GamePlayer {
     }
 
     public void selectRandomPlacer() {
-        Task<Void> sleeper = this.createRandomTimeSleeper(75, 150);
+        Task<Void> sleeper = this.createRandomTimeSleeper(50, 75);
         sleeper.setOnSucceeded(event -> this.selectRandomPlacerWithSafeDelay());
         new Thread(sleeper).start();
     }
@@ -65,10 +65,10 @@ public class Bot extends GamePlayer {
     }
 
     public void placeRandomWithDelay() {
-        Task<Void> sleeper = this.createRandomTimeSleeper(100, 350);
+        Task<Void> sleeper = this.createRandomTimeSleeper(100, 250);
         sleeper.setOnSucceeded(event -> {
             this.selectRandomPlacer();
-            Task<Void> sleeper2 = this.createRandomTimeSleeper(250, 900);
+            Task<Void> sleeper2 = this.createRandomTimeSleeper(250, 750);
             sleeper2.setOnSucceeded(event2 -> this.placeOnRandomField());
             new Thread(sleeper2).start();
         });
