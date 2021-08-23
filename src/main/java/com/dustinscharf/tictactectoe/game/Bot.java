@@ -25,6 +25,12 @@ public class Bot extends GamePlayer {
 //    }
 
     public void selectRandomPlacer() {
+        Task<Void> sleeper = this.createRandomTimeSleeper(75, 150);
+        sleeper.setOnSucceeded(event -> this.selectRandomPlacerWithSafeDelay());
+        new Thread(sleeper).start();
+    }
+
+    private void selectRandomPlacerWithSafeDelay() {
         Placer randomPlacer;
         do {
             randomPlacer = super.placers.getPlacers()[this.random.nextInt(20)];
@@ -53,12 +59,12 @@ public class Bot extends GamePlayer {
         }
     }
 
-    private Task<Void> createRandomTimeSleeper(int maxWaitMilliseconds) {
+    private Task<Void> createRandomTimeSleeper(int minWaitMilliseconds, int maxWaitMilliseconds) {
         return new Task<>() {
             @Override
             protected Void call() {
                 try {
-                    Thread.sleep(random.nextInt(maxWaitMilliseconds));
+                    Thread.sleep(random.nextInt(maxWaitMilliseconds) + minWaitMilliseconds);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -68,10 +74,10 @@ public class Bot extends GamePlayer {
     }
 
     public void placeRandomWithDelay() {
-        Task<Void> sleeper = this.createRandomTimeSleeper(250);
+        Task<Void> sleeper = this.createRandomTimeSleeper(100, 350);
         sleeper.setOnSucceeded(event -> {
             this.selectRandomPlacer();
-            Task<Void> sleeper2 = this.createRandomTimeSleeper(750);
+            Task<Void> sleeper2 = this.createRandomTimeSleeper(250, 900);
             sleeper2.setOnSucceeded(event2 -> this.placeOnRandomField());
             new Thread(sleeper2).start();
         });
