@@ -84,8 +84,10 @@ public class Controller {
     public void receiveGame(Game game, Player player1, Player player2) {
         this.controlledGame = game;
 
-        this.resetButton.setVisible(!this.controlledGame.isOnlineMode());
-        this.ipTextField.setVisible(this.controlledGame.isOnlineMode() && this.controlledGame.isHost());
+//        this.resetButton.setVisible(!this.controlledGame.isOnlineMode());
+        this.resetButton.setVisible(false);
+//        this.ipTextField.setVisible(this.controlledGame.isOnlineMode() && this.controlledGame.isHost());
+        this.ipTextField.setVisible(false);
         this.ipTextField.setText(Network.getMyIP());
 
         this.guideIsOpen = false;
