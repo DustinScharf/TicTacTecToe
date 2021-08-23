@@ -4,6 +4,7 @@ import com.dustinscharf.tictactectoe.launcher.GameLauncher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -38,5 +39,10 @@ public class NetworkModeJoinMenu {
 
     public void joinNow(ActionEvent actionEvent) throws IOException {
         this.gameLauncher.start(this.primaryStage, true, false, joinIP.getText(), false);
+    }
+
+    public void backToMainMenu(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(new FXMLLoader(getClass().getResource("/StartMenu.fxml")).load()));
     }
 }

@@ -5,8 +5,10 @@ import animatefx.animation.Tada;
 import com.dustinscharf.tictactectoe.launcher.GameLauncher;
 import com.dustinscharf.tictactectoe.network.Network;
 import com.dustinscharf.tictactectoe.network.server.Server;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -64,5 +66,13 @@ public class NetworkModeHostMenu {
 
     public void kill() {
         this.serverThread.stop();
+    }
+
+    public void backToMainMenu(ActionEvent actionEvent) throws IOException {
+        this.server.kill();
+        this.kill();
+
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(new FXMLLoader(getClass().getResource("/StartMenu.fxml")).load()));
     }
 }
