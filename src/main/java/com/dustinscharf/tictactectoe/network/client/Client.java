@@ -4,6 +4,8 @@ import com.dustinscharf.tictactectoe.game.Field;
 import com.dustinscharf.tictactectoe.game.Game;
 import com.dustinscharf.tictactectoe.network.server.Server;
 import javafx.concurrent.Task;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -182,7 +184,7 @@ public class Client {
 
         this.sendMessage("C");
 
-        this.controlledGame.sendMessageToScreen("Connection closed, exit...", 3);
+        this.controlledGame.sendMessageToScreen("Game closed, please go to menu.", 3);
 
         this.stayAlive = false;
         this.isConnectedToAnotherPlayer = false;
@@ -193,13 +195,6 @@ public class Client {
         } catch (IOException e) {
             System.err.println("COULD NOT CLOSE CLIENT");
         }
-
-//        try {
-//            Thread.sleep(10_000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        System.exit(0); // todo get rid
     }
 
     public void kill() {

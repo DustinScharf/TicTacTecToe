@@ -15,12 +15,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -69,9 +67,21 @@ public class Controller {
 
     private boolean guideIsOpen;
 
-    public void receiveGame(Game game, Player player1, Player player2) {
-        this.gameLauncher = new GameLauncher();
+    private Stage mainMenuStage;
 
+    @FXML
+    private Label headline;
+
+    @FXML
+    public void initialize() {
+        this.gameLauncher = new GameLauncher();
+    }
+
+    public void receiveMainMenuStage(Stage mainMenuStage) {
+        this.mainMenuStage = mainMenuStage;
+    }
+
+    public void receiveGame(Game game, Player player1, Player player2) {
         this.controlledGame = game;
 
         this.resetButton.setVisible(!this.controlledGame.isOnlineMode());
@@ -177,6 +187,14 @@ public class Controller {
         secondaryStage.show();
     }
 
+    public void homeMenuClicker() throws IOException {
+        this.controlledGame.getGameLauncher().stop();
+
+        this.controlledGame.getCloseCheckingStage().setScene(
+                new Scene(new FXMLLoader(getClass().getResource("/StartMenu.fxml")).load())
+        );
+    }
+
     public void menuClickSingleVsBot(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         this.gameLauncher.start(stage, false, false, null, true);
@@ -189,6 +207,6 @@ public class Controller {
 
     public void menuClick2Player1Network(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        new NetworkModeMenu().show(stage);
+        new NetworkModeMenu().show(stage, this.gameLauncher);
     }
 }

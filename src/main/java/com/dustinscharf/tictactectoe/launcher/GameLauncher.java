@@ -13,11 +13,14 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class GameLauncher {
     private Game game;
 
     private boolean isRunning;
+
+    private boolean online;
 
     private NetworkModeHostMenu networkModeHostMenu;
 
@@ -36,6 +39,7 @@ public class GameLauncher {
         if (this.isRunning) {
             return;
         }
+        this.online = online;
         this.isRunning = true;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Game.fxml"));
@@ -43,13 +47,14 @@ public class GameLauncher {
 
         Controller controller = fxmlLoader.getController();
 
-        this.game = new Game(controller,
+        this.game = new Game(this,
+                controller,
                 new Player("Player 1"), new Player("Player 2"),
                 botMode,
-                online, host, hostName,
+                this.online, host, hostName,
                 primaryStage);
 
-        if (online) {
+        if (this.online) {
             game.setOnlinePlayer(host ? game.getGamePlayer1() : game.getGamePlayer2());
         }
 
@@ -74,16 +79,20 @@ public class GameLauncher {
         }
     }
 
-    // TODO call on "HOME" button click
     public void stop() {
-        if (!this.isRunning) {
-            return;
-        }
         this.isRunning = false;
 
-        this.networkModeHostMenu.getServer().kill();
-        this.networkModeHostMenu.kill();
-        this.game.getClient().kill();
+        // TODO nil
+        if (Objects.nonNull(this.networkModeHostMenu)) {
+            this.networkModeHostMenu.getServer().kill();
+            this.networkModeHostMenu.kill();
+            this.game.getClient().kill();
+        }
+//
+//        if (Objects.nonNull(this.networkModeHostMenu)) {
+//
+//        }
+
         this.game = null;
     }
 

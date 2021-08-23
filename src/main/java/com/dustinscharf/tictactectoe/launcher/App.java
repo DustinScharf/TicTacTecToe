@@ -29,6 +29,8 @@ public class App extends Application {
 
         Parent root = fxmlLoader.load();
 
+        ((Controller) fxmlLoader.getController()).receiveMainMenuStage(primaryStage);
+
         Scene scene = new Scene(root);
 
         primaryStage.setTitle("TicTacTecToe");

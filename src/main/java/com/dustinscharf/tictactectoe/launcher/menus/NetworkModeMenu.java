@@ -11,7 +11,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class NetworkModeMenu {
-    public void show(Stage primaryStage) throws IOException {
+    private GameLauncher gameLauncher;
+
+    public void show(Stage primaryStage, GameLauncher gameLauncher) throws IOException {
+        this.gameLauncher = gameLauncher;
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/NetworkMenu.fxml"));
 
         fxmlLoader.setController(this);
@@ -28,11 +32,11 @@ public class NetworkModeMenu {
 
     public void toCreateGameMenu(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        new NetworkModeHostMenu().show(stage);
+        new NetworkModeHostMenu().show(stage, this.gameLauncher);
     }
 
     public void toJoinGameMenu(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        new NetworkModeJoinMenu().show(stage);
+        new NetworkModeJoinMenu().show(stage, this.gameLauncher);
     }
 }

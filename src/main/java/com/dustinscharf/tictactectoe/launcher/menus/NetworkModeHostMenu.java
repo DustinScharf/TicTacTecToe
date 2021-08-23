@@ -32,7 +32,9 @@ public class NetworkModeHostMenu {
         return server;
     }
 
-    public void show(Stage primaryStage) throws IOException {
+    public void show(Stage primaryStage, GameLauncher gameLauncher) throws IOException {
+        this.gameLauncher = gameLauncher;
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/HostGameMenu.fxml"));
 
         fxmlLoader.setController(this);
@@ -55,9 +57,9 @@ public class NetworkModeHostMenu {
         serverThread = new Thread(serverRunnable);
         serverThread.start();
 
-        this.gameLauncher = new GameLauncher();
-        this.gameLauncher.start(primaryStage, true, true, Network.getMyIP(), false);
+        this.gameLauncher.start(primaryStage, true, true, Network.getMyIP(), false); //todo check start
         this.gameLauncher.getHosterClass(this);
+        System.out.println("GL2:" + this.gameLauncher);
     }
 
     public void kill() {

@@ -2,6 +2,8 @@ package com.dustinscharf.tictactectoe.game;
 
 import animatefx.animation.*;
 import com.dustinscharf.tictactectoe.controller.Controller;
+import com.dustinscharf.tictactectoe.launcher.GameLauncher;
+import com.dustinscharf.tictactectoe.launcher.Launcher;
 import com.dustinscharf.tictactectoe.network.client.Client;
 import com.dustinscharf.tictactectoe.network.server.Server;
 import javafx.animation.RotateTransition;
@@ -18,6 +20,8 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Game {
+    private GameLauncher gameLauncher;
+
     private Board board;
 
     private PlacerChallengeAreas placerChallengeAreas;
@@ -57,17 +61,23 @@ public class Game {
 
     private Stage closeCheckingStage;
 
-    public Game(Controller controller,
+    public Game(GameLauncher gameLauncher,
+                Controller controller,
                 Player player1, Player player2,
                 boolean botMode,
                 boolean onlineMode, boolean isHost, String host,
                 Stage closeCheckingStage) {
+        this.gameLauncher = gameLauncher;
         this.botMode = botMode;
         this.onlineMode = onlineMode;
         this.isHost = isHost;
         this.host = host;
         this.closeCheckingStage = closeCheckingStage;
         controller.receiveGame(this, player1, player2);
+    }
+
+    public GameLauncher getGameLauncher() {
+        return gameLauncher;
     }
 
     public Board getBoard() {

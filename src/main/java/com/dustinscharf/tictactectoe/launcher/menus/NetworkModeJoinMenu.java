@@ -17,7 +17,11 @@ public class NetworkModeJoinMenu {
 
     private Stage primaryStage;
 
-    public void show(Stage primaryStage) throws IOException {
+    private GameLauncher gameLauncher;
+
+    public void show(Stage primaryStage, GameLauncher gameLauncher) throws IOException {
+        this.gameLauncher = gameLauncher;
+
         this.primaryStage = primaryStage;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/JoinGameMenu.fxml"));
@@ -33,6 +37,6 @@ public class NetworkModeJoinMenu {
     }
 
     public void joinNow(ActionEvent actionEvent) throws IOException {
-        new GameLauncher().start(this.primaryStage, true, false, joinIP.getText(), false);
+        this.gameLauncher.start(this.primaryStage, true, false, joinIP.getText(), false);
     }
 }
