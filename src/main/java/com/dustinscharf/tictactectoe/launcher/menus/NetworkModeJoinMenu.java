@@ -41,6 +41,11 @@ public class NetworkModeJoinMenu {
         this.gameLauncher.start(this.primaryStage, true, false, joinIP.getText(), false);
     }
 
+    public void backToNetworkMenu(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        new NetworkModeMenu().show(stage, this.gameLauncher);
+    }
+
     public void backToMainMenu(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(new FXMLLoader(getClass().getResource("/StartMenu.fxml")).load()));

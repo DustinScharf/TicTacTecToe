@@ -68,6 +68,14 @@ public class NetworkModeHostMenu {
         this.serverThread.stop();
     }
 
+    public void backToNetworkMenu(ActionEvent actionEvent) throws IOException {
+        this.server.kill();
+        this.kill();
+
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        new NetworkModeMenu().show(stage, this.gameLauncher);
+    }
+
     public void backToMainMenu(ActionEvent actionEvent) throws IOException {
         this.server.kill();
         this.kill();
