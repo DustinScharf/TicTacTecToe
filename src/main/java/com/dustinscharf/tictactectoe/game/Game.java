@@ -188,7 +188,6 @@ public class Game {
 
         if (this.onlineMode) {
             this.client = new Client(this, this.host);
-//            if (this.c)
         }
 
         this.initSelectionPhase();
