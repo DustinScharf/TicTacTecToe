@@ -219,7 +219,7 @@ public class Client {
                 return null;
             }
         };
-        sleeper.setOnSucceeded(event -> this.controlledGame.sendMessageToScreen("Click menu", 10));
+        sleeper.setOnSucceeded(event -> this.controlledGame.sendMessageToScreen("Click HOME", 10));
         new Thread(sleeper).start();
 
         this.stayAlive = false;

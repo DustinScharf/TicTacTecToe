@@ -325,7 +325,7 @@
                         </Stop>
                         <Stop offset="1.0">
                            <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
+                              <Color opacity="0.634782612323761" />
                            </color>
                         </Stop>
                      </stops>
