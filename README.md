@@ -6,7 +6,7 @@ _(Requires at least Java 11)_
 ## How does the game work?
 Select the game mode and the game will start.
 
-![Demo GIF could not load, read the tutorial below](gameDemo.gif)
+![Demo GIF could not load, you can read the tutorial below](gameDemo.gif)
 
 1. **Selection Phase**<br>
 Select a PLACER, the player sending the higher PLACER starts this round<br>
