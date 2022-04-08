@@ -17,7 +17,7 @@ Select a PLACER, and place it on the board<br>
 Placing is possible on an empty field or a field with a lower placer on it
 
 3. **Win Check**<br>
-If a player hits 3 in a row (like normal TicTacToe) the players wins<br>
+If a player hits 3 PLACERS in a row (like normal TicTacToe) the players wins<br>
 If a player can not set anything, the other player wins<br>
 If none of them holds, the selection phase starts again
 
