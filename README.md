@@ -1,6 +1,6 @@
 # TicTacTecToe
 ## Installation
-**Download TicTacTecToe.jar** and start it by clicking on it.<br>
+**Download TicTacTecToe.jar** and start it by double-clicking on it.<br>
 Link: https://github.com/DustinScharf/TicTacTecToe/releases/download/v1.2/TicTacTecToe.jar <br>
 _(Requires Java 11 or newer)_
 ## How does the game work?
