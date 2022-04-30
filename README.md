@@ -1,6 +1,6 @@
 # TicTacTecToe
 ## Installation
-**Download TicTacTecToe.jar** and start it by double-clicking on it.<br>
+**Download TicTacTecToe.jar** and start it by double-clicking on it. <br>
 Link: https://github.com/DustinScharf/TicTacTecToe/releases/download/v1.2/TicTacTecToe.jar <br>
 _(Requires Java 11 or newer)_
 ## How does the game work?
@@ -8,17 +8,17 @@ Select a game mode and the game will start.
 
 ![Demo GIF could not load, alternatively read the tutorial below](gameDemo.gif)
 
-1. **Selection Phase**<br>
+1. **Selection Phase** <br>
 Select a PLACER, the player sending the higher PLACER starts this round<br>
 PLACERs are the numbers above / below the 3x3 board
 
-2. **Place Phase**<br>
+2. **Place Phase** <br>
 Select a PLACER, and place it on the board<br>
 Placing is possible on an empty field or a field with a lower placer on it
 
-3. **Win Check**<br>
-If a player hits 3 PLACERS in a row (like normal TicTacToe) the players wins<br>
-If a player can not set anything, the other player wins<br>
+3. **Win Check** <br>
+If a player hits 3 PLACERS in a row (like normal TicTacToe) the players wins <br>
+If a player can not set anything, the other player wins <br>
 If none of them holds, the selection phase starts again
 
 <hr>
