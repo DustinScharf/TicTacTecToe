@@ -8,7 +8,7 @@ Link: https://github.com/DustinScharf/TicTacTecToe/releases/download/v1.2/TicTac
 ## How does the game work?
 Select a game mode and the game will start.
 
-![Demo GIF could not load, alternatively read the tutorial below](gameDemo.gif)
+![Demo GIF could not load, alternatively read the tutorial below](gameDemo.gif "An example game versus a bot")
 
 1. **Selection Phase** <br>
 Select a PLACER, the player sending the higher PLACER starts this round<br>
