@@ -5,7 +5,7 @@ _(Requires Java 11 or higher/newer)_
 
 Link: https://github.com/DustinScharf/TicTacTecToe/releases/download/v1.2/TicTacTecToe.jar <br>
 
-## How does the game work?
+## How does a TicTacTecToe game work?
 Select a game mode and the game will start.
 
 ![Demo GIF could not load, alternatively read the tutorial below](gameDemo.gif "An example game versus a bot")
