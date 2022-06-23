@@ -15,7 +15,7 @@ Select a PLACER, the player sending the higher PLACER starts this round<br>
 PLACERs are the numbers above / below the 3x3 board
 
 2. **Place Phase** <br>
-Select a PLACER, and place it on the board<br>
+Select a PLACER by a click, and place it on the board<br>
 Placing is possible on an empty field or a field with a lower placer on it
 
 3. **Win Check** <br>
