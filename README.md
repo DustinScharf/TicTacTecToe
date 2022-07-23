@@ -28,4 +28,4 @@ If none of them holds, the selection phase starts again
 #### Note: Project for trying and learning
 _The Project is used for trying and learning first JavaFX and first network programming stuff  
 The network traffic is minimal for hosting on a private computer,
-but the network is not designed secure_
+but the network is **not** designed secure_
