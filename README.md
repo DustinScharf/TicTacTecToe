@@ -1,4 +1,5 @@
 # TicTacTecToe
+
 ## Installation
 **Download [**TicTacTecToe**.jar](https://github.com/DustinScharf/TicTacTecToe/releases/download/v1.2/TicTacTecToe.jar "Click here to download TicTacTecToe")** and start it by double-clicking on it or from the terminal / cmd (normaly found in the downloads directory / folder)  
 _(Requires Java 11 or higher / newer)_  
