@@ -1,4 +1,4 @@
-# TicTacTecToe
+9# TicTacTecToe
 
 ## Installation
 **Download [**TicTacTecToe**.jar](https://github.com/DustinScharf/TicTacTecToe/releases/download/v1.2/TicTacTecToe.jar "Click here to download TicTacTecToe")** and start it by double-clicking on it or from the terminal / cmd (normaly found in the downloads directory / folder)  
@@ -29,4 +29,4 @@ If none of them holds, the selection phase (see above) starts again
 #### Note: Project for trying and learning
 _The Project is used for trying and learning first JavaFX and first network programming stuff  
 The network traffic is minimal for hosting on a private computer,
-but notice the network part is not designed secure/fair_
+but notice the network part is not designed secure /fair_
