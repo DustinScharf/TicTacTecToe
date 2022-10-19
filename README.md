@@ -27,6 +27,6 @@ If none of them holds, the selection phase (see above) starts again
 <hr>
 
 #### Note: Project for trying and learning
-_The Project is used for trying and learning first JavaFX and first network programming stuff  
+_The Project is used for trying and learning first JavaFX and network programming stuff  
 The network traffic is minimal for hosting on a private computer,
 but notice the network part is not designed secure / (cheat-)fair_
