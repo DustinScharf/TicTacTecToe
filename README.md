@@ -13,7 +13,7 @@ First select a game mode and the game will start.
 
 1. **Selection Phase** <br>
 Select a PLACER (by a click / touch), the player sending the higher PLACER starts this round<br>
-PLACERs are the numbers above / below the 3x3 board
+PLACERs are the numbers above / below the 3x3 board.
 
 2. **Place Phase** <br>
 Select a PLACER (by a click / touch), and place it on the 3x3 board<br>
