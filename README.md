@@ -9,7 +9,7 @@ Link: https://github.com/DustinScharf/TicTacTecToe/releases/download/v1.2/TicTac
 ## How does a TicTacTecToe game / turn work?
 First select a game mode and the game will start.
 
-![This is a demo GIF, alternatively read the tutorial below](gameDemo.gif "An example game versus a bot")
+![This is a demo GIF, alternatively read the tutorial below.](gameDemo.gif "An example game versus a bot")
 
 1. **Selection Phase** <br>
 Select a PLACER (by a click / touch), the player sending the higher PLACER starts this round<br>
