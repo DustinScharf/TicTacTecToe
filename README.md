@@ -17,7 +17,7 @@ PLACERs are the numbers above / below the 3x3 board.
 
 2. **Place Phase** <br>
 Select a PLACER (by a click / touch), and place it on the 3x3 board<br>
-Placing is possible on an empty field or a field with a lower placer on it
+Placing is possible on an empty field or a field with a lower placer on it.
 
 3. **Win Check** <br>
 If a player hits 3 PLACERS in a row (like normal TicTacToe, including diagonal) the players wins <br>
