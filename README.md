@@ -20,7 +20,7 @@ Select a PLACER (by a click / touch), and place it on the 3x3 board<br>
 Placing is possible on an empty field or a field with a lower placer on it.
 
 3. **Win Check** <br>
-If a player hits 3 PLACERS in a row (like normal TicTacToe, including diagonal) the players wins <br>
+If a player hits 3 PLACERS in a row (like normal TicTacToe, including diagonal) the players wins. <br>
 If a player can not set anything, the other player wins (no tie) <br>
 If none of them holds, the selection phase (see above) starts again.
 
