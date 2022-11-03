@@ -12,7 +12,7 @@ First select a game mode and the game will start.
 ![This is a demo GIF, alternatively read the tutorial below.](gameDemo.gif "An example game versus a bot")
 
 1. **Selection Phase** <br>
-Select a PLACER (by a click / touch), the player sending the higher PLACER starts this round<br>
+Select a PLACER (by a click / touch), the player sending the higher PLACER starts this round.<br>
 PLACERs are the numbers above / below the 3x3 board.
 
 2. **Place Phase** <br>
